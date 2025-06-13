@@ -9,6 +9,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlanterMenu> {
     private static final ResourceLocation GUI_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "textures/gui/advanced_planter_gui.png");
@@ -39,11 +44,71 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
         int y = (height - imageHeight) / 2;
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+
+        float growthProgress = this.menu.blockEntity.getGrowthProgress();
+        if (growthProgress > 0) {
+            int progressBarHeight = (int) (52 * growthProgress);
+            int progressBarY = y + 15 + 52 - progressBarHeight;
+
+            guiGraphics.blit(GUI_TEXTURE,
+                    x + 40, progressBarY,
+                    222, 52 - progressBarHeight,
+                    6, progressBarHeight
+            );
+        }
+
+        int energyStored = this.menu.blockEntity.getEnergyStored();
+        int maxEnergy = this.menu.blockEntity.getMaxEnergyStored();
+        if (maxEnergy > 0) {
+            float energyPercentage = (float) energyStored / maxEnergy;
+            int energyBarHeight = (int) (52 * energyPercentage);
+            int energyBarY = y + 15 + 52 - energyBarHeight;
+
+            guiGraphics.blit(GUI_TEXTURE,
+                    x + 194, energyBarY,
+                    212, 52 - energyBarHeight,
+                    10, energyBarHeight
+            );
+        }
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int x, int y) {
+        super.renderTooltip(guiGraphics, x, y);
+
+        int guiX = (width - imageWidth) / 2;
+        int guiY = (height - imageHeight) / 2;
+
+        if (x >= guiX + 40 && x <= guiX + 40 + 6 && y >= guiY + 15 && y <= guiY + 15 + 52) {
+            List<Component> tooltip = new ArrayList<>();
+            float progress = this.menu.blockEntity.getGrowthProgress();
+            tooltip.add(Component.literal("Growth Progress"));
+            tooltip.add(Component.literal(String.format("%.1f%%", progress * 100)));
+            guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
+        }
+
+        if (x >= guiX + 194 && x <= guiX + 194 + 10 && y >= guiY + 15 && y <= guiY + 15 + 52) {
+            List<Component> tooltip = new ArrayList<>();
+            int energyStored = this.menu.blockEntity.getEnergyStored();
+            int maxEnergy = this.menu.blockEntity.getMaxEnergyStored();
+
+            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
+
+            tooltip.add(Component.literal("Energy Stored"));
+            tooltip.add(Component.literal(formatter.format(energyStored) + " / " + formatter.format(maxEnergy) + " RF"));
+
+            if (maxEnergy > 0) {
+                float percentage = ((float) energyStored / maxEnergy) * 100;
+                tooltip.add(Component.literal(String.format("%.1f%%", percentage)));
+            }
+
+            guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
+        }
     }
 }

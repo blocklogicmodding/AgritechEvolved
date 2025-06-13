@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -20,6 +21,8 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 public class AdvancedPlanterMenu extends AbstractContainerMenu {
     public final AdvancedPlanterBlockEntity blockEntity;
     private final Level level;
+    private int lastEnergyStored = 0;
+    private int lastGrowthProgress = 0;
 
     public AdvancedPlanterMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {
         this(containerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()));
@@ -33,11 +36,11 @@ public class AdvancedPlanterMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 0, 8, 16)); // Seed/Sapling Slot
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 1, 8, 52)); // Soil Slot
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 2, 152, 16)); // Module Slot 1
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 3, 170, 16)); // Module Slot 1
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 4, 161, 52)); // Fertilizer Slot
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 0, 8, 16));
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 1, 8, 52));
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 2, 152, 16));
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 3, 170, 16));
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 4, 161, 52));
 
         int outputSlotIndex = 5;
         for (int row = 0; row < 3; row++) {
@@ -46,6 +49,46 @@ public class AdvancedPlanterMenu extends AbstractContainerMenu {
                         62 + col * 18, 16 + row * 18));
             }
         }
+
+        addDataSlots();
+    }
+
+    private void addDataSlots() {
+        this.addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getEnergyStored();
+            }
+
+            @Override
+            public void set(int value) {
+                lastEnergyStored = value;
+            }
+        });
+
+        this.addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return Math.round(blockEntity.getGrowthProgress() * 1000);
+            }
+
+            @Override
+            public void set(int value) {
+                lastGrowthProgress = value;
+            }
+        });
+    }
+
+    public int getEnergyStored() {
+        return level.isClientSide ? lastEnergyStored : blockEntity.getEnergyStored();
+    }
+
+    public int getMaxEnergyStored() {
+        return blockEntity.getMaxEnergyStored();
+    }
+
+    public float getGrowthProgress() {
+        return level.isClientSide ? (lastGrowthProgress / 1000.0f) : blockEntity.getGrowthProgress();
     }
 
     private static final int HOTBAR_SLOT_COUNT = 9;

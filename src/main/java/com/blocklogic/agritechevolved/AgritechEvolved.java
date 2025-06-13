@@ -2,11 +2,14 @@ package com.blocklogic.agritechevolved;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
+import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
 import com.blocklogic.agritechevolved.block.entity.renderer.AdvancedPlanterBlockEntityRenderer;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
 import com.blocklogic.agritechevolved.screen.custom.*;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;

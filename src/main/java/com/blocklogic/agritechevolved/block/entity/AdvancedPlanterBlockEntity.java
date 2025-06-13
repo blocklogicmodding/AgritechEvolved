@@ -24,6 +24,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -159,10 +162,6 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return outputHandler;
     }
 
-    private int growthProgress = 0;
-    private int growthTicks = 0;
-    private boolean readyToHarvest = false;
-
     public AdvancedPlanterBlockEntity(BlockPos pos, BlockState blockState) {
         super(ATEBlockEntities.PLANTER_BE.get(), pos, blockState);
         this.outputHandler = new OutputOnlyItemHandler(inventory, 5, 16);
@@ -179,15 +178,261 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return new AdvancedPlanterMenu(i, inventory, this);
     }
 
-    @Nullable
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+    private int growthProgress = 0;
+    private int growthTicks = 0;
+    private boolean readyToHarvest = false;
+    private static final int BASE_POWER_CONSUMPTION = 128;
+    private static final int ENERGY_CAPACITY = 20000;
+    private int energyStored = 0;
+
+    public int getEnergyStored() {
+        return energyStored;
+    }
+
+    public int getMaxEnergyStored() {
+        return ENERGY_CAPACITY;
+    }
+
+    public boolean canExtractEnergy() {
+        return false;
+    }
+
+    public boolean canReceiveEnergy() {
+        return true;
+    }
+
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+        int energyReceived = Math.min(maxReceive, ENERGY_CAPACITY - energyStored);
+        if (!simulate) {
+            energyStored += energyReceived;
+            setChanged();
+        }
+        return energyReceived;
+    }
+
+    public int extractEnergy(int maxExtract, boolean simulate) {
+        return 0;
+    }
+
+    private boolean consumeEnergy() {
+        float powerModifier = getModulePowerModifier();
+        int powerRequired = Math.round(BASE_POWER_CONSUMPTION * powerModifier);
+
+        if (energyStored >= powerRequired) {
+            energyStored -= powerRequired;
+            setChanged();
+            return true;
+        }
+        return false;
+    }
+
+    public IEnergyStorage getEnergyStorage(@Nullable Direction side) {
+        return new IEnergyStorage() {
+            @Override
+            public int receiveEnergy(int maxReceive, boolean simulate) {
+                return AdvancedPlanterBlockEntity.this.receiveEnergy(maxReceive, simulate);
+            }
+
+            @Override
+            public int extractEnergy(int maxExtract, boolean simulate) {
+                return AdvancedPlanterBlockEntity.this.extractEnergy(maxExtract, simulate);
+            }
+
+            @Override
+            public int getEnergyStored() {
+                return AdvancedPlanterBlockEntity.this.getEnergyStored();
+            }
+
+            @Override
+            public int getMaxEnergyStored() {
+                return AdvancedPlanterBlockEntity.this.getMaxEnergyStored();
+            }
+
+            @Override
+            public boolean canExtract() {
+                return AdvancedPlanterBlockEntity.this.canExtractEnergy();
+            }
+
+            @Override
+            public boolean canReceive() {
+                return AdvancedPlanterBlockEntity.this.canReceiveEnergy();
+            }
+        };
+    }
+
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (side == Direction.DOWN) {
+            return outputHandler;
+        } else {
+            return inventory;
+        }
+    }
+
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ATEBlockEntities.PLANTER_BE.get(),
+                (blockEntity, direction) -> {
+                    if (blockEntity instanceof AdvancedPlanterBlockEntity planterBlockEntity) {
+                        return planterBlockEntity.getItemHandler(direction) ;
+                    }
+                    return null;
+                });
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ATEBlockEntities.PLANTER_BE.get(),
+                (blockEntity, direction) -> {
+                    if (blockEntity instanceof AdvancedPlanterBlockEntity planterBlockEntity) {
+                        return planterBlockEntity.getEnergyStorage(direction);
+                    }
+                    return null;
+                });
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
-        return saveWithoutMetadata(pRegistries);
+    public void setChanged() {
+        super.setChanged();
+        if (level != null && !level.isClientSide()) {
+            level.invalidateCapabilities(getBlockPos());
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (level != null && !level.isClientSide()) {
+            level.invalidateCapabilities(getBlockPos());
+        }
+    }
+
+    private float getModuleSpeedModifier() {
+        float speedModifier = 1.0f;
+        float speedReduction = 1.0f;
+        boolean hasSpeedModule = false;
+        boolean hasPowerEfficiencyModule = false;
+        boolean hasYieldModule = false;
+
+        for (int slot = 2; slot <= 3; slot++) {
+            ItemStack moduleStack = inventory.getStackInSlot(slot);
+            if (!moduleStack.isEmpty()) {
+                String moduleId = RegistryHelper.getItemId(moduleStack);
+
+                if (moduleId.equals("agritechevolved:sm_mk1")) {
+                    speedModifier *= 1.1f;
+                    hasSpeedModule = true;
+                } else if (moduleId.equals("agritechevolved:sm_mk2")) {
+                    speedModifier *= 1.25f;
+                    hasSpeedModule = true;
+                } else if (moduleId.equals("agritechevolved:sm_mk3")) {
+                    speedModifier *= 1.5f;
+                    hasSpeedModule = true;
+                }
+                else if (moduleId.equals("agritechevolved:pem_mk1")) {
+                    speedReduction *= 0.95f;
+                    hasPowerEfficiencyModule = true;
+                } else if (moduleId.equals("agritechevolved:pem_mk2")) {
+                    speedReduction *= 0.9f;
+                    hasPowerEfficiencyModule = true;
+                } else if (moduleId.equals("agritechevolved:pem_mk3")) {
+                    speedReduction *= 0.85f;
+                    hasPowerEfficiencyModule = true;
+                }
+                else if (moduleId.equals("agritechevolved:ym_mk1")) {
+                    speedReduction *= 0.95f;
+                    hasYieldModule = true;
+                } else if (moduleId.equals("agritechevolved:ym_mk2")) {
+                    speedReduction *= 0.85f;
+                    hasYieldModule = true;
+                } else if (moduleId.equals("agritechevolved:ym_mk3")) {
+                    speedReduction *= 0.75f;
+                    hasYieldModule = true;
+                }
+            }
+        }
+
+        if (hasPowerEfficiencyModule && (hasSpeedModule || hasYieldModule)) {
+            return 1.0f;
+        }
+
+        return speedModifier * speedReduction;
+    }
+
+    private float getModuleYieldModifier() {
+        float yieldModifier = 1.0f;
+        boolean hasYieldModule = false;
+        boolean hasPowerEfficiencyModule = false;
+
+        for (int slot = 2; slot <= 3; slot++) {
+            ItemStack moduleStack = inventory.getStackInSlot(slot);
+            if (!moduleStack.isEmpty()) {
+                String moduleId = RegistryHelper.getItemId(moduleStack);
+
+                if (moduleId.equals("agritechevolved:ym_mk1")) {
+                    yieldModifier *= 1.1f;
+                    hasYieldModule = true;
+                } else if (moduleId.equals("agritechevolved:ym_mk2")) {
+                    yieldModifier *= 1.25f;
+                    hasYieldModule = true;
+                } else if (moduleId.equals("agritechevolved:ym_mk3")) {
+                    yieldModifier *= 1.5f;
+                    hasYieldModule = true;
+                }
+                else if (moduleId.startsWith("agritechevolved:pem_mk")) {
+                    hasPowerEfficiencyModule = true;
+                }
+            }
+        }
+
+        if (hasPowerEfficiencyModule && hasYieldModule) {
+            return 1.0f;
+        }
+
+        return yieldModifier;
+    }
+
+    private float getModulePowerModifier() {
+        float powerModifier = 1.0f;
+        boolean hasSpeedModule = false;
+        boolean hasPowerEfficiencyModule = false;
+        boolean hasYieldModule = false;
+
+        for (int slot = 2; slot <= 3; slot++) {
+            ItemStack moduleStack = inventory.getStackInSlot(slot);
+            if (!moduleStack.isEmpty()) {
+                String moduleId = RegistryHelper.getItemId(moduleStack);
+
+                if (moduleId.equals("agritechevolved:sm_mk1")) {
+                    powerModifier *= 1.1f;
+                    hasSpeedModule = true;
+                } else if (moduleId.equals("agritechevolved:sm_mk2")) {
+                    powerModifier *= 1.25f;
+                    hasSpeedModule = true;
+                } else if (moduleId.equals("agritechevolved:sm_mk3")) {
+                    powerModifier *= 1.5f;
+                    hasSpeedModule = true;
+                }
+                else if (moduleId.equals("agritechevolved:pem_mk1")) {
+                    powerModifier *= 0.9f;
+                    hasPowerEfficiencyModule = true;
+                } else if (moduleId.equals("agritechevolved:pem_mk2")) {
+                    powerModifier *= 0.75f;
+                    hasPowerEfficiencyModule = true;
+                } else if (moduleId.equals("agritechevolved:pem_mk3")) {
+                    powerModifier *= 0.5f;
+                    hasPowerEfficiencyModule = true;
+                }
+                else if (moduleId.startsWith("agritechevolved:ym_mk")) {
+                    hasYieldModule = true;
+                }
+            }
+        }
+
+        if (hasPowerEfficiencyModule && (hasSpeedModule || hasYieldModule)) {
+            return 1.0f;
+        }
+
+        return powerModifier;
+    }
+
+    private float getModuleGrowthModifier() {
+        return getModuleSpeedModifier();
     }
 
     private float getFertilizerGrowthModifier() {
@@ -239,6 +484,10 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         float totalModifier = soilModifier * moduleModifier * fertilizerGrowthModifier;
 
         if (!blockEntity.readyToHarvest) {
+            if (!blockEntity.consumeEnergy()) {
+                return;
+            }
+
             blockEntity.growthTicks++;
 
             int baseGrowthTime = blockEntity.getBaseGrowthTime(plantStack);
@@ -295,12 +544,12 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         String itemId = RegistryHelper.getItemId(plantStack);
 
         if (PlantablesConfig.isValidSeed(itemId)) {
-            return 600;
+            return 1200;
         } else if (PlantablesConfig.isValidSapling(itemId)) {
             return PlantablesConfig.getBaseSaplingGrowthTime(itemId);
         }
 
-        return 600;
+        return 1200;
     }
 
     public float getSoilGrowthModifier(ItemStack soilStack) {
@@ -308,11 +557,6 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
         String soilId = RegistryHelper.getItemId(soilStack);
         return PlantablesConfig.getSoilGrowthModifier(soilId);
-    }
-
-    private float getModuleGrowthModifier() {
-        // TODO: Implement module logic
-        return 1.0f;
     }
 
     private static void tryOutputItemsBelow(Level level, BlockPos pos, AdvancedPlanterBlockEntity blockEntity) {
@@ -510,11 +754,6 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return drops;
     }
 
-    private float getModuleYieldModifier() {
-        // TODO: Implement module logic
-        return 1.0f;
-    }
-
     private List<ItemStack> applyYieldModifier(List<ItemStack> drops, float yieldModifier) {
         if (yieldModifier == 1.0f) return drops;
 
@@ -542,6 +781,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         tag.putInt("growthProgress", growthProgress);
         tag.putInt("growthTicks", growthTicks);
         tag.putBoolean("readyToHarvest", readyToHarvest);
+        tag.putInt("energyStored", energyStored);
     }
 
     @Override
@@ -551,6 +791,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         growthProgress = tag.getInt("growthProgress");
         growthTicks = tag.getInt("growthTicks");
         readyToHarvest = tag.getBoolean("readyToHarvest");
+        energyStored = tag.getInt("energyStored");
     }
 
     public float getGrowthProgress() {
@@ -563,5 +804,16 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         } else {
             return Math.min(8, (int)(growthProgress / 12.5f));
         }
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider pRegistries) {
+        return saveWithoutMetadata(pRegistries);
     }
 }
