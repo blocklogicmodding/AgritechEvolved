@@ -215,7 +215,8 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     private boolean consumeEnergy() {
-        int powerRequired = Math.round(BASE_POWER_CONSUMPTION);
+        float powerModifier = getModulePowerModifier();
+        int powerRequired = Math.round(BASE_POWER_CONSUMPTION * powerModifier);
 
         if (energyStored >= powerRequired) {
             energyStored -= powerRequired;
@@ -304,50 +305,21 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     private float getModuleSpeedModifier() {
         float speedModifier = 1.0f;
         float speedReduction = 1.0f;
-        boolean hasSpeedModule = false;
-        boolean hasPowerEfficiencyModule = false;
-        boolean hasYieldModule = false;
 
         for (int slot = 2; slot <= 3; slot++) {
             ItemStack moduleStack = inventory.getStackInSlot(slot);
             if (!moduleStack.isEmpty()) {
                 String moduleId = RegistryHelper.getItemId(moduleStack);
 
-                if (moduleId.equals("agritechevolved:sm_mk1")) {
-                    speedModifier *= 1.1f;
-                    hasSpeedModule = true;
-                } else if (moduleId.equals("agritechevolved:sm_mk2")) {
-                    speedModifier *= 1.25f;
-                    hasSpeedModule = true;
-                } else if (moduleId.equals("agritechevolved:sm_mk3")) {
-                    speedModifier *= 1.5f;
-                    hasSpeedModule = true;
-                }
-                else if (moduleId.equals("agritechevolved:pem_mk1")) {
-                    speedReduction *= 0.95f;
-                    hasPowerEfficiencyModule = true;
-                } else if (moduleId.equals("agritechevolved:pem_mk2")) {
-                    speedReduction *= 0.9f;
-                    hasPowerEfficiencyModule = true;
-                } else if (moduleId.equals("agritechevolved:pem_mk3")) {
-                    speedReduction *= 0.85f;
-                    hasPowerEfficiencyModule = true;
-                }
-                else if (moduleId.equals("agritechevolved:ym_mk1")) {
-                    speedReduction *= 0.95f;
-                    hasYieldModule = true;
-                } else if (moduleId.equals("agritechevolved:ym_mk2")) {
-                    speedReduction *= 0.85f;
-                    hasYieldModule = true;
-                } else if (moduleId.equals("agritechevolved:ym_mk3")) {
-                    speedReduction *= 0.75f;
-                    hasYieldModule = true;
+                switch (moduleId) {
+                    case "agritechevolved:sm_mk1" -> speedModifier *= 1.1f;
+                    case "agritechevolved:sm_mk2" -> speedModifier *= 1.25f;
+                    case "agritechevolved:sm_mk3" -> speedModifier *= 1.5f;
+                    case "agritechevolved:ym_mk1" -> speedReduction *= 0.95f;
+                    case "agritechevolved:ym_mk2" -> speedReduction *= 0.85f;
+                    case "agritechevolved:ym_mk3" -> speedReduction *= 0.75f;
                 }
             }
-        }
-
-        if (hasPowerEfficiencyModule && (hasSpeedModule || hasYieldModule)) {
-            return 1.0f;
         }
 
         return speedModifier * speedReduction;
@@ -355,38 +327,41 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
     private float getModuleYieldModifier() {
         float yieldModifier = 1.0f;
-        boolean hasYieldModule = false;
-        boolean hasPowerEfficiencyModule = false;
 
         for (int slot = 2; slot <= 3; slot++) {
             ItemStack moduleStack = inventory.getStackInSlot(slot);
             if (!moduleStack.isEmpty()) {
                 String moduleId = RegistryHelper.getItemId(moduleStack);
 
-                if (moduleId.equals("agritechevolved:ym_mk1")) {
-                    yieldModifier *= 1.1f;
-                    hasYieldModule = true;
-                } else if (moduleId.equals("agritechevolved:ym_mk2")) {
-                    yieldModifier *= 1.25f;
-                    hasYieldModule = true;
-                } else if (moduleId.equals("agritechevolved:ym_mk3")) {
-                    yieldModifier *= 1.5f;
-                    hasYieldModule = true;
-                }
-                else if (moduleId.startsWith("agritechevolved:pem_mk")) {
-                    hasPowerEfficiencyModule = true;
+                switch (moduleId) {
+                    case "agritechevolved:ym_mk1" -> yieldModifier *= 1.1f;
+                    case "agritechevolved:ym_mk2" -> yieldModifier *= 1.25f;
+                    case "agritechevolved:ym_mk3" -> yieldModifier *= 1.5f;
                 }
             }
-        }
-
-        if (hasPowerEfficiencyModule && hasYieldModule) {
-            return 1.0f;
         }
 
         return yieldModifier;
     }
 
+    private float getModulePowerModifier() {
+        float powerModifier = 1.0f;
 
+        for (int slot = 2; slot <= 3; slot++) {
+            ItemStack moduleStack = inventory.getStackInSlot(slot);
+            if (!moduleStack.isEmpty()) {
+                String moduleId = RegistryHelper.getItemId(moduleStack);
+
+                switch (moduleId) {
+                    case "agritechevolved:sm_mk1" -> powerModifier *= 1.1f;
+                    case "agritechevolved:sm_mk2" -> powerModifier *= 1.25f;
+                    case "agritechevolved:sm_mk3" -> powerModifier *= 1.5f;
+                }
+            }
+        }
+
+        return powerModifier;
+    }
 
     private float getModuleGrowthModifier() {
         return getModuleSpeedModifier();
@@ -419,17 +394,6 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     private int lastGrowthStage = -1;
     private float currentTotalModifier = 1.0f;
 
-    public float getCurrentTotalModifier() {
-        ItemStack soilStack = inventory.getStackInSlot(1);
-        if (soilStack.isEmpty()) return 1.0f;
-
-        float soilModifier = getSoilGrowthModifier(soilStack);
-        float moduleModifier = getModuleGrowthModifier();
-        float fertilizerGrowthModifier = getFertilizerGrowthModifier();
-
-        return soilModifier * moduleModifier * fertilizerGrowthModifier;
-    }
-
     public static void tick(Level level, BlockPos pos, BlockState state, AdvancedPlanterBlockEntity blockEntity) {
         if (level.isClientSide()) return;
 
@@ -449,23 +413,23 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
             return;
         }
 
-        float soilModifier = blockEntity.getSoilGrowthModifier(soilStack);
-        float moduleModifier = blockEntity.getModuleGrowthModifier();
-        float fertilizerGrowthModifier = blockEntity.getFertilizerGrowthModifier();
-        float totalModifier = soilModifier * moduleModifier * fertilizerGrowthModifier;
-
         if (!blockEntity.readyToHarvest) {
-            blockEntity.growthTicks++;
+            if (!blockEntity.consumeEnergy()) {
+                return;
+            }
+
+            float soilModifier = blockEntity.getSoilGrowthModifier(soilStack);
+            float moduleModifier = blockEntity.getModuleGrowthModifier();
+            float fertilizerGrowthModifier = blockEntity.getFertilizerGrowthModifier();
+            float totalModifier = soilModifier * moduleModifier * fertilizerGrowthModifier;
+
+            blockEntity.currentTotalModifier = totalModifier;
 
             int baseGrowthTime = blockEntity.getBaseGrowthTime(plantStack);
-            int adjustedGrowthTime = (int)(baseGrowthTime / totalModifier);
 
-            if (blockEntity.growthTicks >= adjustedGrowthTime) {
-                if (!blockEntity.consumeEnergy()) {
-                    blockEntity.growthTicks--;
-                    return;
-                }
+            blockEntity.growthTicks += totalModifier;
 
+            if (blockEntity.growthTicks >= baseGrowthTime) {
                 blockEntity.readyToHarvest = true;
                 blockEntity.growthProgress = 100;
                 blockEntity.lastGrowthStage = blockEntity.getGrowthStage();
@@ -473,20 +437,14 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 level.sendBlockUpdated(pos, state, state, 3);
                 blockEntity.setChanged();
             } else {
-                int oldProgress = blockEntity.growthProgress;
-                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)adjustedGrowthTime) * 100);
+                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)baseGrowthTime) * 100);
 
                 int currentGrowthStage = blockEntity.getGrowthStage();
                 if (currentGrowthStage != blockEntity.lastGrowthStage) {
-                    if (!blockEntity.consumeEnergy()) {
-                        blockEntity.growthProgress = oldProgress;
-                        blockEntity.growthTicks--;
-                        return;
-                    }
                     blockEntity.lastGrowthStage = currentGrowthStage;
                 }
 
-                if (blockEntity.growthTicks % 20 == 0) {
+                if ((int)blockEntity.growthTicks % 20 == 0) {
                     level.sendBlockUpdated(pos, state, state, 3);
                     blockEntity.setChanged();
                 }
