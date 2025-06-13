@@ -3,6 +3,7 @@ package com.blocklogic.agritechevolved.block.entity;
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterMenu;
+import com.blocklogic.agritechevolved.util.ATETags;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -88,6 +89,59 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 return 1;
             }
             return super.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            String itemId = RegistryHelper.getItemId(stack);
+
+            switch (slot) {
+                case 0:
+                    if (!PlantablesConfig.isValidSeed(itemId) && !PlantablesConfig.isValidSapling(itemId)) {
+                        return false;
+                    }
+
+                    ItemStack existingSoil = getStackInSlot(1);
+                    if (!existingSoil.isEmpty()) {
+                        String soilId = RegistryHelper.getItemId(existingSoil);
+                        if (PlantablesConfig.isValidSeed(itemId)) {
+                            return PlantablesConfig.isSoilValidForSeed(soilId, itemId);
+                        } else if (PlantablesConfig.isValidSapling(itemId)) {
+                            return PlantablesConfig.isSoilValidForSapling(soilId, itemId);
+                        }
+                    }
+                    return true;
+
+                case 1:
+                    if (!PlantablesConfig.isValidSoil(itemId)) {
+                        return false;
+                    }
+
+                    ItemStack existingPlant = getStackInSlot(0);
+                    if (!existingPlant.isEmpty()) {
+                        String plantId = RegistryHelper.getItemId(existingPlant);
+                        if (PlantablesConfig.isValidSeed(plantId)) {
+                            return PlantablesConfig.isSoilValidForSeed(itemId, plantId);
+                        } else if (PlantablesConfig.isValidSapling(plantId)) {
+                            return PlantablesConfig.isSoilValidForSapling(itemId, plantId);
+                        }
+                    }
+                    return true;
+
+                case 2:
+                case 3:
+                    return stack.is(ATETags.Items.ATE_MODULES);
+
+                case 4:
+                    return PlantablesConfig.isValidFertilizer(itemId);
+
+                case 5: case 6: case 7: case 8: case 9: case 10: case 11: case 12:
+                case 13: case 14: case 15: case 16:
+                    return false;
+
+                default:
+                    return false;
+            }
         }
 
         @Override
@@ -181,8 +235,8 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
         float soilModifier = blockEntity.getSoilGrowthModifier(soilStack);
         float moduleModifier = blockEntity.getModuleGrowthModifier();
-        float totalModifier = soilModifier * moduleModifier;
-        float fertilizerModifier = blockEntity.getFertilizerGrowthModifier();
+        float fertilizerGrowthModifier = blockEntity.getFertilizerGrowthModifier();
+        float totalModifier = soilModifier * moduleModifier * fertilizerGrowthModifier;
 
         if (!blockEntity.readyToHarvest) {
             blockEntity.growthTicks++;

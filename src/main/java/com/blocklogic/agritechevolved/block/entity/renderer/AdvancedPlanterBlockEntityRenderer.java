@@ -21,101 +21,68 @@ import net.minecraft.world.level.block.state.properties.Property;
 public class AdvancedPlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedPlanterBlockEntity> {
 
     public AdvancedPlanterBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
-
     }
 
     @Override
     public void render(AdvancedPlanterBlockEntity blockEntity, float partialTick, PoseStack poseStack,
                        MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 
-        renderSoilBlock(blockEntity, poseStack, bufferSource, packedLight);
+        if (!blockEntity.inventory.getStackInSlot(1).isEmpty()) {
+            ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
 
-        renderPlant(blockEntity, poseStack, bufferSource, packedLight);
-    }
+            if (soilStack.getItem() instanceof BlockItem blockItem) {
+                BlockState soilState = blockItem.getBlock().defaultBlockState();
 
-    private void renderSoilBlock(AdvancedPlanterBlockEntity blockEntity, PoseStack poseStack,
-                                 MultiBufferSource bufferSource, int packedLight) {
-        ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
+                poseStack.pushPose();
+                poseStack.translate(0.175, 0.4, 0.175);
+                poseStack.scale(0.65f, 0.05f, 0.65f);
 
-        if (soilStack.isEmpty() || !(soilStack.getItem() instanceof BlockItem blockItem)) {
-            return;
+                BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
+                dispatcher.renderSingleBlock(soilState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
+
+                poseStack.popPose();
+            }
         }
 
-        BlockState soilState = blockItem.getBlock().defaultBlockState();
+        if (!blockEntity.inventory.getStackInSlot(0).isEmpty() && !blockEntity.inventory.getStackInSlot(1).isEmpty()) {
+            ItemStack plantStack = blockEntity.inventory.getStackInSlot(0);
 
-        poseStack.pushPose();
+            if (plantStack.getItem() instanceof BlockItem blockItem) {
+                String plantId = RegistryHelper.getItemId(plantStack);
+                boolean isTree = PlantablesConfig.isValidSapling(plantId);
+                boolean isCrop = PlantablesConfig.isValidSeed(plantId);
 
-        poseStack.translate(0.175, 0.4, 0.175);
-        poseStack.scale(0.65f, 0.05f, 0.65f);
+                if (isTree || isCrop) {
+                    Block plantBlock = blockItem.getBlock();
+                    BlockState plantState = plantBlock.defaultBlockState();
 
-        BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-        dispatcher.renderSingleBlock(soilState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
+                    poseStack.pushPose();
 
-        poseStack.popPose();
-    }
+                    float growthProgress = blockEntity.getGrowthProgress();
 
-    private void renderPlant(AdvancedPlanterBlockEntity blockEntity, PoseStack poseStack,
-                             MultiBufferSource bufferSource, int packedLight) {
-        ItemStack plantStack = blockEntity.inventory.getStackInSlot(0);
-        ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
+                    if (isTree) {
+                        poseStack.translate(0.5, 0.45, 0.5);
 
-        if (plantStack.isEmpty() || soilStack.isEmpty()) {
-            return;
-        }
+                        float scale = 0.3f + (growthProgress * 0.4f);
+                        poseStack.scale(scale, scale, scale);
 
-        int growthStage = blockEntity.getGrowthStage();
+                        poseStack.translate(-0.5, 0, -0.5);
+                    } else {
+                        poseStack.translate(0.1725, 0.45, 0.1725);
 
-        if (growthStage <= 0) {
-            return;
-        }
+                        int growthStage = blockEntity.getGrowthStage();
+                        plantState = getCropBlockState(plantStack, growthStage);
 
-        String plantId = RegistryHelper.getItemId(plantStack);
-        boolean isTree = PlantablesConfig.isValidSapling(plantId);
-        boolean isCrop = PlantablesConfig.isValidSeed(plantId);
+                        float growthScale = 0.2f + (growthStage / 8.0f) * 0.5f;
+                        poseStack.scale(0.65f, growthScale, 0.65f);
+                    }
 
-        if (!isTree && !isCrop) {
-            return;
-        }
+                    BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
+                    dispatcher.renderSingleBlock(plantState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
 
-        poseStack.pushPose();
-
-        poseStack.translate(0.1725, 0.45, 0.1725);
-
-        if (isTree) {
-            renderTreePlant(plantStack, growthStage, poseStack, bufferSource, packedLight);
-        } else {
-            renderCropPlant(plantStack, growthStage, poseStack, bufferSource, packedLight);
-        }
-
-        poseStack.popPose();
-    }
-
-    private void renderCropPlant(ItemStack plantStack, int growthStage, PoseStack poseStack,
-                                 MultiBufferSource bufferSource, int packedLight) {
-        float growthScale = 0.2f + (growthStage / 8.0f) * 0.5f;
-        poseStack.scale(0.65f, growthScale, 0.65f);
-
-        BlockState cropState = getCropBlockState(plantStack, growthStage);
-
-        if (cropState != null) {
-            BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-            dispatcher.renderSingleBlock(cropState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
-        }
-    }
-
-    private void renderTreePlant(ItemStack plantStack, int growthStage, PoseStack poseStack,
-                                 MultiBufferSource bufferSource, int packedLight) {
-        float growthScale = growthStage > 0 ? 0.7f : 0.2f;
-        poseStack.scale(0.65f, growthScale, 0.65f);
-
-        if (plantStack.getItem() instanceof BlockItem blockItem) {
-            Block saplingBlock = blockItem.getBlock();
-            BlockState saplingState = saplingBlock.defaultBlockState();
-
-            BlockState finalState = getSaplingBlockState(saplingState, growthStage);
-
-            BlockRenderDispatcher dispatcher = Minecraft.getInstance().getBlockRenderer();
-            dispatcher.renderSingleBlock(finalState, poseStack, bufferSource, packedLight, OverlayTexture.NO_OVERLAY);
+                    poseStack.popPose();
+                }
+            }
         }
     }
 
@@ -150,20 +117,6 @@ public class AdvancedPlanterBlockEntityRenderer implements BlockEntityRenderer<A
         }
 
         return state;
-    }
-
-    private BlockState getSaplingBlockState(BlockState saplingState, int growthStage) {
-        for (Property<?> property : saplingState.getProperties()) {
-            if (property.getName().equals("stage") && property instanceof IntegerProperty intProp) {
-                int maxStage = intProp.getPossibleValues().stream()
-                        .max(Integer::compareTo)
-                        .orElse(0);
-                int clampedStage = Math.min(growthStage, maxStage);
-                return setAgeProperty(saplingState, intProp, clampedStage);
-            }
-        }
-
-        return saplingState;
     }
 
     @SuppressWarnings("unchecked")

@@ -54,7 +54,7 @@ public class Config
             .define("enableHexerei", true);
 
     private static final ModConfigSpec.BooleanValue ENABLE_ATE_SOILS = BUILDER
-            .define("enableAgeitechEvolvedSoils", true);
+            .define("enableAgritechEvolvedSoils", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 

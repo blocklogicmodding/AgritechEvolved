@@ -2972,7 +2972,7 @@ public class PlantablesConfig {
         soils.add(infusedFarmland);
 
         SoilEntry agritechEvolvedMulch = new SoilEntry();
-        agritechEvolvedMulch.soil = "agritechevolved:infused_farmland";
+        agritechEvolvedMulch.soil = "agritechevolved:mulch";
         agritechEvolvedMulch.growthModifier = 2.0f;
         soils.add(agritechEvolvedMulch);
     }

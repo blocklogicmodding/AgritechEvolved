@@ -53,7 +53,7 @@ public class PlantablesOverrideConfig {
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
             String logFileName = "plantables_config_overrides_errors_" + timestamp + ".log";
-            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("plantables").resolve("config_logs").resolve(logFileName);
+            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechevolved/plantables_overrides").resolve("config_logs").resolve(logFileName);
 
             Files.createDirectories(ERROR_LOG_PATH.getParent());
 
@@ -115,7 +115,7 @@ public class PlantablesOverrideConfig {
                                      Map<String, PlantablesConfig.SoilInfo> cropSoils,
                                      Map<String, PlantablesConfig.SoilInfo> treeSoils,
                                      Map<String, PlantablesConfig.FertilizerInfo> fertilizers) {
-        Path configDir = FMLPaths.CONFIGDIR.get().resolve("plantables");
+        Path configDir = FMLPaths.CONFIGDIR.get().resolve("agritechevolved/plantables_overrides");
         Path overridePath = configDir.resolve(OVERRIDE_FILE_NAME);
 
         setupErrorLogger();

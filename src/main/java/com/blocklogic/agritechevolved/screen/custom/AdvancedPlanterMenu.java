@@ -2,7 +2,10 @@ package com.blocklogic.agritechevolved.screen.custom;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
+import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
+import com.blocklogic.agritechevolved.util.ATETags;
+import com.blocklogic.agritechevolved.util.RegistryHelper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -57,11 +60,83 @@ public class AdvancedPlanterMenu extends AbstractContainerMenu {
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+            String sourceItemId = RegistryHelper.getItemId(sourceStack);
+
+            if (PlantablesConfig.isValidSeed(sourceItemId) || PlantablesConfig.isValidSapling(sourceItemId)) {
+                if (this.blockEntity.inventory.getStackInSlot(0).isEmpty()) {
+                    ItemStack existingSoil = this.blockEntity.inventory.getStackInSlot(1);
+                    if (!existingSoil.isEmpty()) {
+                        String soilId = RegistryHelper.getItemId(existingSoil);
+                        boolean validCombination = false;
+
+                        if (PlantablesConfig.isValidSeed(sourceItemId)) {
+                            validCombination = PlantablesConfig.isSoilValidForSeed(soilId, sourceItemId);
+                        } else if (PlantablesConfig.isValidSapling(sourceItemId)) {
+                            validCombination = PlantablesConfig.isSoilValidForSapling(soilId, sourceItemId);
+                        }
+
+                        if (!validCombination) {
+                            return ItemStack.EMPTY;
+                        }
+                    }
+
+                    ItemStack plantStack = sourceStack.copyWithCount(1);
+                    this.blockEntity.inventory.setStackInSlot(0, plantStack);
+                    sourceStack.shrink(1);
+                    return copyOfSourceStack;
+                }
+            }
+
+            else if (PlantablesConfig.isValidSoil(sourceItemId)) {
+                if (this.blockEntity.inventory.getStackInSlot(1).isEmpty()) {
+                    ItemStack existingPlant = this.blockEntity.inventory.getStackInSlot(0);
+                    if (!existingPlant.isEmpty()) {
+                        String plantId = RegistryHelper.getItemId(existingPlant);
+                        boolean validCombination = false;
+
+                        if (PlantablesConfig.isValidSeed(plantId)) {
+                            validCombination = PlantablesConfig.isSoilValidForSeed(sourceItemId, plantId);
+                        } else if (PlantablesConfig.isValidSapling(plantId)) {
+                            validCombination = PlantablesConfig.isSoilValidForSapling(sourceItemId, plantId);
+                        }
+
+                        if (!validCombination) {
+                            return ItemStack.EMPTY;
+                        }
+                    }
+
+                    ItemStack soilStack = sourceStack.copyWithCount(1);
+                    this.blockEntity.inventory.setStackInSlot(1, soilStack);
+                    sourceStack.shrink(1);
+                    return copyOfSourceStack;
+                }
+            }
+
+            else if (PlantablesConfig.isValidFertilizer(sourceItemId)) {
+                if (this.blockEntity.inventory.getStackInSlot(4).isEmpty()) {
+                    ItemStack fertilizerStack = sourceStack.copyWithCount(1);
+                    this.blockEntity.inventory.setStackInSlot(4, fertilizerStack);
+                    sourceStack.shrink(1);
+                    return copyOfSourceStack;
+                }
+            }
+
+            else if (sourceStack.is(ATETags.Items.ATE_MODULES)) {
+                for (int slot = 2; slot <= 3; slot++) {
+                    if (this.blockEntity.inventory.getStackInSlot(slot).isEmpty()) {
+                        ItemStack moduleStack = sourceStack.copyWithCount(1);
+                        this.blockEntity.inventory.setStackInSlot(slot, moduleStack);
+                        sourceStack.shrink(1);
+                        return copyOfSourceStack;
+                    }
+                }
+            }
+
             if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                     + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
