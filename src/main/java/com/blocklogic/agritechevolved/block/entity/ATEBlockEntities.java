@@ -17,6 +17,18 @@ public class ATEBlockEntities {
             BLOCK_ENTITIES.register("planter_be", () -> BlockEntityType.Builder.of(
                     AdvancedPlanterBlockEntity::new, ATEBlocks.ADVANCED_PLANTER.get()).build(null));
 
+    public static final Supplier<BlockEntityType<BiomassBurnerBlockEntity>> BURNER_BE =
+            BLOCK_ENTITIES.register("burner_be", () -> BlockEntityType.Builder.of(
+                    BiomassBurnerBlockEntity::new, ATEBlocks.BIOMASS_BURNER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<ComposterBlockEntity>> COMPOSTER_BE =
+            BLOCK_ENTITIES.register("composter_be", () -> BlockEntityType.Builder.of(
+                    ComposterBlockEntity::new, ATEBlocks.COMPOSTER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<InfuserBlockEntity>> INFUSER_BE =
+            BLOCK_ENTITIES.register("infuser_be", () -> BlockEntityType.Builder.of(
+                    InfuserBlockEntity::new, ATEBlocks.INFUSER.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

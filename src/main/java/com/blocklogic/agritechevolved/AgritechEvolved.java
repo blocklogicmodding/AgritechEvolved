@@ -5,7 +5,7 @@ import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
-import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterScreen;
+import com.blocklogic.agritechevolved.screen.custom.*;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
@@ -92,6 +92,9 @@ public class AgritechEvolved
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ATEMenuTypes.PLANTER_MENU.get(), AdvancedPlanterScreen::new);
+            event.register(ATEMenuTypes.BURNER_MENU.get(), BiomassBurnerScreen::new);
+            event.register(ATEMenuTypes.COMPOSTER_MENU.get(), ComposterScreen::new);
+            event.register(ATEMenuTypes.INFUSER_MENU.get(), InfuserScreen::new);
         }
     }
 }

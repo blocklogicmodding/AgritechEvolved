@@ -47,21 +47,21 @@ public class ATEBlocks {
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER1 = registerBlock("capacitor_tier1",
-            () -> new CapacitorTier1Block(BlockBehaviour.Properties.of()
+            () -> new Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER2 = registerBlock("capacitor_tier2",
-            () -> new CapacitorTier2Block(BlockBehaviour.Properties.of()
+            () -> new Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER3 = registerBlock("capacitor_tier3",
-            () -> new CapacitorTier3Block(BlockBehaviour.Properties.of()
+            () -> new Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())

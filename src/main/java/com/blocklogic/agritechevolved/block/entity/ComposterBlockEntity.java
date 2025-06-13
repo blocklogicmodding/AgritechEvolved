@@ -1,6 +1,6 @@
 package com.blocklogic.agritechevolved.block.entity;
 
-import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterMenu;
+import com.blocklogic.agritechevolved.screen.custom.ComposterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvider {
-    public final ItemStackHandler inventory = new ItemStackHandler(17) {
+public class ComposterBlockEntity extends BlockEntity implements MenuProvider {
+    public final ItemStackHandler inventory = new ItemStackHandler(16) {
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
             return 1;
@@ -36,8 +36,8 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         }
     };
 
-    public AdvancedPlanterBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ATEBlockEntities.PLANTER_BE.get(), pos, blockState);
+    public ComposterBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ATEBlockEntities.COMPOSTER_BE.get(), pos, blockState);
     }
 
     public void drops() {
@@ -63,13 +63,13 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("gui.agritechevolved.advanced_planter");
+        return Component.translatable("gui.agritechevolved.composter");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new AdvancedPlanterMenu(i, inventory, this);
+        return new ComposterMenu(i, inventory, this);
     }
 
     @Nullable
