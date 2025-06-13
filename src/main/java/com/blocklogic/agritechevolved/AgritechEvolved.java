@@ -4,6 +4,7 @@ import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
 import com.blocklogic.agritechevolved.block.entity.renderer.AdvancedPlanterBlockEntityRenderer;
+import com.blocklogic.agritechevolved.command.ATECommands;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
@@ -12,6 +13,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -49,6 +51,8 @@ public class AgritechEvolved
         ATEBlockEntities.register(modEventBus);
         ATEMenuTypes.register(modEventBus);
 
+        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
+
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(AdvancedPlanterBlockEntity::registerCapabilities);
 
@@ -65,6 +69,10 @@ public class AgritechEvolved
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
 
+    }
+
+    public void onRegisterCommands(RegisterCommandsEvent event) {
+        ATECommands.register(event.getDispatcher());
     }
 
     @SubscribeEvent
