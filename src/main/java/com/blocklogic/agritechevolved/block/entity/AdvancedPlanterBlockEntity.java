@@ -88,10 +88,19 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     public final ItemStackHandler inventory = new ItemStackHandler(17) {
         @Override
         public int getSlotLimit(int slot) {
-            if (slot == 0 || slot == 1 || slot == 2 || slot == 3 || slot == 4) {
+            if (slot == 0 || slot == 1 || slot == 2 || slot == 3) {
                 return 1;
             }
             return super.getSlotLimit(slot);
+        }
+
+        @Override
+        protected int getStackLimit(int slot, ItemStack stack) {
+            if (slot == 4) {
+                return 1;
+            }
+
+            return super.getStackLimit(slot, stack);
         }
 
         @Override
@@ -606,53 +615,31 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         ItemStack plantStack = inventory.getStackInSlot(0);
         List<ItemStack> drops = getHarvestDrops(plantStack);
 
-        float yieldModifier = getModuleYieldModifier() * getFertilizerYieldModifier();
-        drops = applyYieldModifier(drops, yieldModifier);
+        float fertilizerYieldModifier = getFertilizerYieldModifier();
+        float moduleYieldModifier = getModuleYieldModifier();
+        float totalYieldModifier = fertilizerYieldModifier * moduleYieldModifier;
 
-        for (ItemStack dropStack : drops) {
-            int remainingItemsToPlace = dropStack.getCount();
+        drops = applyYieldModifier(drops, totalYieldModifier);
 
-            while (remainingItemsToPlace > 0) {
-                boolean itemPlaced = false;
+        for (ItemStack drop : drops) {
+            int remainingItemsToPlace = drop.getCount();
 
-                for (int slot = 5; slot <= 16; slot++) {
-                    ItemStack existingStack = inventory.getStackInSlot(slot);
+            for (int slot = 5; slot <= 16; slot++) {
+                ItemStack existingStack = inventory.getStackInSlot(slot);
 
-                    if (!existingStack.isEmpty() &&
-                            existingStack.is(dropStack.getItem()) &&
-                            existingStack.getCount() < existingStack.getMaxStackSize()) {
-
-                        int spaceAvailable = existingStack.getMaxStackSize() - existingStack.getCount();
-                        int itemsToAdd = Math.min(spaceAvailable, remainingItemsToPlace);
-
-                        existingStack.grow(itemsToAdd);
-                        inventory.setStackInSlot(slot, existingStack);
-
-                        remainingItemsToPlace -= itemsToAdd;
-                        itemPlaced = true;
-
-                        if (remainingItemsToPlace <= 0) {
-                            break;
-                        }
-                    }
+                if (existingStack.isEmpty()) {
+                    int itemsToPlace = Math.min(remainingItemsToPlace, drop.getMaxStackSize());
+                    inventory.setStackInSlot(slot, new ItemStack(drop.getItem(), itemsToPlace));
+                    remainingItemsToPlace -= itemsToPlace;
+                } else if (existingStack.is(drop.getItem()) &&
+                        existingStack.getCount() < existingStack.getMaxStackSize()) {
+                    int spaceAvailable = existingStack.getMaxStackSize() - existingStack.getCount();
+                    int itemsToAdd = Math.min(spaceAvailable, remainingItemsToPlace);
+                    existingStack.grow(itemsToAdd);
+                    remainingItemsToPlace -= itemsToAdd;
                 }
 
-                if (remainingItemsToPlace > 0) {
-                    for (int slot = 5; slot <= 16; slot++) {
-                        ItemStack existingStack = inventory.getStackInSlot(slot);
-
-                        if (existingStack.isEmpty()) {
-                            ItemStack newStack = new ItemStack(dropStack.getItem(), remainingItemsToPlace);
-                            inventory.setStackInSlot(slot, newStack);
-
-                            remainingItemsToPlace = 0;
-                            itemPlaced = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!itemPlaced) {
+                if (remainingItemsToPlace <= 0) {
                     break;
                 }
             }
@@ -662,7 +649,19 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
             }
         }
 
+        consumeFertilizerForGrowthCycle();
+
         resetGrowth();
+    }
+
+    private void consumeFertilizerForGrowthCycle() {
+        ItemStack fertilizerStack = inventory.getStackInSlot(4);
+
+        if (!fertilizerStack.isEmpty()) {
+            fertilizerStack.shrink(1);
+            inventory.setStackInSlot(4, fertilizerStack.isEmpty() ? ItemStack.EMPTY : fertilizerStack);
+            setChanged();
+        }
     }
 
     private List<ItemStack> getHarvestDrops(ItemStack plantStack) {
