@@ -31,5 +31,8 @@
   "gui.agritechevolved.biomass_burner": "Biomass Burner",
   "gui.agritechevolved.composter": "Composter",
   "gui.agritechevolved.infuser": "Infuser",
-  "gui.agritechevolved.capacitor": "Capacitor"
+  "gui.agritechevolved.capacitor": "Capacitor",
+
+  "message.agritechevolved.invalid_plant_soil_combination": "Seed/Sapling can't grow on this soil",
+  "message.agritechevolved.same_farmland": "This farmland is already of this type!"
 }

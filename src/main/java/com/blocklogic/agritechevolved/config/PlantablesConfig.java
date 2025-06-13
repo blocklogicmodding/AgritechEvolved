@@ -20,6 +20,7 @@ public class PlantablesConfig {
     private static Map<String, CropInfo> crops = new HashMap<>();
     private static Map<String, TreeInfo> trees = new HashMap<>();
     private static Map<String, SoilInfo> soils = new HashMap<>();
+    private static Map<String, FertilizerInfo> fertilizers = new HashMap<>();
 
     public static void loadConfig() {
         LOGGER.info("PlantablesConfig.loadConfig() invoked.");
@@ -38,7 +39,7 @@ public class PlantablesConfig {
             processConfig(getDefaultConfig());
         }
 
-        PlantablesOverrideConfig.loadOverrides(crops, trees, soils, soils);
+        PlantablesOverrideConfig.loadOverrides(crops, trees, soils, soils, fertilizers);
     }
 
     private static void createDefaultConfig(Path configPath) {
@@ -140,7 +141,7 @@ public class PlantablesConfig {
             addFarmersDelightSoils(defaultSoils);
         }
 
-        if(Config.enableAgeitechEvolvedSoils) {
+        if(Config.enableAgritechEvolvedSoils) {
             LOGGER.info("Adding Agritech: Evolved soils to AgriTech:Evolved config");
             addAgritechEvolvedSoils(defaultSoils);
         }
@@ -156,6 +157,31 @@ public class PlantablesConfig {
         }
 
         config.allowedSoils = defaultSoils;
+
+        List<FertilizerEntry> defaultFertilizers = new ArrayList<>();
+        addVanillaFertilizers(defaultFertilizers);
+
+        if (Config.enableImmersiveEngineering) {
+            LOGGER.info("Adding Immersive Engineering fertilizer to AgriTech:Evolved config");
+            addImmersiveEngineeringFertilizers(defaultFertilizers);
+        }
+
+        if (Config.enableForbiddenArcanus) {
+            LOGGER.info("Adding Forbidden Arcanus fertilizer to AgriTech:Evolved config");
+            addForbiddenArcanusFertilizers(defaultFertilizers);
+        }
+
+        if (Config.enableMysticalAgradditions) {
+            LOGGER.info("Adding Mystical Agradditions fertilizer to AgriTech:Evolved config");
+            addMysticalAgradditionsFertilizers(defaultFertilizers);
+        }
+
+        if (Config.enableMysticalAgriculture) {
+            LOGGER.info("Adding Mystical Agriculture fertilizer to AgriTech:Evolved config");
+            addMysticalAgricultureFertilizers(defaultFertilizers);
+        }
+
+        config.allowedFertilizers = defaultFertilizers;
 
         return config;
     }
@@ -3050,6 +3076,52 @@ public class PlantablesConfig {
         soils.add(goosoilTier4);
     }
 
+    private static void addVanillaFertilizers(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry boneMeal = new FertilizerEntry();
+        boneMeal.item = "minecraft:bone_meal";
+        boneMeal.speedMultiplier = 1.2f;
+        boneMeal.yieldMultiplier = 1.2f;
+        fertilizers.add(boneMeal);
+
+        FertilizerEntry biomass = new FertilizerEntry();
+        biomass.item = "agritechevolved:biomass";
+        biomass.speedMultiplier = 1.2f;
+        biomass.yieldMultiplier = 1.2f;
+        fertilizers.add(biomass);
+    }
+
+    private static void addImmersiveEngineeringFertilizers(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry fertilizer = new FertilizerEntry();
+        fertilizer.item = "immersiveengineering:fertilizer";
+        fertilizer.speedMultiplier = 1.2f;
+        fertilizer.yieldMultiplier = 1.2f;
+        fertilizers.add(fertilizer);
+    }
+
+    private static void addForbiddenArcanusFertilizers(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry arcaneBoneMeal = new FertilizerEntry();
+        arcaneBoneMeal.item = "forbidden_arcanus:arcane_bone_meal";
+        arcaneBoneMeal.speedMultiplier = 1.2f;
+        arcaneBoneMeal.yieldMultiplier = 1.2f;
+        fertilizers.add(arcaneBoneMeal);
+    }
+
+    private static void addMysticalAgradditionsFertilizers(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry fertilizerEssence = new FertilizerEntry();
+        fertilizerEssence.item = "mysticalagradditions:fertilized_essence";
+        fertilizerEssence.speedMultiplier = 1.2f;
+        fertilizerEssence.yieldMultiplier = 1.2f;
+        fertilizers.add(fertilizerEssence);
+    }
+
+    private static void addMysticalAgricultureFertilizers(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry mysticalFertilizer = new FertilizerEntry();
+        mysticalFertilizer.item = "mysticalagriculture:mystical_fertilizer";
+        mysticalFertilizer.speedMultiplier = 1.2f;
+        mysticalFertilizer.yieldMultiplier = 1.2f;
+        fertilizers.add(mysticalFertilizer);
+    }
+
     private static void processConfig(PlantablesConfigData configData) {
         crops.clear();
         trees.clear();
@@ -3077,6 +3149,14 @@ public class PlantablesConfig {
             for (SoilEntry entry : configData.allowedSoils) {
                 if (entry.soil != null && !entry.soil.isEmpty()) {
                     soils.put(entry.soil, new SoilInfo(entry.growthModifier));
+                }
+            }
+        }
+
+        if (configData.allowedFertilizers != null) {
+            for (FertilizerEntry entry : configData.allowedFertilizers) {
+                if (entry.item != null && !entry.item.isEmpty()) {
+                    fertilizers.put(entry.item, new FertilizerInfo(entry.speedMultiplier, entry.yieldMultiplier));
                 }
             }
         }
@@ -3200,6 +3280,14 @@ public class PlantablesConfig {
         return soils.containsKey(blockId);
     }
 
+    public static boolean isValidFertilizer(String itemId) {
+        return fertilizers.containsKey(itemId);
+    }
+
+    public static FertilizerInfo getFertilizerInfo(String itemId) {
+        return fertilizers.get(itemId);
+    }
+
     public static float getSoilGrowthModifier(String blockId) {
         SoilInfo info = soils.get(blockId);
         return info != null ? info.growthModifier : 1.0f;
@@ -3209,6 +3297,7 @@ public class PlantablesConfig {
         public List<CropEntry> allowedCrops;
         public List<TreeEntry> allowedTrees;
         public List<SoilEntry> allowedSoils;
+        public List<FertilizerEntry> allowedFertilizers;
     }
 
     public static class CropEntry {
@@ -3229,6 +3318,22 @@ public class PlantablesConfig {
         public String item;
         public CountRange count;
         public float chance = 1.0f;
+    }
+
+    public static class FertilizerEntry {
+        public String item;
+        public float speedMultiplier = 1.2f;
+        public float yieldMultiplier = 1.2f;
+    }
+
+    public static class FertilizerInfo {
+        public final float speedMultiplier;
+        public final float yieldMultiplier;
+
+        public FertilizerInfo(float speedMultiplier, float yieldMultiplier) {
+            this.speedMultiplier = speedMultiplier;
+            this.yieldMultiplier = yieldMultiplier;
+        }
     }
 
     public static class CountRange {

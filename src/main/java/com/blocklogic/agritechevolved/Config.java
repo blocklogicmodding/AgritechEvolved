@@ -71,7 +71,7 @@ public class Config
     public static boolean enableIntegratedDynamics;
     public static boolean enableOccultism;
     public static boolean enableHexerei;
-    public static boolean enableAgeitechEvolvedSoils;
+    public static boolean enableAgritechEvolvedSoils;
 
     private static boolean validateItemName(final Object obj)
     {
@@ -92,7 +92,7 @@ public class Config
         enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
         enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
         enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
-        enableAgeitechEvolvedSoils = ENABLE_ATE_SOILS.get() && ModList.get().isLoaded("agritechevolved");
+        enableAgritechEvolvedSoils = ENABLE_ATE_SOILS.get() && ModList.get().isLoaded("agritechevolved");
     }
 
     @SubscribeEvent

@@ -113,7 +113,8 @@ public class PlantablesOverrideConfig {
     public static void loadOverrides(Map<String, PlantablesConfig.CropInfo> crops,
                                      Map<String, PlantablesConfig.TreeInfo> trees,
                                      Map<String, PlantablesConfig.SoilInfo> cropSoils,
-                                     Map<String, PlantablesConfig.SoilInfo> treeSoils) {
+                                     Map<String, PlantablesConfig.SoilInfo> treeSoils,
+                                     Map<String, PlantablesConfig.FertilizerInfo> fertilizers) {
         Path configDir = FMLPaths.CONFIGDIR.get().resolve("plantables");
         Path overridePath = configDir.resolve(OVERRIDE_FILE_NAME);
 
@@ -135,8 +136,9 @@ public class PlantablesOverrideConfig {
             int cropCount = processCropEntries(tables.getOrDefault("crops", Collections.emptyMap()), crops);
             int treeCount = processTreeEntries(tables.getOrDefault("trees", Collections.emptyMap()), trees);
             int soilCount = processSoilEntries(tables.getOrDefault("soils", Collections.emptyMap()), cropSoils, treeSoils);
+            int fertilizerCount = processFertilizerEntries(tables.getOrDefault("fertilizers", Collections.emptyMap()), fertilizers);
 
-            MAIN_LOGGER.info("Successfully loaded {} crop overrides, {} tree overrides, and {} soil overrides",
+            MAIN_LOGGER.info("Successfully loaded {} crop overrides, {} tree overrides, {} soil overrides and {} fertilizer overrides",
                     cropCount, treeCount, soilCount);
         } catch (Exception e) {
             MAIN_LOGGER.error("Failed to load override.toml file: {}", e.getMessage());
@@ -601,6 +603,52 @@ public class PlantablesOverrideConfig {
         return count;
     }
 
+    private static int processFertilizerEntries(Map<String, Map<String, Object>> fertilizerEntries,
+                                                Map<String, PlantablesConfig.FertilizerInfo> fertilizers) {
+        int count = 0;
+
+        for (Map.Entry<String, Map<String, Object>> entry : fertilizerEntries.entrySet()) {
+            String fertilizerName = entry.getKey();
+            Map<String, Object> fertilizerConfig = entry.getValue();
+
+            try {
+                Object itemObj = fertilizerConfig.get("item");
+                if (itemObj == null) {
+                    MAIN_LOGGER.warn("Fertilizer override '{}' is missing item ID", fertilizerName);
+                    continue;
+                }
+
+                String itemId = itemObj.toString();
+                Item item = RegistryHelper.getItem(itemId);
+                if (item == null) {
+                    MAIN_LOGGER.warn("Fertilizer override '{}' uses non-existent item: {}", fertilizerName, itemId);
+                    continue;
+                }
+
+                float speedMultiplier = 1.2f;
+                float yieldMultiplier = 1.2f;
+
+                if (fertilizerConfig.containsKey("speed_multiplier") && fertilizerConfig.get("speed_multiplier") instanceof Number) {
+                    speedMultiplier = ((Number) fertilizerConfig.get("speed_multiplier")).floatValue();
+                }
+
+                if (fertilizerConfig.containsKey("yield_multiplier") && fertilizerConfig.get("yield_multiplier") instanceof Number) {
+                    yieldMultiplier = ((Number) fertilizerConfig.get("yield_multiplier")).floatValue();
+                }
+
+                fertilizers.put(itemId, new PlantablesConfig.FertilizerInfo(speedMultiplier, yieldMultiplier));
+                count++;
+
+                MAIN_LOGGER.info("Added fertilizer override for '{}' with item {}", fertilizerName, itemId);
+
+            } catch (Exception e) {
+                MAIN_LOGGER.error("Error processing fertilizer override '{}': {}", fertilizerName, e.getMessage());
+            }
+        }
+
+        return count;
+    }
+
     private static void createDefaultOverrideFile(Path configDir, Path overridePath) {
         try {
             if (!Files.exists(configDir)) {
@@ -738,6 +786,23 @@ public class PlantablesOverrideConfig {
                 # [soils.enriched_soil]
                 # block = "herbmod:enriched_soil"
                 # growth_modifier = 1.25
+                
+                # Example fertilizers:
+          
+                # [fertilizers.bone_meal]
+                # item = "minecraft:bone_meal"
+                # speed_multiplier = 1.2  # 20% faster growth
+                # yield_multiplier = 1.2  # 20% more drops
+                                
+                # [fertilizers.biomass]
+                # item = "agritechevolved:biomass"
+                # speed_multiplier = 1.2
+                # yield_multiplier = 1.2
+                                
+                # [fertilizers.mystical_fertilizer]
+                # item = "mysticalagriculture:mystical_fertilizer"
+                # speed_multiplier = 1.2
+                # yield_multiplier = 1.2
                 """;
     }
 }
