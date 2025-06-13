@@ -58,5 +58,7 @@
   "tooltip.agritechevolved.compacted": "§aUsed to create Mulch. Use in a Biomass Burner to generate 500RF/t§r",
 
   "tooltip.agritechevolved.mulch": "§aUsed in Advanced Planters. Grants 100% growth speed.§r",
-  "tooltip.agritechevolved.infused_farmland": "§aUsed to create Mulch or as a soil block in Advanced Planters. Grants 50% growth speed.§r"
+  "tooltip.agritechevolved.infused_farmland": "§aUsed to create Mulch or as a soil block in Advanced Planters. Grants 50% growth speed.§r",
+
+  "jei.agritechevolved.planter.tooltip": "Advanced Planter"
 }
