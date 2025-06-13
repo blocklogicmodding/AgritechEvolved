@@ -5,8 +5,8 @@
     "south": "agritechevolved:block/infuser_side",
     "east": "agritechevolved:block/infuser_side",
     "west": "agritechevolved:block/infuser_side",
-    "up": "agritechevolved:block/infuser_top",
-    "down": "agritechevolved:block/infuser_bottom",
+    "up": "agritechevolved:block/infuser_top_bottom",
+    "down": "agritechevolved:block/infuser_top_bottom",
     "particle": "agritechevolved:block/infuser_front"
   }
 }
