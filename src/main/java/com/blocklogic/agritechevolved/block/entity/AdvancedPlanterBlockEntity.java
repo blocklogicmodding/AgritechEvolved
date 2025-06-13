@@ -273,7 +273,42 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         if (side == Direction.DOWN) {
             return outputHandler;
         } else {
-            return inventory;
+            return new IItemHandler() {
+                @Override
+                public int getSlots() {
+                    return 12;
+                }
+
+                @Override
+                public ItemStack getStackInSlot(int slot) {
+                    if (slot == 0) return inventory.getStackInSlot(4);
+                    return inventory.getStackInSlot(slot + 4);
+                }
+
+                @Override
+                public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                    if (slot == 0) return inventory.insertItem(4, stack, simulate);
+                    return stack;
+                }
+
+                @Override
+                public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                    if (slot == 0) return ItemStack.EMPTY;
+                    return inventory.extractItem(slot + 4, amount, simulate);
+                }
+
+                @Override
+                public int getSlotLimit(int slot) {
+                    if (slot == 0) return inventory.getSlotLimit(4);
+                    return inventory.getSlotLimit(slot + 4);
+                }
+
+                @Override
+                public boolean isItemValid(int slot, ItemStack stack) {
+                    if (slot == 0) return inventory.isItemValid(4, stack);
+                    return false;
+                }
+            };
         }
     }
 
