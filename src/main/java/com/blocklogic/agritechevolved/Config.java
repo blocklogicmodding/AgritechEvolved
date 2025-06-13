@@ -1,7 +1,5 @@
 package com.blocklogic.agritechevolved;
 
-import java.util.List;
-
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -53,8 +51,8 @@ public class Config
     private static final ModConfigSpec.BooleanValue ENABLE_HEXEREI = BUILDER
             .define("enableHexerei", true);
 
-    private static final ModConfigSpec.BooleanValue ENABLE_ATE_SOILS = BUILDER
-            .define("enableAgritechEvolvedSoils", true);
+    private static final ModConfigSpec.BooleanValue ENABLE_ATE = BUILDER
+            .define("enableAgritechEvolved", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
@@ -64,14 +62,14 @@ public class Config
     public static boolean enableArsNouveau;
     public static boolean enableArsElemental;
     public static boolean enableSilentGear;
-    public static boolean enableJustDireThingSoils;
+    public static boolean enableJustDireThing;
     public static boolean enableImmersiveEngineering;
     public static boolean enableEvilCraft;
     public static boolean enableForbiddenArcanus;
     public static boolean enableIntegratedDynamics;
     public static boolean enableOccultism;
     public static boolean enableHexerei;
-    public static boolean enableAgritechEvolvedSoils;
+    public static boolean enableAgritechEvolved;
 
     private static boolean validateItemName(final Object obj)
     {
@@ -85,14 +83,14 @@ public class Config
         enableArsNouveau = ENABLE_ARS_NOUVEAU.get() && ModList.get().isLoaded("ars_nouveau");
         enableArsElemental = ENABLE_ARS_ELEMENTAL.get() && ModList.get().isLoaded("ars_elemental");
         enableSilentGear = ENABLE_SILENT_GEAR.get() && ModList.get().isLoaded("silentgear");
-        enableJustDireThingSoils = ENABLE_JUST_DIRE_THINGS_SOIL.get() && ModList.get().isLoaded("justdirethings");
+        enableJustDireThing = ENABLE_JUST_DIRE_THINGS_SOIL.get() && ModList.get().isLoaded("justdirethings");
         enableImmersiveEngineering = ENABLE_IMMERSIVE_ENGINEERING.get() && ModList.get().isLoaded("immersiveengineering");
         enableEvilCraft = ENABLE_EVILCRAFT.get() && ModList.get().isLoaded("evilcraft");
         enableForbiddenArcanus = ENABLE_FORBIDDEN_ARCANUS.get() && ModList.get().isLoaded("forbidden_arcanus");
         enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
         enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
         enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
-        enableAgritechEvolvedSoils = ENABLE_ATE_SOILS.get() && ModList.get().isLoaded("agritechevolved");
+        enableAgritechEvolved = ENABLE_ATE.get() && ModList.get().isLoaded("agritechevolved");
     }
 
     @SubscribeEvent

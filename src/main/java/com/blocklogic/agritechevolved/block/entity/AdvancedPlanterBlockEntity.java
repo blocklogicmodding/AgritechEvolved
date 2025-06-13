@@ -97,7 +97,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         @Override
         protected int getStackLimit(int slot, ItemStack stack) {
             if (slot == 4) {
-                return 1;
+                return 64;
             }
 
             return super.getStackLimit(slot, stack);

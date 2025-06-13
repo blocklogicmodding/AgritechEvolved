@@ -141,12 +141,12 @@ public class PlantablesConfig {
             addFarmersDelightSoils(defaultSoils);
         }
 
-        if(Config.enableAgritechEvolvedSoils) {
+        if(Config.enableAgritechEvolved) {
             LOGGER.info("Adding Agritech: Evolved soils to AgriTech:Evolved config");
             addAgritechEvolvedSoils(defaultSoils);
         }
 
-        if(Config.enableJustDireThingSoils) {
+        if(Config.enableJustDireThing) {
             LOGGER.info("Adding Just Dire Things soils to AgriTech:Evolved config");
             addJustDireThingsSoils(defaultSoils);
         }
@@ -171,14 +171,14 @@ public class PlantablesConfig {
             addForbiddenArcanusFertilizers(defaultFertilizers);
         }
 
-        if (Config.enableMysticalAgradditions) {
-            LOGGER.info("Adding Mystical Agradditions fertilizer to AgriTech:Evolved config");
-            addMysticalAgradditionsFertilizers(defaultFertilizers);
-        }
-
         if (Config.enableMysticalAgriculture) {
             LOGGER.info("Adding Mystical Agriculture fertilizer to AgriTech:Evolved config");
             addMysticalAgricultureFertilizers(defaultFertilizers);
+        }
+
+        if(Config.enableAgritechEvolved) {
+            LOGGER.info("Adding Agritech: Evolved biomass to AgriTech:Evolved config");
+            addAgritechEvolvedFertilizer(defaultFertilizers);
         }
 
         config.allowedFertilizers = defaultFertilizers;
@@ -3090,36 +3090,48 @@ public class PlantablesConfig {
         fertilizers.add(biomass);
     }
 
+    private static void addAgritechEvolvedFertilizer(List<FertilizerEntry> fertilizers) {
+        FertilizerEntry biomass = new FertilizerEntry();
+        biomass.item = "agritechevolved:biomass";
+        biomass.speedMultiplier = 1.3f;
+        biomass.yieldMultiplier = 1.3f;
+        fertilizers.add(biomass);
+
+        FertilizerEntry compactedBiomass = new FertilizerEntry();
+        compactedBiomass.item = "agritechevolved:compacted_biomass";
+        compactedBiomass.speedMultiplier = 1.8f;
+        compactedBiomass.yieldMultiplier = 1.8f;
+        fertilizers.add(compactedBiomass);
+    }
+
     private static void addImmersiveEngineeringFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry fertilizer = new FertilizerEntry();
         fertilizer.item = "immersiveengineering:fertilizer";
-        fertilizer.speedMultiplier = 1.2f;
-        fertilizer.yieldMultiplier = 1.2f;
+        fertilizer.speedMultiplier = 1.4f;
+        fertilizer.yieldMultiplier = 1.4f;
         fertilizers.add(fertilizer);
     }
 
     private static void addForbiddenArcanusFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry arcaneBoneMeal = new FertilizerEntry();
         arcaneBoneMeal.item = "forbidden_arcanus:arcane_bone_meal";
-        arcaneBoneMeal.speedMultiplier = 1.2f;
-        arcaneBoneMeal.yieldMultiplier = 1.2f;
+        arcaneBoneMeal.speedMultiplier = 1.5f;
+        arcaneBoneMeal.yieldMultiplier = 1.5f;
         fertilizers.add(arcaneBoneMeal);
-    }
-
-    private static void addMysticalAgradditionsFertilizers(List<FertilizerEntry> fertilizers) {
-        FertilizerEntry fertilizerEssence = new FertilizerEntry();
-        fertilizerEssence.item = "mysticalagradditions:fertilized_essence";
-        fertilizerEssence.speedMultiplier = 1.2f;
-        fertilizerEssence.yieldMultiplier = 1.2f;
-        fertilizers.add(fertilizerEssence);
     }
 
     private static void addMysticalAgricultureFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry mysticalFertilizer = new FertilizerEntry();
         mysticalFertilizer.item = "mysticalagriculture:mystical_fertilizer";
-        mysticalFertilizer.speedMultiplier = 1.2f;
-        mysticalFertilizer.yieldMultiplier = 1.2f;
+        mysticalFertilizer.speedMultiplier = 1.6f;
+        mysticalFertilizer.yieldMultiplier = 1.6f;
         fertilizers.add(mysticalFertilizer);
+
+        FertilizerEntry fertilizerEssence = new FertilizerEntry();
+        fertilizerEssence.item = "mysticalagriculture:fertilized_essence";
+        fertilizerEssence.speedMultiplier = 1.3f;
+        fertilizerEssence.yieldMultiplier = 1.3f;
+        fertilizers.add(fertilizerEssence);
     }
 
     private static void processConfig(PlantablesConfigData configData) {
