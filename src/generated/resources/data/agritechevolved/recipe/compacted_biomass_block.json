@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "building",
-  "key": {
-    "C": {
-      "item": "agritechevolved:compacted_biomass"
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "key": {
+        "C": {
+            "item": "agritechevolved:compacted_biomass"
+        }
+    },
+    "pattern": [
+        "CCC",
+        "CCC",
+        "CCC"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:compacted_biomass_block"
     }
-  },
-  "pattern": [
-    "CCC",
-    "CCC",
-    "CCC"
-  ],
-  "result": {
-    "count": 1,
-    "id": "agritechevolved:compacted_biomass_block"
-  }
 }

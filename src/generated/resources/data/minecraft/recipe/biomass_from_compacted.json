@@ -1,13 +1,13 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "agritechevolved:compacted_biomass"
+    "type": "minecraft:crafting_shapeless",
+    "category": "misc",
+    "ingredients": [
+        {
+            "item": "agritechevolved:compacted_biomass"
+        }
+    ],
+    "result": {
+        "count": 9,
+        "id": "agritechevolved:biomass"
     }
-  ],
-  "result": {
-    "count": 9,
-    "id": "agritechevolved:biomass"
-  }
 }

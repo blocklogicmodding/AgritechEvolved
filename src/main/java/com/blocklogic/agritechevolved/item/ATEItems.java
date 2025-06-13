@@ -18,17 +18,6 @@ public class ATEItems {
     public static final DeferredItem<Item> SM_MK3 = ITEMS.register("sm_mk3",
             () -> new Item(new Item.Properties()));
 
-
-    public static final DeferredItem<Item> PEM_MK1 = ITEMS.register("pem_mk1",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> PEM_MK2 = ITEMS.register("pem_mk2",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> PEM_MK3 = ITEMS.register("pem_mk3",
-            () -> new Item(new Item.Properties()));
-
-
     public static final DeferredItem<Item> YM_MK1 = ITEMS.register("ym_mk1",
             () -> new Item(new Item.Properties()));
 

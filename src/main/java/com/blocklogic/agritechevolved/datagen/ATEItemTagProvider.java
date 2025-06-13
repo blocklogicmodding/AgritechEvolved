@@ -28,9 +28,6 @@ public class ATEItemTagProvider extends ItemTagsProvider {
                 .add(ATEItems.SM_MK1.get())
                 .add(ATEItems.SM_MK2.get())
                 .add(ATEItems.SM_MK3.get())
-                .add(ATEItems.PEM_MK1.get())
-                .add(ATEItems.PEM_MK2.get())
-                .add(ATEItems.PEM_MK3.get())
                 .add(ATEItems.YM_MK1.get())
                 .add(ATEItems.YM_MK2.get())
                 .add(ATEItems.YM_MK3.get());

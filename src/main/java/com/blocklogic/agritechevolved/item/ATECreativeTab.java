@@ -33,9 +33,6 @@ public class ATECreativeTab {
                         output.accept(ATEItems.SM_MK1);
                         output.accept(ATEItems.SM_MK2);
                         output.accept(ATEItems.SM_MK3);
-                        output.accept(ATEItems.PEM_MK1);
-                        output.accept(ATEItems.PEM_MK2);
-                        output.accept(ATEItems.PEM_MK3);
                         output.accept(ATEItems.YM_MK1);
                         output.accept(ATEItems.YM_MK2);
                         output.accept(ATEItems.YM_MK3);

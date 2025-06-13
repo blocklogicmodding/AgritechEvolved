@@ -16,9 +16,6 @@ public class ATEItemModelProvider extends ItemModelProvider {
         basicItem(ATEItems.SM_MK1.get());
         basicItem(ATEItems.SM_MK2.get());
         basicItem(ATEItems.SM_MK3.get());
-        basicItem(ATEItems.PEM_MK1.get());
-        basicItem(ATEItems.PEM_MK2.get());
-        basicItem(ATEItems.PEM_MK3.get());
         basicItem(ATEItems.YM_MK1.get());
         basicItem(ATEItems.YM_MK2.get());
         basicItem(ATEItems.YM_MK3.get());

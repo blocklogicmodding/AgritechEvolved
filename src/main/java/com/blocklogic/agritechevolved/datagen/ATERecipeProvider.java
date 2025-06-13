@@ -130,38 +130,6 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_sm_mk2", has(ATEItems.SM_MK2.get()))
                 .save(recipeOutput);
 
-        // Power Efficiency Modules
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.PEM_MK1.get())
-                .pattern(" L ")
-                .pattern("ICI")
-                .pattern(" L ")
-                .define('L', Items.LAPIS_LAZULI)
-                .define('I', Items.IRON_INGOT)
-                .define('C', Items.COPPER_INGOT)
-                .unlockedBy("has_copper_ingot", has(Items.COPPER_INGOT))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.PEM_MK2.get())
-                .pattern(" A ")
-                .pattern("LPL")
-                .pattern(" A ")
-                .define('A', Items.AMETHYST_SHARD)
-                .define('L', Items.LAPIS_BLOCK)
-                .define('P', ATEItems.PEM_MK1.get())
-                .unlockedBy("has_pem_mk1", has(ATEItems.PEM_MK1.get()))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.PEM_MK3.get())
-                .pattern("DND")
-                .pattern("APA")
-                .pattern("DND")
-                .define('D', Items.DIAMOND_BLOCK)
-                .define('A', Items.AMETHYST_BLOCK)
-                .define('N', Items.NETHERITE_INGOT)
-                .define('P', ATEItems.PEM_MK2.get())
-                .unlockedBy("has_pem_mk2", has(ATEItems.PEM_MK2.get()))
-                .save(recipeOutput);
-
         // Yield Modules
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.YM_MK1.get())
                 .pattern(" W ")

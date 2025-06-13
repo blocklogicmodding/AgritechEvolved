@@ -215,8 +215,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     private boolean consumeEnergy() {
-        float powerModifier = getModulePowerModifier();
-        int powerRequired = Math.round(BASE_POWER_CONSUMPTION * powerModifier);
+        int powerRequired = Math.round(BASE_POWER_CONSUMPTION);
 
         if (energyStored >= powerRequired) {
             energyStored -= powerRequired;
@@ -387,49 +386,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return yieldModifier;
     }
 
-    private float getModulePowerModifier() {
-        float powerModifier = 1.0f;
-        boolean hasSpeedModule = false;
-        boolean hasPowerEfficiencyModule = false;
-        boolean hasYieldModule = false;
 
-        for (int slot = 2; slot <= 3; slot++) {
-            ItemStack moduleStack = inventory.getStackInSlot(slot);
-            if (!moduleStack.isEmpty()) {
-                String moduleId = RegistryHelper.getItemId(moduleStack);
-
-                if (moduleId.equals("agritechevolved:sm_mk1")) {
-                    powerModifier *= 1.1f;
-                    hasSpeedModule = true;
-                } else if (moduleId.equals("agritechevolved:sm_mk2")) {
-                    powerModifier *= 1.25f;
-                    hasSpeedModule = true;
-                } else if (moduleId.equals("agritechevolved:sm_mk3")) {
-                    powerModifier *= 1.5f;
-                    hasSpeedModule = true;
-                }
-                else if (moduleId.equals("agritechevolved:pem_mk1")) {
-                    powerModifier *= 0.9f;
-                    hasPowerEfficiencyModule = true;
-                } else if (moduleId.equals("agritechevolved:pem_mk2")) {
-                    powerModifier *= 0.75f;
-                    hasPowerEfficiencyModule = true;
-                } else if (moduleId.equals("agritechevolved:pem_mk3")) {
-                    powerModifier *= 0.5f;
-                    hasPowerEfficiencyModule = true;
-                }
-                else if (moduleId.startsWith("agritechevolved:ym_mk")) {
-                    hasYieldModule = true;
-                }
-            }
-        }
-
-        if (hasPowerEfficiencyModule && (hasSpeedModule || hasYieldModule)) {
-            return 1.0f;
-        }
-
-        return powerModifier;
-    }
 
     private float getModuleGrowthModifier() {
         return getModuleSpeedModifier();

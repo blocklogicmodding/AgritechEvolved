@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "agritechevolved:block/mulch"
+    "variants": {
+        "": {
+            "model": "agritechevolved:block/mulch"
+        }
     }
-  }
 }
