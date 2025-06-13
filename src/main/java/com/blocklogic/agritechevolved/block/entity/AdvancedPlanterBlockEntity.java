@@ -427,7 +427,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
             int baseGrowthTime = blockEntity.getBaseGrowthTime(plantStack);
 
-            blockEntity.growthTicks += totalModifier;
+            blockEntity.growthTicks += Math.round(totalModifier);
 
             if (blockEntity.growthTicks >= baseGrowthTime) {
                 blockEntity.readyToHarvest = true;
@@ -444,7 +444,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                     blockEntity.lastGrowthStage = currentGrowthStage;
                 }
 
-                if ((int)blockEntity.growthTicks % 20 == 0) {
+                if (blockEntity.growthTicks % 20 == 0) {
                     level.sendBlockUpdated(pos, state, state, 3);
                     blockEntity.setChanged();
                 }
