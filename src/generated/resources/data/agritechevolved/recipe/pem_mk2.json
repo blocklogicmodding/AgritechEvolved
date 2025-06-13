@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "P": {
+      "item": "agritechevolved:pem_mk1"
+    }
+  },
+  "pattern": [
+    " A ",
+    "LPL",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "agritechevolved:pem_mk2"
+  }
+}

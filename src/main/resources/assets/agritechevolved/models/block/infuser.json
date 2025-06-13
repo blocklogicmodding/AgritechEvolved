@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "agritechevolved:block/infuser_front",
+    "south": "agritechevolved:block/infuser_side",
+    "east": "agritechevolved:block/infuser_side",
+    "west": "agritechevolved:block/infuser_side",
+    "up": "agritechevolved:block/infuser_top",
+    "down": "agritechevolved:block/infuser_bottom",
+    "particle": "agritechevolved:block/infuser_front"
+  }
+}

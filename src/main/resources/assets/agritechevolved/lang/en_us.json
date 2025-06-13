@@ -1,3 +1,29 @@
 {
+  "creativetab.agritechevolved.agritechevolved": "Agritech: Evolved",
 
+  "block.agritechevolved.advanced_planter": "Advanced Planter",
+  "block.agritechevolved.composter": "Composter",
+  "block.agritechevolved.infuser": "Infuser",
+  "block.agritechevolved.biomass_burner": "Biomass Burner",
+  "block.agritechevolved.capacitor_tier1": "Capacitor Tier 1",
+  "block.agritechevolved.capacitor_tier2": "Capacitor Tier 2",
+  "block.agritechevolved.capacitor_tier3": "Capacitor Tier 3",
+  "block.agritechevolved.compacted_biomass_block": "Compacted Biomass Block",
+  "block.agritechevolved.infused_farmland": "Infused Farmland",
+  "block.agritechevolved.mulch": "Mulch",
+
+  "item.agritechevolved.sm_mk1": "SM-MK1",
+  "item.agritechevolved.sm_mk2": "SM-MK2",
+  "item.agritechevolved.sm_mk3": "SM-MK3",
+  "item.agritechevolved.pem_mk1": "PEM-MK1",
+  "item.agritechevolved.pem_mk2": "PEM-MK2",
+  "item.agritechevolved.pem_mk3": "PEM-MK3",
+  "item.agritechevolved.ym_mk1": "YM-MK1",
+  "item.agritechevolved.ym_mk2": "YM-MK2",
+  "item.agritechevolved.ym_mk3": "YM-MK3",
+  "item.agritechevolved.fm_mk1": "FM-MK1",
+  "item.agritechevolved.fm_mk2": "FM-MK2",
+  "item.agritechevolved.fm_mk3": "FM-MK3",
+  "item.agritechevolved.biomass": "Biomass",
+  "item.agritechevolved.compacted_biomass": "Compacted Biomass"
 }

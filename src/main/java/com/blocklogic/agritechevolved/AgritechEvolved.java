@@ -1,5 +1,8 @@
 package com.blocklogic.agritechevolved;
 
+import com.blocklogic.agritechevolved.block.ATEBlocks;
+import com.blocklogic.agritechevolved.item.ATECreativeTab;
+import com.blocklogic.agritechevolved.item.ATEItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -47,6 +50,9 @@ public class AgritechEvolved
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.register(this);
+        ATEBlocks.register(modEventBus);
+        ATEItems.register(modEventBus);
+        ATECreativeTab.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 

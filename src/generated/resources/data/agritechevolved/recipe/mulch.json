@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "agritechevolved:biomass"
+    },
+    "I": {
+      "item": "agritechevolved:infused_farmland"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BIB",
+    "BBB"
+  ],
+  "result": {
+    "count": 8,
+    "id": "agritechevolved:mulch"
+  }
+}

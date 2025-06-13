@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bone_block"
+    },
+    "C": {
+      "item": "minecraft:coal_block"
+    },
+    "F": {
+      "item": "agritechevolved:fm_mk1"
+    }
+  },
+  "pattern": [
+    " C ",
+    "BFB",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "agritechevolved:fm_mk2"
+  }
+}
