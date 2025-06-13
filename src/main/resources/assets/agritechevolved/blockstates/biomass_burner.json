@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "agritechevolved:block/biomass_burner"
+    },
+    "facing=south": {
+      "model": "agritechevolved:block/biomass_burner",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "agritechevolved:block/biomass_burner",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "agritechevolved:block/biomass_burner",
+      "y": 270
     }
   }
 }

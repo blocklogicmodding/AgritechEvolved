@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.block;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
+import com.blocklogic.agritechevolved.block.custom.*;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -17,7 +18,7 @@ public class ATEBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AgritechEvolved.MODID);
 
     public static final DeferredBlock<Block> ADVANCED_PLANTER = registerBlock("advanced_planter",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new AdvancedPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .noOcclusion()
@@ -25,42 +26,42 @@ public class ATEBlocks {
             );
 
     public static final DeferredBlock<Block> COMPOSTER = registerBlock("composter",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new ComposterBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> INFUSER = registerBlock("infuser",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new InfuserBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> BIOMASS_BURNER = registerBlock("biomass_burner",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new BiomassBurnerBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER1 = registerBlock("capacitor_tier1",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new CapacitorTier1Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER2 = registerBlock("capacitor_tier2",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new CapacitorTier2Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER3 = registerBlock("capacitor_tier3",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new CapacitorTier3Block(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
@@ -74,7 +75,7 @@ public class ATEBlocks {
     );
 
     public static final DeferredBlock<Block> INFUSED_FARMLAND = registerBlock("infused_farmland",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new InfusedFarmlandBlock(BlockBehaviour.Properties.of()
                     .strength(1.0F, 2.0F)
                     .sound(SoundType.GRAVEL)
                     .noOcclusion())

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "agritechevolved:block/infuser"
+    },
+    "facing=south": {
+      "model": "agritechevolved:block/infuser",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "agritechevolved:block/infuser",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "agritechevolved:block/infuser",
+      "y": 270
     }
   }
 }
