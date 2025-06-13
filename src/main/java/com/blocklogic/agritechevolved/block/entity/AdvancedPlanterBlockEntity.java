@@ -426,10 +426,11 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
             blockEntity.currentTotalModifier = totalModifier;
 
             int baseGrowthTime = blockEntity.getBaseGrowthTime(plantStack);
+            int adjustedGrowthTime = Math.max(1, Math.round(baseGrowthTime / totalModifier));
 
-            blockEntity.growthTicks += Math.round(totalModifier);
+            blockEntity.growthTicks++;
 
-            if (blockEntity.growthTicks >= baseGrowthTime) {
+            if (blockEntity.growthTicks >= adjustedGrowthTime) {
                 blockEntity.readyToHarvest = true;
                 blockEntity.growthProgress = 100;
                 blockEntity.lastGrowthStage = blockEntity.getGrowthStage();
@@ -437,7 +438,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 level.sendBlockUpdated(pos, state, state, 3);
                 blockEntity.setChanged();
             } else {
-                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)baseGrowthTime) * 100);
+                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)adjustedGrowthTime) * 100);
 
                 int currentGrowthStage = blockEntity.getGrowthStage();
                 if (currentGrowthStage != blockEntity.lastGrowthStage) {
@@ -703,7 +704,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
         List<ItemStack> modifiedDrops = new ArrayList<>();
         for (ItemStack drop : drops) {
-            int newCount = Math.max(1, (int)(drop.getCount() * yieldModifier));
+            int newCount = Math.max(1, Math.round(drop.getCount() * yieldModifier));
             modifiedDrops.add(new ItemStack(drop.getItem(), newCount));
         }
         return modifiedDrops;
