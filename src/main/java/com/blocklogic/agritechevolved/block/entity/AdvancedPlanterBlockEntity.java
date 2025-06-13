@@ -1,6 +1,6 @@
 package com.blocklogic.agritechevolved.block.entity;
 
-import com.blocklogic.agritechevolved.block.ATEBlocks;
+import com.blocklogic.agritechevolved.Config;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterMenu;
 import com.blocklogic.agritechevolved.util.ATETags;
@@ -321,12 +321,12 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 String moduleId = RegistryHelper.getItemId(moduleStack);
 
                 switch (moduleId) {
-                    case "agritechevolved:sm_mk1" -> speedModifier *= 1.1f;
-                    case "agritechevolved:sm_mk2" -> speedModifier *= 1.25f;
-                    case "agritechevolved:sm_mk3" -> speedModifier *= 1.5f;
-                    case "agritechevolved:ym_mk1" -> speedReduction *= 0.95f;
-                    case "agritechevolved:ym_mk2" -> speedReduction *= 0.85f;
-                    case "agritechevolved:ym_mk3" -> speedReduction *= 0.75f;
+                    case "agritechevolved:sm_mk1" -> speedModifier *= Config.getSpeedModuleMk1Multiplier();
+                    case "agritechevolved:sm_mk2" -> speedModifier *= Config.getSpeedModuleMk2Multiplier();
+                    case "agritechevolved:sm_mk3" -> speedModifier *= Config.getSpeedModuleMk3Multiplier();
+                    case "agritechevolved:ym_mk1" -> speedReduction *= Config.getYieldModuleMk1SpeedPenalty();
+                    case "agritechevolved:ym_mk2" -> speedReduction *= Config.getYieldModuleMk2SpeedPenalty();
+                    case "agritechevolved:ym_mk3" -> speedReduction *= Config.getYieldModuleMk3SpeedPenalty();
                 }
             }
         }
@@ -343,9 +343,9 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 String moduleId = RegistryHelper.getItemId(moduleStack);
 
                 switch (moduleId) {
-                    case "agritechevolved:ym_mk1" -> yieldModifier *= 1.1f;
-                    case "agritechevolved:ym_mk2" -> yieldModifier *= 1.25f;
-                    case "agritechevolved:ym_mk3" -> yieldModifier *= 1.5f;
+                    case "agritechevolved:ym_mk1" -> yieldModifier *= Config.getYieldModuleMk1Multiplier();
+                    case "agritechevolved:ym_mk2" -> yieldModifier *= Config.getYieldModuleMk2Multiplier();
+                    case "agritechevolved:ym_mk3" -> yieldModifier *= Config.getYieldModuleMk3Multiplier();
                 }
             }
         }
@@ -362,9 +362,9 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                 String moduleId = RegistryHelper.getItemId(moduleStack);
 
                 switch (moduleId) {
-                    case "agritechevolved:sm_mk1" -> powerModifier *= 1.1f;
-                    case "agritechevolved:sm_mk2" -> powerModifier *= 1.25f;
-                    case "agritechevolved:sm_mk3" -> powerModifier *= 1.5f;
+                    case "agritechevolved:sm_mk1" -> powerModifier *= Config.getSpeedModuleMk1PowerMultiplier();
+                    case "agritechevolved:sm_mk2" -> powerModifier *= Config.getSpeedModuleMk2PowerMultiplier();
+                    case "agritechevolved:sm_mk3" -> powerModifier *= Config.getSpeedModuleMk3PowerMultiplier();
                 }
             }
         }

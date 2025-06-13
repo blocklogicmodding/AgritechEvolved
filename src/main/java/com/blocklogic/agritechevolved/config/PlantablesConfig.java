@@ -146,7 +146,7 @@ public class PlantablesConfig {
             addAgritechEvolvedSoils(defaultSoils);
         }
 
-        if(Config.enableJustDireThing) {
+        if(Config.enableJustDireThings) {
             LOGGER.info("Adding Just Dire Things soils to AgriTech:Evolved config");
             addJustDireThingsSoils(defaultSoils);
         }
