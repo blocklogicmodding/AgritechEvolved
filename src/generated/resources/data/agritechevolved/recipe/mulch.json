@@ -3,7 +3,7 @@
     "category": "building",
     "key": {
         "B": {
-            "item": "agritechevolved:biomass"
+            "item": "agritechevolved:compacted_biomass"
         },
         "I": {
             "item": "agritechevolved:infused_farmland"

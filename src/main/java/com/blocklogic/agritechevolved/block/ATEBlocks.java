@@ -3,8 +3,11 @@ package com.blocklogic.agritechevolved.block;
 import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.blocklogic.agritechevolved.block.custom.*;
 import com.blocklogic.agritechevolved.item.ATEItems;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -12,6 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ATEBlocks {
@@ -79,12 +83,26 @@ public class ATEBlocks {
                     .strength(1.0F, 2.0F)
                     .sound(SoundType.GRAVEL)
                     .noOcclusion())
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.infused_farmland"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 
     public static final DeferredBlock<Block> MULCH = registerBlock("mulch",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1.0F, 2.0F)
                     .sound(SoundType.GRAVEL))
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.mulch"));
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
     );
 
     private static <T extends Block>DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

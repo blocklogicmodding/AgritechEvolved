@@ -197,7 +197,7 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BBB")
                 .pattern("BIB")
                 .pattern("BBB")
-                .define('B', ATEItems.BIOMASS.get())
+                .define('B', ATEItems.COMPACTED_BIOMASS.get())
                 .define('I', ATEBlocks.INFUSED_FARMLAND.get())
                 .unlockedBy("has_infused_farmland", has(ATEBlocks.INFUSED_FARMLAND.get()))
                 .save(recipeOutput);
