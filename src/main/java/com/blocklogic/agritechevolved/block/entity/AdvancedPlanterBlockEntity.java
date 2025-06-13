@@ -459,6 +459,20 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return fertilizerInfo != null ? fertilizerInfo.yieldMultiplier : 1.0f;
     }
 
+    private int lastGrowthStage = -1;
+    private float currentTotalModifier = 1.0f;
+
+    public float getCurrentTotalModifier() {
+        ItemStack soilStack = inventory.getStackInSlot(1);
+        if (soilStack.isEmpty()) return 1.0f;
+
+        float soilModifier = getSoilGrowthModifier(soilStack);
+        float moduleModifier = getModuleGrowthModifier();
+        float fertilizerGrowthModifier = getFertilizerGrowthModifier();
+
+        return soilModifier * moduleModifier * fertilizerGrowthModifier;
+    }
+
     public static void tick(Level level, BlockPos pos, BlockState state, AdvancedPlanterBlockEntity blockEntity) {
         if (level.isClientSide()) return;
 
@@ -484,22 +498,36 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         float totalModifier = soilModifier * moduleModifier * fertilizerGrowthModifier;
 
         if (!blockEntity.readyToHarvest) {
-            if (!blockEntity.consumeEnergy()) {
-                return;
-            }
-
             blockEntity.growthTicks++;
 
             int baseGrowthTime = blockEntity.getBaseGrowthTime(plantStack);
+            int adjustedGrowthTime = (int)(baseGrowthTime / totalModifier);
 
-            if (blockEntity.growthTicks >= baseGrowthTime / totalModifier) {
+            if (blockEntity.growthTicks >= adjustedGrowthTime) {
+                if (!blockEntity.consumeEnergy()) {
+                    blockEntity.growthTicks--;
+                    return;
+                }
+
                 blockEntity.readyToHarvest = true;
                 blockEntity.growthProgress = 100;
+                blockEntity.lastGrowthStage = blockEntity.getGrowthStage();
 
                 level.sendBlockUpdated(pos, state, state, 3);
                 blockEntity.setChanged();
             } else {
-                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)baseGrowthTime) * 100);
+                int oldProgress = blockEntity.growthProgress;
+                blockEntity.growthProgress = (int)((blockEntity.growthTicks / (float)adjustedGrowthTime) * 100);
+
+                int currentGrowthStage = blockEntity.getGrowthStage();
+                if (currentGrowthStage != blockEntity.lastGrowthStage) {
+                    if (!blockEntity.consumeEnergy()) {
+                        blockEntity.growthProgress = oldProgress;
+                        blockEntity.growthTicks--;
+                        return;
+                    }
+                    blockEntity.lastGrowthStage = currentGrowthStage;
+                }
 
                 if (blockEntity.growthTicks % 20 == 0) {
                     level.sendBlockUpdated(pos, state, state, 3);
@@ -648,10 +676,11 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         return true;
     }
 
-    public void resetGrowth() {
+    private void resetGrowth() {
         growthProgress = 0;
         growthTicks = 0;
         readyToHarvest = false;
+        lastGrowthStage = -1;
         setChanged();
     }
 
@@ -782,6 +811,8 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         tag.putInt("growthTicks", growthTicks);
         tag.putBoolean("readyToHarvest", readyToHarvest);
         tag.putInt("energyStored", energyStored);
+        tag.putInt("lastGrowthStage", lastGrowthStage);
+        tag.putFloat("currentTotalModifier", currentTotalModifier);
     }
 
     @Override
@@ -792,6 +823,8 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         growthTicks = tag.getInt("growthTicks");
         readyToHarvest = tag.getBoolean("readyToHarvest");
         energyStored = tag.getInt("energyStored");
+        lastGrowthStage = tag.getInt("lastGrowthStage");
+        currentTotalModifier = tag.getFloat("currentTotalModifier");
     }
 
     public float getGrowthProgress() {

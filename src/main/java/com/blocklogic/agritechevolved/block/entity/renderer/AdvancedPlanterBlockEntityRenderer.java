@@ -73,7 +73,8 @@ public class AdvancedPlanterBlockEntityRenderer implements BlockEntityRenderer<A
                         int growthStage = blockEntity.getGrowthStage();
                         plantState = getCropBlockState(plantStack, growthStage);
 
-                        float growthScale = 0.2f + (growthStage / 8.0f) * 0.5f;
+                        float actualProgress = Math.min(1.0f, growthProgress);
+                        float growthScale = 0.2f + (actualProgress * 0.5f);
                         poseStack.scale(0.65f, growthScale, 0.65f);
                     }
 
