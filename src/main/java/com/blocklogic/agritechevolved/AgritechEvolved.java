@@ -1,8 +1,12 @@
 package com.blocklogic.agritechevolved;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
+import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
+import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
+import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterScreen;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -53,6 +57,8 @@ public class AgritechEvolved
         ATEBlocks.register(modEventBus);
         ATEItems.register(modEventBus);
         ATECreativeTab.register(modEventBus);
+        ATEBlockEntities.register(modEventBus);
+        ATEMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
 
@@ -81,7 +87,11 @@ public class AgritechEvolved
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+        }
 
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ATEMenuTypes.PLANTER_MENU.get(), AdvancedPlanterScreen::new);
         }
     }
 }

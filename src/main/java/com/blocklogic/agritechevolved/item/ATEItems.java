@@ -38,15 +38,6 @@ public class ATEItems {
     public static final DeferredItem<Item> YM_MK3 = ITEMS.register("ym_mk3",
             () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> FM_MK1 = ITEMS.register("fm_mk1",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> FM_MK2 = ITEMS.register("fm_mk2",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<Item> FM_MK3 = ITEMS.register("fm_mk3",
-            () -> new Item(new Item.Properties()));
-
     public static final DeferredItem<Item> BIOMASS = ITEMS.register("biomass",
             () -> new Item(new Item.Properties()));
 

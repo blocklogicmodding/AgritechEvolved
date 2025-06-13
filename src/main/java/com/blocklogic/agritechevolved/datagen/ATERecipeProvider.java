@@ -194,38 +194,6 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_ym_mk2", has(ATEItems.YM_MK2.get()))
                 .save(recipeOutput);
 
-        // Fertilizer Modules
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.FM_MK1.get())
-                .pattern(" B ")
-                .pattern("CDC")
-                .pattern(" B ")
-                .define('B', Items.BONE_MEAL)
-                .define('C', Items.COAL)
-                .define('D', Items.DIRT)
-                .unlockedBy("has_bone_meal", has(Items.BONE_MEAL))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.FM_MK2.get())
-                .pattern(" C ")
-                .pattern("BFB")
-                .pattern(" C ")
-                .define('C', Items.COAL_BLOCK)
-                .define('B', Items.BONE_BLOCK)
-                .define('F', ATEItems.FM_MK1.get())
-                .unlockedBy("has_fm_mk1", has(ATEItems.FM_MK1.get()))
-                .save(recipeOutput);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.FM_MK3.get())
-                .pattern("DDD")
-                .pattern("CFC")
-                .pattern("DDD")
-                .define('D', Items.DIAMOND_BLOCK)
-                .define('C', Items.COAL_BLOCK)
-                .define('F', ATEItems.FM_MK2.get())
-                .unlockedBy("has_fm_mk2", has(ATEItems.FM_MK2.get()))
-                .save(recipeOutput);
-
-
         // Compacted Biomass - 3x3 biomass
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.COMPACTED_BIOMASS.get())
                 .pattern("BBB")

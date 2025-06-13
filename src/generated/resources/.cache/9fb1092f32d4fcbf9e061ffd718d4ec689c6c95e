@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-13T02:25:10.0501897	Recipes
+// 1.21.1	2025-06-13T11:12:02.8085738	Recipes
 20c78e5ab5c078a6827cd2e5993926c3bc163f12 data/agritechevolved/advancement/recipes/building_blocks/compacted_biomass_block.json
 bf48b4458d6979499f028a8e3b819ef8bbf53518 data/agritechevolved/advancement/recipes/building_blocks/mulch.json
 43608fb3440671af96b774cc374d94ed2e5c8f5a data/agritechevolved/advancement/recipes/misc/advanced_planter.json
@@ -8,9 +8,6 @@ e59ce3793c27e840b0516b9eb0bdef3a1054c970 data/agritechevolved/advancement/recipe
 76f65c4b91d4f5f81bfcbaad2ce3da66bccc0315 data/agritechevolved/advancement/recipes/misc/capacitor_tier3.json
 cd140789b5aa17796c393a48d03834182337036c data/agritechevolved/advancement/recipes/misc/compacted_biomass.json
 cd6d38c34ea47195f8a5b3954c598ef7b3c22894 data/agritechevolved/advancement/recipes/misc/composter.json
-3743c74bb450494872a30201b0ec0baa343de3f8 data/agritechevolved/advancement/recipes/misc/fm_mk1.json
-81846a64edfaf3aa3e52fc8ad1c47cc9f2605cdc data/agritechevolved/advancement/recipes/misc/fm_mk2.json
-b927ab1c79346fad8d8739c1c78937507a66682a data/agritechevolved/advancement/recipes/misc/fm_mk3.json
 3ffc31e6879f77809e7887e18b558a6fe2a2252a data/agritechevolved/advancement/recipes/misc/infuser.json
 caa51237d1ad2ca6c7429c576c625b7c5983aab5 data/agritechevolved/advancement/recipes/misc/pem_mk1.json
 3b2820fe5062f68c344ff2d97d691692f0e3571f data/agritechevolved/advancement/recipes/misc/pem_mk2.json
@@ -29,9 +26,6 @@ b6cfa424bbf19aaabdf9ce4d2a2bff93ae0b4d42 data/agritechevolved/recipe/biomass_bur
 0ad5e1d119bebda717787d198d9cca35103d3915 data/agritechevolved/recipe/compacted_biomass.json
 d1a03d9728b9250714011102aba67b51563d2f82 data/agritechevolved/recipe/compacted_biomass_block.json
 e4feb6e6dbdf36b4a7ae0b118896db18cd6a16b1 data/agritechevolved/recipe/composter.json
-b0da9dd906bfbdd6fa18f13ef0f9d81c3dc09fc1 data/agritechevolved/recipe/fm_mk1.json
-ea1a097a04118580be4ba0e89b30fdfeae024686 data/agritechevolved/recipe/fm_mk2.json
-0df76aefcb22e1e4bef0da79bf383cab4dcca3a6 data/agritechevolved/recipe/fm_mk3.json
 968ddcc2b308a7c87391d0852e2309f145d2268c data/agritechevolved/recipe/infuser.json
 e44e50b878287c3720d59a3f678c74da45cac2f5 data/agritechevolved/recipe/mulch.json
 5cbe6190c856a9bd150de5b02d8dc836ecf05957 data/agritechevolved/recipe/pem_mk1.json

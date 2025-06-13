@@ -25,5 +25,7 @@
   "item.agritechevolved.fm_mk2": "FM-MK2",
   "item.agritechevolved.fm_mk3": "FM-MK3",
   "item.agritechevolved.biomass": "Biomass",
-  "item.agritechevolved.compacted_biomass": "Compacted Biomass"
+  "item.agritechevolved.compacted_biomass": "Compacted Biomass",
+
+  "gui.agritechevolved.advanced_planter": "Advanced Planter"
 }
