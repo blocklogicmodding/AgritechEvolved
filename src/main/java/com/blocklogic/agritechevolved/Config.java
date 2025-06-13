@@ -53,6 +53,9 @@ public class Config
     private static final ModConfigSpec.BooleanValue ENABLE_HEXEREI = BUILDER
             .define("enableHexerei", true);
 
+    private static final ModConfigSpec.BooleanValue ENABLE_ATE_SOILS = BUILDER
+            .define("enableAgeitechEvolvedSoils", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean enableMysticalAgriculture;
@@ -68,6 +71,7 @@ public class Config
     public static boolean enableIntegratedDynamics;
     public static boolean enableOccultism;
     public static boolean enableHexerei;
+    public static boolean enableAgeitechEvolvedSoils;
 
     private static boolean validateItemName(final Object obj)
     {
@@ -88,6 +92,7 @@ public class Config
         enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
         enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
         enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
+        enableAgeitechEvolvedSoils = ENABLE_ATE_SOILS.get() && ModList.get().isLoaded("agritechevolved");
     }
 
     @SubscribeEvent
