@@ -126,7 +126,6 @@ public class PlantablesOverrideConfig {
         try {
             MAIN_LOGGER.info("Loading plantables overrides from {}", overridePath);
 
-            // Clear line number tracking
             cropLineNumbers.clear();
             treeLineNumbers.clear();
             soilLineNumbers.clear();
@@ -188,7 +187,6 @@ public class PlantablesOverrideConfig {
                     currentSection = tableMatcher.group(1);
                     currentTable = tableMatcher.group(2);
 
-                    // Track line numbers for different sections
                     switch (currentSection) {
                         case "crops" -> cropLineNumbers.put(currentTable, lineNumber);
                         case "trees" -> treeLineNumbers.put(currentTable, lineNumber);
@@ -296,7 +294,6 @@ public class PlantablesOverrideConfig {
                 return Integer.parseInt(valueStr);
             }
         } catch (NumberFormatException ignored) {
-            // Fall through to string handling
         }
 
         if (valueStr.equalsIgnoreCase("true")) {
@@ -578,13 +575,12 @@ public class PlantablesOverrideConfig {
                     continue;
                 }
 
-                float growthModifier = 1.0f; // Default neutral growth modifier
+                float growthModifier = 1.0f;
                 Object modifierObj = soilConfig.get("growth_modifier");
                 if (modifierObj instanceof Number) {
                     growthModifier = ((Number) modifierObj).floatValue();
                 }
 
-                // Add to both crop and tree soil maps
                 PlantablesConfig.SoilInfo cropSoilInfo = new PlantablesConfig.SoilInfo(growthModifier < 1.0f ? growthModifier : 0.5f);
                 PlantablesConfig.SoilInfo treeSoilInfo = new PlantablesConfig.SoilInfo(growthModifier);
 

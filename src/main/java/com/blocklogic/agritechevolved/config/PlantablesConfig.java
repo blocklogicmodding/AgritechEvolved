@@ -38,7 +38,7 @@ public class PlantablesConfig {
             processConfig(getDefaultConfig());
         }
 
-        PlantablesOverrideConfig.loadOverrides(crops, soils);
+        PlantablesOverrideConfig.loadOverrides(crops, trees, soils, soils);
     }
 
     private static void createDefaultConfig(Path configPath) {
