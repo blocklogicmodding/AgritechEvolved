@@ -85,7 +85,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
         int guiX = (width - imageWidth) / 2;
         int guiY = (height - imageHeight) / 2;
 
-        if (x >= guiX + 40 && x <= guiX + 40 + 6 && y >= guiY + 15 && y <= guiY + 15 + 52) {
+        if (x >= guiX + 40 && x <= guiX + 40 + 6 && y >= guiY + 15 && y <= guiY + 15 + 53) {
             List<Component> tooltip = new ArrayList<>();
             float progress = this.menu.blockEntity.getGrowthProgress();
             tooltip.add(Component.literal("Growth Progress"));
@@ -93,7 +93,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }
 
-        if (x >= guiX + 194 && x <= guiX + 194 + 10 && y >= guiY + 15 && y <= guiY + 15 + 52) {
+        if (x >= guiX + 194 && x <= guiX + 194 + 10 && y >= guiY + 15 && y <= guiY + 15 + 53) {
             List<Component> tooltip = new ArrayList<>();
             int energyStored = this.menu.blockEntity.getEnergyStored();
             int maxEnergy = this.menu.blockEntity.getMaxEnergyStored();

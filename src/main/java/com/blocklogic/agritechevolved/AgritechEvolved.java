@@ -50,6 +50,7 @@ public class AgritechEvolved
         ATEMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(AdvancedPlanterBlockEntity::registerCapabilities);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
