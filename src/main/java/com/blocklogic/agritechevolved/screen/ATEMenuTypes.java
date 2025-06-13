@@ -1,10 +1,7 @@
 package com.blocklogic.agritechevolved.screen;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
-import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterMenu;
-import com.blocklogic.agritechevolved.screen.custom.BiomassBurnerMenu;
-import com.blocklogic.agritechevolved.screen.custom.ComposterMenu;
-import com.blocklogic.agritechevolved.screen.custom.InfuserMenu;
+import com.blocklogic.agritechevolved.screen.custom.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -29,6 +26,9 @@ public class ATEMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<InfuserMenu>> INFUSER_MENU =
             registerMenuType("infuser_menu", InfuserMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<CapacitorMenu>> CAPACITOR_MENU =
+            registerMenuType("capacitor_menu", CapacitorMenu::new);
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

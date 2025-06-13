@@ -29,6 +29,13 @@ public class ATEBlockEntities {
             BLOCK_ENTITIES.register("infuser_be", () -> BlockEntityType.Builder.of(
                     InfuserBlockEntity::new, ATEBlocks.INFUSER.get()).build(null));
 
+    public static final Supplier<BlockEntityType<CapacitorBlockEntity>> CAPACITOR_BE =
+            BLOCK_ENTITIES.register("capacitor_be", () -> BlockEntityType.Builder.of(
+                    CapacitorBlockEntity::new,
+                    ATEBlocks.CAPACITOR_TIER1.get(),
+                    ATEBlocks.CAPACITOR_TIER2.get(),
+                    ATEBlocks.CAPACITOR_TIER3.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

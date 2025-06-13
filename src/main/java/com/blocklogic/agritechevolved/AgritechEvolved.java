@@ -95,6 +95,7 @@ public class AgritechEvolved
             event.register(ATEMenuTypes.BURNER_MENU.get(), BiomassBurnerScreen::new);
             event.register(ATEMenuTypes.COMPOSTER_MENU.get(), ComposterScreen::new);
             event.register(ATEMenuTypes.INFUSER_MENU.get(), InfuserScreen::new);
+            event.register(ATEMenuTypes.CAPACITOR_MENU.get(), CapacitorScreen::new);
         }
     }
 }
