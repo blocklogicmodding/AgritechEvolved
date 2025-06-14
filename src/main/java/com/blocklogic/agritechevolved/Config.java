@@ -1,5 +1,6 @@
 package com.blocklogic.agritechevolved;
 
+import com.blocklogic.agritechevolved.config.CompostableConfig;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -391,6 +392,7 @@ public class Config
 
     public static void loadConfig() {
         PlantablesConfig.loadConfig();
+        CompostableConfig.loadConfig();
     }
 
     @SubscribeEvent
@@ -412,5 +414,6 @@ public class Config
         enableAgritechEvolved = ENABLE_ATE.get();
 
         PlantablesConfig.loadConfig();
+        CompostableConfig.loadConfig();
     }
 }

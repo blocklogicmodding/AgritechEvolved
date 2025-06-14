@@ -1,6 +1,8 @@
 package com.blocklogic.agritechevolved.command;
 
 import com.blocklogic.agritechevolved.Config;
+import com.blocklogic.agritechevolved.config.CompostableConfig;
+import com.blocklogic.agritechevolved.config.CompostableOverrideConfig;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.config.PlantablesOverrideConfig;
 import com.mojang.brigadier.CommandDispatcher;
@@ -30,6 +32,21 @@ public class ATECommands {
                                             }
                                         })
                                 )
+                                .then(Commands.literal("compostable")
+                                        .executes(context -> {
+                                            try {
+                                                CompostableOverrideConfig.resetErrorFlag();
+                                                CompostableConfig.loadConfig();
+                                                context.getSource().sendSuccess(() ->
+                                                        Component.literal("AgriTech: Evolved compostable config reloaded successfully!"), true);
+                                                return 1;
+                                            } catch (Exception e) {
+                                                context.getSource().sendFailure(
+                                                        Component.literal("Failed to reload AgriTech: Evolved compostable config: " + e.getMessage()));
+                                                return 0;
+                                            }
+                                        })
+                                )
                                 .then(Commands.literal("config")
                                         .executes(context -> {
                                             try {
@@ -47,8 +64,10 @@ public class ATECommands {
                                 .executes(context -> {
                                     try {
                                         PlantablesOverrideConfig.resetErrorFlag();
+                                        CompostableOverrideConfig.resetErrorFlag();
                                         Config.loadConfig();
                                         PlantablesConfig.loadConfig();
+                                        CompostableConfig.loadConfig();
                                         context.getSource().sendSuccess(() ->
                                                 Component.literal("All AgriTech: Evolved configs reloaded successfully!"), true);
                                         return 1;

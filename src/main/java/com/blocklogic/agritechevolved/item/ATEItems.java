@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.item;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
+import com.blocklogic.agritechevolved.Config;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -21,14 +22,19 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk1_shiftdown"));
+                        int speedBoost = (int) Math.round((Config.getSpeedModuleMk1Multiplier() - 1.0) * 100);
+                        int powerIncrease = (int) Math.round((Config.getSpeedModuleMk1PowerMultiplier() - 1.0) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
+                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk1"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
-            });
+            }
+    );
 
     public static final DeferredItem<Item> SM_MK2 = ITEMS.register("sm_mk2",
             () -> new Item(new Item.Properties())
@@ -36,11 +42,15 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk2_shiftdown"));
+                        int speedBoost = (int) Math.round((Config.getSpeedModuleMk2Multiplier() - 1.0) * 100);
+                        int powerIncrease = (int) Math.round((Config.getSpeedModuleMk2PowerMultiplier() - 1.0) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
+                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk2"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
@@ -52,11 +62,15 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk3_shiftdown"));
+                        int speedBoost = (int) Math.round((Config.getSpeedModuleMk3Multiplier() - 1.0) * 100);
+                        int powerIncrease = (int) Math.round((Config.getSpeedModuleMk3PowerMultiplier() - 1.0) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
+                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk3"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
@@ -68,11 +82,15 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk1_shiftdown"));
+                        int yieldBoost = (int) Math.round((Config.getYieldModuleMk1Multiplier() - 1.0) * 100);
+                        int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk1SpeedPenalty()) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
+                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk1"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
@@ -84,11 +102,15 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk2_shiftdown"));
+                        int yieldBoost = (int) Math.round((Config.getYieldModuleMk2Multiplier() - 1.0) * 100);
+                        int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk2SpeedPenalty()) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
+                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk2"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
@@ -100,11 +122,15 @@ public class ATEItems {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     if (Screen.hasShiftDown()) {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk3_shiftdown"));
+                        int yieldBoost = (int) Math.round((Config.getYieldModuleMk3Multiplier() - 1.0) * 100);
+                        int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk3SpeedPenalty()) * 100);
+                        tooltipComponents.add(Component.literal(
+                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
+                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
+                        ));
                     } else {
                         tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk3"));
                     }
-
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
