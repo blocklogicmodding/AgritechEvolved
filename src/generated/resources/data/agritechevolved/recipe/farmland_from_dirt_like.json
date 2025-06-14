@@ -1,0 +1,32 @@
+{
+    "type": "agritechevolved:durability_shapeless",
+    "category": "misc",
+    "durability_per_item": 1,
+    "group": "farmland_from_dirt_like_blocks",
+    "ingredients": [
+        {
+            "tag": "agritechevolved:dirt_like_block_items"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "id": "minecraft:farmland"
+    },
+    "tool": [
+        {
+            "item": "minecraft:wooden_hoe"
+        },
+        {
+            "item": "minecraft:stone_hoe"
+        },
+        {
+            "item": "minecraft:iron_hoe"
+        },
+        {
+            "item": "minecraft:diamond_hoe"
+        },
+        {
+            "item": "minecraft:netherite_hoe"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "type": "agritechevolved:durability_shapeless",
+    "category": "misc",
+    "durability_per_item": 1,
+    "group": "infused_farmlan",
+    "ingredients": [
+        {
+            "item": "agritechevolved:mulch"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:infused_farmland"
+    },
+    "tool": [
+        {
+            "item": "minecraft:wooden_hoe"
+        },
+        {
+            "item": "minecraft:stone_hoe"
+        },
+        {
+            "item": "minecraft:iron_hoe"
+        },
+        {
+            "item": "minecraft:diamond_hoe"
+        },
+        {
+            "item": "minecraft:netherite_hoe"
+        }
+    ]
+}

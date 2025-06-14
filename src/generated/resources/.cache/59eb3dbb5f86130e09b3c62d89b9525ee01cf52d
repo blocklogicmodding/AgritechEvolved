@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-14T18:19:43.861039	Loot Tables
+// 1.21.1	2025-06-14T21:29:20.2818215	Loot Tables
 3f4618df218dcaf83545a568a9f91990371d3651 data/agritechevolved/loot_table/blocks/advanced_planter.json
 52ea3475190eed2b03836cf62ac81992e2c6820a data/agritechevolved/loot_table/blocks/basic_planter.json
 17583dd0994e6dd04b1dc2dd2e46c1358fea80e3 data/agritechevolved/loot_table/blocks/biomass_burner.json
@@ -8,5 +8,4 @@ e2e2407e0403a81797425abc14be107ef59d39a9 data/agritechevolved/loot_table/blocks/
 7bf4865ffb23c8a4a371f9ac3813f470c81448bc data/agritechevolved/loot_table/blocks/compacted_biomass_block.json
 7d9af1f6f2f8e8494146848b1c2a29d01f3ee02a data/agritechevolved/loot_table/blocks/composter.json
 8834ce459b3e3b673c723c9bda7d492d91cf604c data/agritechevolved/loot_table/blocks/infused_farmland.json
-16ae042b8242a10bd7263a57610f8bcc39e0411e data/agritechevolved/loot_table/blocks/infuser.json
 9b76516e1d2823463e2bf553e9e88937798353b5 data/agritechevolved/loot_table/blocks/mulch.json

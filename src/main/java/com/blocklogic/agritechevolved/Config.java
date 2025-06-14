@@ -32,7 +32,6 @@ public class Config {
     public static final String CATEGORY_MACHINES = "machines";
     public static final String CATEGORY_PLANTER = "advanced_planter";
     public static final String CATEGORY_COMPOSTER = "composter";
-    public static final String CATEGORY_INFUSER = "infuser";
     public static final String CATEGORY_BURNER = "burner";
     public static final String CATEGORY_CAPACITORS = "capacitors";
 
@@ -88,12 +87,6 @@ public class Config {
     public static ModConfigSpec.IntValue COMPOSTER_BASE_PROCESSING_TIME;
     public static ModConfigSpec.IntValue COMPOSTER_ENERGY_BUFFER;
     public static ModConfigSpec.IntValue COMPOSTER_ITEMS_PER_BIOMASS;
-
-    // Infuser
-    public static ModConfigSpec.IntValue INFUSER_BASE_POWER_CONSUMPTION;
-    public static ModConfigSpec.IntValue INFUSER_BASE_PROCESSING_TIME;
-    public static ModConfigSpec.IntValue INFUSER_ENERGY_BUFFER;
-    public static ModConfigSpec.IntValue INFUSER_ITEMS_PER_FARMLAND;
 
     // Burner
     public static ModConfigSpec.IntValue BURNER_ENERGY_BUFFER;
@@ -223,7 +216,6 @@ public class Config {
 
         planterConfig();
         composterConfig();
-        infuserConfig();
         burnerConfig();
         capacitorConfig();
 
@@ -251,19 +243,6 @@ public class Config {
                 .defineInRange("energy_buffer", 100000, 1000, 10000000);
         COMPOSTER_ITEMS_PER_BIOMASS = COMMON_BUILDER.comment("Number of organic items required per biomass")
                 .defineInRange("items_per_biomass", 32, 1, 256);
-        COMMON_BUILDER.pop();
-    }
-
-    private static void infuserConfig() {
-        COMMON_BUILDER.comment("Infuser Configuration").push(CATEGORY_INFUSER);
-        INFUSER_BASE_POWER_CONSUMPTION = COMMON_BUILDER.comment("Base power consumption for Infuser (RF/t)")
-                .defineInRange("base_power_consumption", 512, 1, 100000);
-        INFUSER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Infuser (ticks)")
-                .defineInRange("base_processing_time", 600, 1, 72000);
-        INFUSER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Infuser (RF)")
-                .defineInRange("energy_buffer", 100000, 1000, 10000000);
-        INFUSER_ITEMS_PER_FARMLAND = COMMON_BUILDER.comment("Number of precious materials required per infused farmland")
-                .defineInRange("items_per_farmland", 32, 1, 256);
         COMMON_BUILDER.pop();
     }
 
@@ -389,23 +368,6 @@ public class Config {
 
     public static int getComposterItemsPerBiomass() {
         return COMPOSTER_ITEMS_PER_BIOMASS.get();
-    }
-
-    // Infuser Getters
-    public static int getInfuserBasePowerConsumption() {
-        return INFUSER_BASE_POWER_CONSUMPTION.get();
-    }
-
-    public static int getInfuserBaseProcessingTime() {
-        return INFUSER_BASE_PROCESSING_TIME.get();
-    }
-
-    public static int getInfuserEnergyBuffer() {
-        return INFUSER_ENERGY_BUFFER.get();
-    }
-
-    public static int getInfuserItemsPerFarmland() {
-        return INFUSER_ITEMS_PER_FARMLAND.get();
     }
 
     // Burner Getters

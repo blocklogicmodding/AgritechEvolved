@@ -13,6 +13,7 @@ public class ATETags {
         public static final TagKey<Block> PLANTERS = createTag("planters");
         public static final TagKey<Block> MACHINES = createTag("machines");
         public static final TagKey<Block> NATURAL_BLOCKS = createTag("natural_blocks");
+        public static final TagKey<Block> DIRT_LIKE_BLOCKS = createTag("dirt_like_blocks");
 
         private static TagKey<Block> createTag (String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, name));
@@ -22,6 +23,8 @@ public class ATETags {
     public static class Items {
         public static final TagKey<Item> ATE_MODULES = createTag("agritechevolved_modules");
         public static final TagKey<Item> BIOMASS = createTag("biomass");
+        public static final TagKey<Item> DIRT_LIKE_BLOCK_ITEMS = createTag("dirt_like_block_items");
+
 
         private static TagKey<Item> createTag (String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, name));

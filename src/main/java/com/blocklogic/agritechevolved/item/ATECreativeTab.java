@@ -22,7 +22,6 @@ public class ATECreativeTab {
                         output.accept(ATEBlocks.BASIC_PLANTER);
                         output.accept(ATEBlocks.ADVANCED_PLANTER);
                         output.accept(ATEBlocks.COMPOSTER);
-                        output.accept(ATEBlocks.INFUSER);
                         output.accept(ATEBlocks.BIOMASS_BURNER);
                         output.accept(ATEBlocks.CAPACITOR_TIER1);
                         output.accept(ATEBlocks.CAPACITOR_TIER2);

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "agritechevolved:block/infused_farmland_top",
-		"1": "agritechevolved:block/infused_farmland_bottom",
+		"1": "agritechevolved:block/infused_farmland_sides",
 		"2": "agritechevolved:block/infused_farmland_sides",
 		"particle": "agritechevolved:block/infused_farmland_top"
 	},

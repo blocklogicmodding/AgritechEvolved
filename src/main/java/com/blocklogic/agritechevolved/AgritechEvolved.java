@@ -7,6 +7,7 @@ import com.blocklogic.agritechevolved.block.entity.renderer.PlanterBlockEntityRe
 import com.blocklogic.agritechevolved.command.ATECommands;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
+import com.blocklogic.agritechevolved.recipe.ATERecipes;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
 import com.blocklogic.agritechevolved.screen.custom.*;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -47,6 +48,7 @@ public class AgritechEvolved
         ATECreativeTab.register(modEventBus);
         ATEBlockEntities.register(modEventBus);
         ATEMenuTypes.register(modEventBus);
+        ATERecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
 
@@ -92,7 +94,6 @@ public class AgritechEvolved
             event.register(ATEMenuTypes.ADVANCED_PLANTER_MENU.get(), AdvancedPlanterScreen::new);
             event.register(ATEMenuTypes.BURNER_MENU.get(), BiomassBurnerScreen::new);
             event.register(ATEMenuTypes.COMPOSTER_MENU.get(), ComposterScreen::new);
-            event.register(ATEMenuTypes.INFUSER_MENU.get(), InfuserScreen::new);
             event.register(ATEMenuTypes.CAPACITOR_MENU.get(), CapacitorScreen::new);
         }
 

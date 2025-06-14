@@ -4,7 +4,6 @@
   "block.agritechevolved.basic_planter": "Basic Planter",
   "block.agritechevolved.advanced_planter": "Advanced Planter",
   "block.agritechevolved.composter": "Composter",
-  "block.agritechevolved.infuser": "Infuser",
   "block.agritechevolved.biomass_burner": "Biomass Burner",
   "block.agritechevolved.capacitor_tier1": "Capacitor Tier 1",
   "block.agritechevolved.capacitor_tier2": "Capacitor Tier 2",
@@ -32,7 +31,6 @@
   "gui.agritechevolved.advanced_planter": "Advanced Planter",
   "gui.agritechevolved.biomass_burner": "Biomass Burner",
   "gui.agritechevolved.composter": "Composter",
-  "gui.agritechevolved.infuser": "Infuser",
   "gui.agritechevolved.capacitor": "Capacitor",
 
   "message.agritechevolved.invalid_plant_soil_combination": "Seed/Sapling can't grow on this soil",
@@ -59,8 +57,8 @@
   "tooltip.agritechevolved.biomass": "§aUsed as fertilizer for the Advanced Planter or to create Compacted Biomass. Use in a Biomass Burner to generate 300RF/t§r",
   "tooltip.agritechevolved.compacted": "§aUsed to create Mulch. Use in a Biomass Burner to generate 500RF/t§r",
 
-  "tooltip.agritechevolved.mulch": "§aUsed in Advanced Planters. Grants 100% growth speed.§r",
-  "tooltip.agritechevolved.infused_farmland": "§aUsed to create Mulch or as a soil block in Advanced Planters. Grants 50% growth speed.§r",
+  "tooltip.agritechevolved.mulch": "§aUsed in Planters. Grants 50% growth speed. Used to create Infused Farmland§r",
+  "tooltip.agritechevolved.infused_farmland": "§aUsed in Planters or as normal farmland. Grants 100% growth speed.§r",
 
   "jei.agritechevolved.planter.tooltip": "Basic & Advanced Planters",
 

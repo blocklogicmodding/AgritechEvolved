@@ -1,4 +1,4 @@
-// 1.21.1	2025-06-14T18:19:43.8630237	Recipes
+// 1.21.1	2025-06-14T22:18:58.6102444	Recipes
 7372d69cd7c9184530b81e2986e3ee2e571faa14 data/agritechevolved/advancement/recipes/building_blocks/compacted_biomass_block.json
 4d7754742f007f4c5616b5104b3ecfaa84268685 data/agritechevolved/advancement/recipes/building_blocks/mulch.json
 4c955e67bad1330aa40b42c5c83b8ed2a3fca77d data/agritechevolved/advancement/recipes/misc/advanced_planter.json
@@ -9,7 +9,8 @@
 c420d2cdbd027b8fc34b259dcb6bb3e0f0a37f72 data/agritechevolved/advancement/recipes/misc/capacitor_tier3.json
 9203c425fe892b75b9a3dd36781529044cecd15a data/agritechevolved/advancement/recipes/misc/compacted_biomass.json
 1ff6cf3a076c7819b16cee333bb3b2c9001b328e data/agritechevolved/advancement/recipes/misc/composter.json
-1bc0feed8329a78d6e4f1019b616cc8bc89a888c data/agritechevolved/advancement/recipes/misc/infuser.json
+2dfda92d6f4117353d06037af1f4e9e691388937 data/agritechevolved/advancement/recipes/misc/farmland_from_dirt_like.json
+f4aed118e59ef62d057db06f8f84cc9364925610 data/agritechevolved/advancement/recipes/misc/infused_farmland_from_mulch.json
 d6c0ac6f4a4c6d689181ef2038795316bce29042 data/agritechevolved/advancement/recipes/misc/sm_mk1.json
 dd6d95879643bf5080ca0c900e24be5000c46b01 data/agritechevolved/advancement/recipes/misc/sm_mk2.json
 573e12606bb9ebff03017ef0609cdc29daead98f data/agritechevolved/advancement/recipes/misc/sm_mk3.json
@@ -25,7 +26,8 @@ a8ee88af55baac174f12f96d62c9c1fce0dcae42 data/agritechevolved/recipe/capacitor_t
 b9a24b58afc8315bbd5d75e94c0cd6d3715693b0 data/agritechevolved/recipe/compacted_biomass.json
 09dd360d21f42f442a49438983cac1175a8b1f6f data/agritechevolved/recipe/compacted_biomass_block.json
 ae1f5937053ed0c0856c3b2f6ca41a08129126a9 data/agritechevolved/recipe/composter.json
-4e3a6e1c261c69ae95178c3efdf95821f4474a08 data/agritechevolved/recipe/infuser.json
+1fbcf37d06fc7eb5a5edb2cafac9bd8794eecc5f data/agritechevolved/recipe/farmland_from_dirt_like.json
+35c637fa46b9d2c13ede3bdc998356e8540868bb data/agritechevolved/recipe/infused_farmland_from_mulch.json
 8d729c0cc6d721fd66838dd69b04fb3fef0102de data/agritechevolved/recipe/mulch.json
 4a87b148854a85a04b66cdaa4147266d27d0e4b4 data/agritechevolved/recipe/sm_mk1.json
 d6a34a10ea6f4ad986ceace1f3788fd1add43a2f data/agritechevolved/recipe/sm_mk2.json

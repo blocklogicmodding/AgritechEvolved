@@ -2826,12 +2826,12 @@ public class PlantablesConfig {
     private static void addAgritechEvolvedSoils(List<SoilEntry> soils) {
         SoilEntry infusedFarmland = new SoilEntry();
         infusedFarmland.soil = "agritechevolved:infused_farmland";
-        infusedFarmland.growthModifier = 1.5f;
+        infusedFarmland.growthModifier = 2.0f;
         soils.add(infusedFarmland);
 
         SoilEntry agritechEvolvedMulch = new SoilEntry();
         agritechEvolvedMulch.soil = "agritechevolved:mulch";
-        agritechEvolvedMulch.growthModifier = 2.0f;
+        agritechEvolvedMulch.growthModifier = 1.5f;
         soils.add(agritechEvolvedMulch);
     }
 

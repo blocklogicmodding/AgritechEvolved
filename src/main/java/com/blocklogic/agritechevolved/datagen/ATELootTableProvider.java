@@ -19,7 +19,6 @@ public class ATELootTableProvider extends BlockLootSubProvider {
         dropSelf(ATEBlocks.BASIC_PLANTER.get());
         dropSelf(ATEBlocks.ADVANCED_PLANTER.get());
         dropSelf(ATEBlocks.COMPOSTER.get());
-        dropSelf(ATEBlocks.INFUSER.get());
         dropSelf(ATEBlocks.BIOMASS_BURNER.get());
         dropSelf(ATEBlocks.CAPACITOR_TIER1.get());
         dropSelf(ATEBlocks.CAPACITOR_TIER2.get());

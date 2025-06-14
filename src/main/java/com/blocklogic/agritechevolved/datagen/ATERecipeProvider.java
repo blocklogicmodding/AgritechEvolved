@@ -1,14 +1,16 @@
 package com.blocklogic.agritechevolved.datagen;
 
+import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.item.ATEItems;
+import com.blocklogic.agritechevolved.util.ATETags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.common.Tags;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -20,6 +22,11 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        buildVanillaRecipes(recipeOutput);
+        buildDurabilityRecipes(recipeOutput);
+    }
+
+    protected void buildVanillaRecipes(RecipeOutput recipeOutput) {
         // Basic Planter
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEBlocks.BASIC_PLANTER.get())
                 .pattern("S S")
@@ -54,19 +61,6 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.IRON_INGOT)
                 .define('R', Items.REDSTONE)
                 .unlockedBy("has_composter", has(Items.COMPOSTER))
-                .save(recipeOutput);
-
-        // Infuser
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEBlocks.INFUSER.get())
-                .pattern("GDG")
-                .pattern("IFI")
-                .pattern("RRR")
-                .define('G', Items.GOLD_INGOT)
-                .define('D', Items.DIAMOND)
-                .define('I', Items.IRON_INGOT)
-                .define('F', Items.FARMLAND)
-                .define('R', Items.REDSTONE)
-                .unlockedBy("has_diamond", has(Items.DIAMOND))
                 .save(recipeOutput);
 
         // Biomass Burner
@@ -216,5 +210,24 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', ATEBlocks.INFUSED_FARMLAND.get())
                 .unlockedBy("has_infused_farmland", has(ATEBlocks.INFUSED_FARMLAND.get()))
                 .save(recipeOutput);
+
+    }
+
+    public void buildDurabilityRecipes(RecipeOutput recipeOutput) {
+        DurabilityShapelessRecipeBuilder.shapeless(Items.FARMLAND)
+                .requires(ATETags.Items.DIRT_LIKE_BLOCK_ITEMS)
+                .tool(Ingredient.of(Items.WOODEN_HOE, Items.STONE_HOE, Items.IRON_HOE, Items.DIAMOND_HOE, Items.NETHERITE_HOE))
+                .durabilityPerItem(1)
+                .group("farmland_from_dirt_like_blocks")
+                .unlockedBy("has_dirt", has(Items.DIRT))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "farmland_from_dirt_like"));
+
+        DurabilityShapelessRecipeBuilder.shapeless(ATEBlocks.INFUSED_FARMLAND)
+                .requires(ATEBlocks.MULCH)
+                .tool(Ingredient.of(Items.WOODEN_HOE, Items.STONE_HOE, Items.IRON_HOE, Items.DIAMOND_HOE, Items.NETHERITE_HOE))
+                .durabilityPerItem(1)
+                .group("infused_farmlan")
+                .unlockedBy("has_mulch", has(ATEBlocks.MULCH))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "infused_farmland_from_mulch"));
     }
 }

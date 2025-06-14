@@ -6,8 +6,8 @@ import com.blocklogic.agritechevolved.util.ATETags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,5 +31,7 @@ public class ATEItemTagProvider extends ItemTagsProvider {
                 .add(ATEItems.YM_MK1.get())
                 .add(ATEItems.YM_MK2.get())
                 .add(ATEItems.YM_MK3.get());
+
+        copy(ATETags.Blocks.DIRT_LIKE_BLOCKS, ATETags.Items.DIRT_LIKE_BLOCK_ITEMS);
     }
 }

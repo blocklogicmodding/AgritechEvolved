@@ -29,10 +29,6 @@ public class ATEBlockEntities {
             BLOCK_ENTITIES.register("composter_be", () -> BlockEntityType.Builder.of(
                     ComposterBlockEntity::new, ATEBlocks.COMPOSTER.get()).build(null));
 
-    public static final Supplier<BlockEntityType<InfuserBlockEntity>> INFUSER_BE =
-            BLOCK_ENTITIES.register("infuser_be", () -> BlockEntityType.Builder.of(
-                    InfuserBlockEntity::new, ATEBlocks.INFUSER.get()).build(null));
-
     public static final Supplier<BlockEntityType<CapacitorBlockEntity>> CAPACITOR_BE =
             BLOCK_ENTITIES.register("capacitor_be", () -> BlockEntityType.Builder.of(
                     CapacitorBlockEntity::new,

@@ -27,9 +27,6 @@ public class ATEMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<ComposterMenu>> COMPOSTER_MENU =
             registerMenuType("composter_menu", ComposterMenu::new);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<InfuserMenu>> INFUSER_MENU =
-            registerMenuType("infuser_menu", InfuserMenu::new);
-
     public static final DeferredHolder<MenuType<?>, MenuType<CapacitorMenu>> CAPACITOR_MENU =
             registerMenuType("capacitor_menu", CapacitorMenu::new);
 

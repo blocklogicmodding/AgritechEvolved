@@ -6,6 +6,8 @@ import com.blocklogic.agritechevolved.util.ATETags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -22,7 +24,6 @@ public class ATEBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ATEBlocks.ADVANCED_PLANTER.get())
                 .add(ATEBlocks.COMPOSTER.get())
-                .add(ATEBlocks.INFUSER.get())
                 .add(ATEBlocks.BIOMASS_BURNER.get())
                 .add(ATEBlocks.CAPACITOR_TIER1.get())
                 .add(ATEBlocks.CAPACITOR_TIER2.get())
@@ -42,7 +43,6 @@ public class ATEBlockTagProvider extends BlockTagsProvider {
 
         tag(ATETags.Blocks.MACHINES)
                 .add(ATEBlocks.COMPOSTER.get())
-                .add(ATEBlocks.INFUSER.get())
                 .add(ATEBlocks.BIOMASS_BURNER.get())
                 .add(ATEBlocks.CAPACITOR_TIER1.get())
                 .add(ATEBlocks.CAPACITOR_TIER2.get())
@@ -51,5 +51,13 @@ public class ATEBlockTagProvider extends BlockTagsProvider {
         tag(ATETags.Blocks.NATURAL_BLOCKS)
                 .add(ATEBlocks.INFUSED_FARMLAND.get())
                 .add(ATEBlocks.MULCH.get());
+
+        tag(ATETags.Blocks.DIRT_LIKE_BLOCKS)
+                .add(Blocks.DIRT)
+                .add(Blocks.PODZOL)
+                .add(Blocks.MYCELIUM)
+                .add(Blocks.COARSE_DIRT)
+                .add(Blocks.ROOTED_DIRT)
+                .add(Blocks.GRASS_BLOCK);
     }
 }

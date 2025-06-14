@@ -43,13 +43,6 @@ public class ATEBlocks {
                     .requiresCorrectToolForDrops())
     );
 
-    public static final DeferredBlock<Block> INFUSER = registerBlock("infuser",
-            () -> new InfuserBlock(BlockBehaviour.Properties.of()
-                    .strength(3.0F, 3.0F)
-                    .sound(SoundType.STONE)
-                    .requiresCorrectToolForDrops())
-    );
-
     public static final DeferredBlock<Block> BIOMASS_BURNER = registerBlock("biomass_burner",
             () -> new BiomassBurnerBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)
