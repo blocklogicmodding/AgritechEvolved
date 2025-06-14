@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.block.entity.renderer;
 
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
+import com.blocklogic.agritechevolved.block.entity.BasicPlanterBlockEntity;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,22 +14,42 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
-public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedPlanterBlockEntity> {
+public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEntity> {
 
     public PlanterBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    public void render(AdvancedPlanterBlockEntity blockEntity, float partialTick, PoseStack poseStack,
+    public void render(BlockEntity blockEntity, float partialTick, PoseStack poseStack,
                        MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 
-        if (!blockEntity.inventory.getStackInSlot(1).isEmpty()) {
-            ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
+        // Support both Advanced and Basic Planters
+        ItemStackHandler inventory;
+        float growthProgress;
+        int growthStage;
+
+        if (blockEntity instanceof AdvancedPlanterBlockEntity advancedPlanter) {
+            inventory = advancedPlanter.inventory;
+            growthProgress = advancedPlanter.getGrowthProgress();
+            growthStage = advancedPlanter.getGrowthStage();
+        } else if (blockEntity instanceof BasicPlanterBlockEntity basicPlanter) {
+            inventory = basicPlanter.inventory;
+            growthProgress = basicPlanter.getGrowthProgress();
+            growthStage = basicPlanter.getGrowthStage();
+        } else {
+            return; // Not a planter we can render
+        }
+
+        // Render soil block if present
+        if (!inventory.getStackInSlot(1).isEmpty()) {
+            ItemStack soilStack = inventory.getStackInSlot(1);
 
             if (soilStack.getItem() instanceof BlockItem blockItem) {
                 BlockState soilState = blockItem.getBlock().defaultBlockState();
@@ -44,8 +65,9 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedP
             }
         }
 
-        if (!blockEntity.inventory.getStackInSlot(0).isEmpty() && !blockEntity.inventory.getStackInSlot(1).isEmpty()) {
-            ItemStack plantStack = blockEntity.inventory.getStackInSlot(0);
+        // Render plant if both plant and soil are present
+        if (!inventory.getStackInSlot(0).isEmpty() && !inventory.getStackInSlot(1).isEmpty()) {
+            ItemStack plantStack = inventory.getStackInSlot(0);
 
             if (plantStack.getItem() instanceof BlockItem blockItem) {
                 String plantId = RegistryHelper.getItemId(plantStack);
@@ -58,8 +80,6 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedP
 
                     poseStack.pushPose();
 
-                    float growthProgress = blockEntity.getGrowthProgress();
-
                     if (isTree) {
                         poseStack.translate(0.5, 0.45, 0.5);
 
@@ -70,7 +90,6 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedP
                     } else {
                         poseStack.translate(0.1725, 0.45, 0.1725);
 
-                        int growthStage = blockEntity.getGrowthStage();
                         plantState = getCropBlockState(plantStack, growthStage);
 
                         float actualProgress = Math.min(1.0f, growthProgress);
@@ -88,40 +107,35 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedP
     }
 
     private BlockState getCropBlockState(ItemStack stack, int age) {
-        if (!(stack.getItem() instanceof BlockItem blockItem)) {
-            return null;
-        }
+        if (!(stack.getItem() instanceof BlockItem blockItem)) return null;
 
-        Block cropBlock = blockItem.getBlock();
-        BlockState state = cropBlock.defaultBlockState();
+        Block block = blockItem.getBlock();
+        BlockState defaultState = block.defaultBlockState();
 
-        if (state.hasProperty(BlockStateProperties.AGE_1)) {
-            return state.setValue(BlockStateProperties.AGE_1, Math.min(age, 1));
-        } else if (state.hasProperty(BlockStateProperties.AGE_2)) {
-            return state.setValue(BlockStateProperties.AGE_2, Math.min(age, 2));
-        } else if (state.hasProperty(BlockStateProperties.AGE_3)) {
-            return state.setValue(BlockStateProperties.AGE_3, Math.min(age, 3));
-        } else if (state.hasProperty(BlockStateProperties.AGE_5)) {
-            return state.setValue(BlockStateProperties.AGE_5, Math.min(age, 5));
-        } else if (state.hasProperty(BlockStateProperties.AGE_7)) {
-            return state.setValue(BlockStateProperties.AGE_7, Math.min(age, 7));
-        }
-
-        for (Property<?> property : state.getProperties()) {
-            if (property.getName().equals("age") && property instanceof IntegerProperty intProp) {
-                int maxAge = intProp.getPossibleValues().stream()
-                        .max(Integer::compareTo)
-                        .orElse(0);
-                int clampedAge = Math.min(age, maxAge);
-                return setAgeProperty(state, intProp, clampedAge);
+        // Try to find the age property
+        for (Property<?> property : defaultState.getProperties()) {
+            if (property instanceof IntegerProperty intProperty) {
+                if (property.getName().equals("age")) {
+                    int maxAge = intProperty.getPossibleValues().stream().mapToInt(Integer::intValue).max().orElse(7);
+                    int clampedAge = Math.min(age, maxAge);
+                    return defaultState.setValue(intProperty, clampedAge);
+                }
             }
         }
 
-        return state;
-    }
+        // Fallback: try standard age property
+        if (defaultState.hasProperty(BlockStateProperties.AGE_7)) {
+            return defaultState.setValue(BlockStateProperties.AGE_7, Math.min(age, 7));
+        } else if (defaultState.hasProperty(BlockStateProperties.AGE_3)) {
+            return defaultState.setValue(BlockStateProperties.AGE_3, Math.min(age, 3));
+        } else if (defaultState.hasProperty(BlockStateProperties.AGE_5)) {
+            return defaultState.setValue(BlockStateProperties.AGE_5, Math.min(age, 5));
+        } else if (defaultState.hasProperty(BlockStateProperties.AGE_15)) {
+            return defaultState.setValue(BlockStateProperties.AGE_15, Math.min(age, 15));
+        } else if (defaultState.hasProperty(BlockStateProperties.AGE_25)) {
+            return defaultState.setValue(BlockStateProperties.AGE_25, Math.min(age, 25));
+        }
 
-    @SuppressWarnings("unchecked")
-    private <T extends Comparable<T>> BlockState setAgeProperty(BlockState state, Property<T> property, int age) {
-        return state.setValue(property, (T)(Integer)age);
+        return defaultState;
     }
 }

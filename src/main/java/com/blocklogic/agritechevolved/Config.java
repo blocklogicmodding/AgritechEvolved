@@ -234,7 +234,7 @@ public class Config {
         COMMON_BUILDER.comment("Advanced Planter Configuration").push(CATEGORY_PLANTER);
         PLANTER_BASE_POWER_CONSUMPTION = COMMON_BUILDER.comment("Base power consumption for Advanced Planter (RF/t)")
                 .defineInRange("base_power_consumption", 128, 1, 100000);
-        PLANTER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Advanced Planter (ticks)")
+        PLANTER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Planters (ticks)")
                 .defineInRange("base_processing_time", 1200, 1, 72000);
         PLANTER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Advanced Planter (RF)")
                 .defineInRange("energy_buffer", 100000, 1000, 10000000);

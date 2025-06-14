@@ -98,6 +98,7 @@ public class AgritechEvolved
 
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ATEBlockEntities.BASIC_PLANTER_BE.get(), PlanterBlockEntityRenderer::new);
             event.registerBlockEntityRenderer(ATEBlockEntities.ADVANCED_PLANTER_BE.get(), PlanterBlockEntityRenderer::new);
         }
     }

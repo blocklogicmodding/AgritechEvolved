@@ -21,7 +21,6 @@ import java.util.List;
 public class PlanterRecipeCategory implements IRecipeCategory<PlanterRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "planter");
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "textures/gui/jei/agritechevolved_jei_gui.png");
-
     public static final RecipeType<PlanterRecipe> PLANTER_RECIPE_TYPE = new RecipeType<>(UID, PlanterRecipe.class);
 
     private final IDrawable background;

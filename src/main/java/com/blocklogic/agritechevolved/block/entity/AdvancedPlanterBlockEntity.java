@@ -536,12 +536,12 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         String itemId = RegistryHelper.getItemId(plantStack);
 
         if (PlantablesConfig.isValidSeed(itemId)) {
-            return 1200;
+            return Config.getPlanterBaseProcessingTime();
         } else if (PlantablesConfig.isValidSapling(itemId)) {
             return PlantablesConfig.getBaseSaplingGrowthTime(itemId);
         }
 
-        return 1200;
+        return Config.getPlanterBaseProcessingTime();
     }
 
     public float getSoilGrowthModifier(ItemStack soilStack) {

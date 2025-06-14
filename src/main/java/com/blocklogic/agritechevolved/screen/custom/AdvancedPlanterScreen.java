@@ -2,6 +2,7 @@ package com.blocklogic.agritechevolved.screen.custom;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -88,8 +89,9 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
         if (x >= guiX + 40 && x <= guiX + 40 + 6 && y >= guiY + 16 && y <= guiY + 16 + 53) {
             List<Component> tooltip = new ArrayList<>();
             float progress = this.menu.blockEntity.getGrowthProgress();
-            tooltip.add(Component.literal("Growth Progress"));
+            tooltip.add(Component.translatable("tooltip.agritechevolved.growth_progress"));
             tooltip.add(Component.literal(String.format("%.1f%%", progress * 100)));
+            tooltip.add(Component.translatable("tooltip.agritechevolved.view_recipes").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }
 
@@ -100,7 +102,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
 
             NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
 
-            tooltip.add(Component.literal("Energy Stored"));
+            tooltip.add(Component.translatable("tooltip.agritechevolved.stored_energy"));
             tooltip.add(Component.literal(formatter.format(energyStored) + " / " + formatter.format(maxEnergy) + " RF"));
 
             if (maxEnergy > 0) {
