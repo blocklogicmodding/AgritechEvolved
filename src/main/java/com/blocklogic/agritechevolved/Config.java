@@ -252,7 +252,7 @@ public class Config {
         COMPOSTER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Composter (ticks)")
                 .defineInRange("base_processing_time", 600, 1, 72000);
         COMPOSTER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Composter (RF)")
-                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+                .defineInRange("energy_buffer", 100000, 1000, 10000000);
         COMPOSTER_ITEMS_PER_BIOMASS = COMMON_BUILDER.comment("Number of organic items required per biomass")
                 .defineInRange("items_per_biomass", 32, 1, 256);
         COMMON_BUILDER.pop();
@@ -265,7 +265,7 @@ public class Config {
         INFUSER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Infuser (ticks)")
                 .defineInRange("base_processing_time", 600, 1, 72000);
         INFUSER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Infuser (RF)")
-                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+                .defineInRange("energy_buffer", 100000, 1000, 10000000);
         INFUSER_ITEMS_PER_FARMLAND = COMMON_BUILDER.comment("Number of precious materials required per infused farmland")
                 .defineInRange("items_per_farmland", 32, 1, 256);
         COMMON_BUILDER.pop();
