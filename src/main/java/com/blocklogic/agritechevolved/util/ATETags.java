@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.Block;
 
 public class ATETags {
     public static class Blocks {
-        public static final TagKey<Block> PLANTER = createTag("planter");
+        public static final TagKey<Block> PLANTERS = createTag("planters");
         public static final TagKey<Block> MACHINES = createTag("machines");
         public static final TagKey<Block> NATURAL_BLOCKS = createTag("natural_blocks");
 

@@ -16,6 +16,7 @@ public class ATELootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(ATEBlocks.BASIC_PLANTER.get());
         dropSelf(ATEBlocks.ADVANCED_PLANTER.get());
         dropSelf(ATEBlocks.COMPOSTER.get());
         dropSelf(ATEBlocks.INFUSER.get());

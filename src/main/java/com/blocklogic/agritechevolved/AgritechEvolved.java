@@ -3,14 +3,12 @@ package com.blocklogic.agritechevolved;
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
-import com.blocklogic.agritechevolved.block.entity.renderer.AdvancedPlanterBlockEntityRenderer;
+import com.blocklogic.agritechevolved.block.entity.renderer.PlanterBlockEntityRenderer;
 import com.blocklogic.agritechevolved.command.ATECommands;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
 import com.blocklogic.agritechevolved.screen.custom.*;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -24,7 +22,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -91,7 +88,8 @@ public class AgritechEvolved
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(ATEMenuTypes.PLANTER_MENU.get(), AdvancedPlanterScreen::new);
+            event.register(ATEMenuTypes.BASIC_PLANTER_MENU.get(), BasicPlanterScreen::new);
+            event.register(ATEMenuTypes.ADVANCED_PLANTER_MENU.get(), AdvancedPlanterScreen::new);
             event.register(ATEMenuTypes.BURNER_MENU.get(), BiomassBurnerScreen::new);
             event.register(ATEMenuTypes.COMPOSTER_MENU.get(), ComposterScreen::new);
             event.register(ATEMenuTypes.INFUSER_MENU.get(), InfuserScreen::new);
@@ -100,7 +98,7 @@ public class AgritechEvolved
 
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ATEBlockEntities.PLANTER_BE.get(), AdvancedPlanterBlockEntityRenderer::new);
+            event.registerBlockEntityRenderer(ATEBlockEntities.ADVANCED_PLANTER_BE.get(), PlanterBlockEntityRenderer::new);
         }
     }
 }

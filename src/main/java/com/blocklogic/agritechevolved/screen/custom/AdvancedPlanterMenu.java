@@ -29,7 +29,7 @@ public class AdvancedPlanterMenu extends AbstractContainerMenu {
     }
 
     public AdvancedPlanterMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
-        super(ATEMenuTypes.PLANTER_MENU.get(), containerId);
+        super(ATEMenuTypes.ADVANCED_PLANTER_MENU.get(), containerId);
         this.blockEntity = ((AdvancedPlanterBlockEntity) blockEntity);
         this.level = inv.player.level();
 

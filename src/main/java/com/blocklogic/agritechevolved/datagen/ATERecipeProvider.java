@@ -5,6 +5,8 @@ import com.blocklogic.agritechevolved.item.ATEItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -18,16 +20,29 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        // Basic Planter
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEBlocks.BASIC_PLANTER.get())
+                .pattern("S S")
+                .pattern("PDP")
+                .pattern("LHL")
+                .define('S', ItemTags.WOODEN_SLABS)
+                .define('L', ItemTags.LOGS)
+                .define('D', Items.DIRT)
+                .define('H', Items.HOPPER)
+                .define('P', ItemTags.PLANKS)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(recipeOutput);
+
         // Advanced Planter
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEBlocks.ADVANCED_PLANTER.get())
-                .pattern(" G ")
-                .pattern("IDI")
+                .pattern("F F")
+                .pattern("IAI")
                 .pattern("RIR")
-                .define('G', Tags.Items.GLASS_BLOCKS)
+                .define('F', Items.IRON_INGOT)
                 .define('I', Items.IRON_BLOCK)
-                .define('D', Items.DIRT)
+                .define('A', ATEBlocks.BASIC_PLANTER)
                 .define('R', Items.REDSTONE)
-                .unlockedBy("has_redstone", has(Items.REDSTONE))
+                .unlockedBy("has_basic_planter", has(ATEBlocks.BASIC_PLANTER))
                 .save(recipeOutput);
 
         // Composter

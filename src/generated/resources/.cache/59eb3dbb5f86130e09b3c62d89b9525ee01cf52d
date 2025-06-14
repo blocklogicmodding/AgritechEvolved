@@ -1,5 +1,6 @@
-// 1.21.1	2025-06-13T21:26:22.6019094	Loot Tables
+// 1.21.1	2025-06-14T18:19:43.861039	Loot Tables
 3f4618df218dcaf83545a568a9f91990371d3651 data/agritechevolved/loot_table/blocks/advanced_planter.json
+52ea3475190eed2b03836cf62ac81992e2c6820a data/agritechevolved/loot_table/blocks/basic_planter.json
 17583dd0994e6dd04b1dc2dd2e46c1358fea80e3 data/agritechevolved/loot_table/blocks/biomass_burner.json
 6a282a4f376865b12e4e14fa5dad6fd3f8234b5c data/agritechevolved/loot_table/blocks/capacitor_tier1.json
 a582ac713b8110022bb481dcdaafd0a789f5b655 data/agritechevolved/loot_table/blocks/capacitor_tier2.json

@@ -7,7 +7,7 @@
     "3": "agritechevolved:block/leg2",
     "4": "agritechevolved:block/leg3",
     "5": "agritechevolved:block/leg4",
-    "particle": "agritechevolved:block/box"
+    "particle": "agritechevolved:block/box_on"
   },
   "elements": [
     {

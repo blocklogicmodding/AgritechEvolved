@@ -29,11 +29,15 @@ public class ATEBlockTagProvider extends BlockTagsProvider {
                 .add(ATEBlocks.CAPACITOR_TIER3.get())
                 .add(ATEBlocks.COMPACTED_BIOMASS_BLOCK.get());
 
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ATEBlocks.BASIC_PLANTER.get());
+
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ATEBlocks.INFUSED_FARMLAND.get())
                 .add(ATEBlocks.MULCH.get());
 
-        tag(ATETags.Blocks.PLANTER)
+        tag(ATETags.Blocks.PLANTERS)
+                .add(ATEBlocks.BASIC_PLANTER.get())
                 .add(ATEBlocks.ADVANCED_PLANTER.get());
 
         tag(ATETags.Blocks.MACHINES)

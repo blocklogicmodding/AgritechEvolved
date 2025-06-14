@@ -1,6 +1,7 @@
 {
   "creativetab.agritechevolved.agritechevolved": "Agritech: Evolved",
 
+  "block.agritechevolved.basic_planter": "Basic Planter",
   "block.agritechevolved.advanced_planter": "Advanced Planter",
   "block.agritechevolved.composter": "Composter",
   "block.agritechevolved.infuser": "Infuser",
@@ -27,6 +28,7 @@
   "item.agritechevolved.biomass": "Biomass",
   "item.agritechevolved.compacted_biomass": "Compacted Biomass",
 
+  "gui.agritechevolved.basic_planter": "Basic Planter",
   "gui.agritechevolved.advanced_planter": "Advanced Planter",
   "gui.agritechevolved.biomass_burner": "Biomass Burner",
   "gui.agritechevolved.composter": "Composter",

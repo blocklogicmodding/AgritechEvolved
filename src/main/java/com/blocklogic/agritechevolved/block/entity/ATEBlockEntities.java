@@ -13,8 +13,12 @@ public class ATEBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, AgritechEvolved.MODID);
 
-    public static final Supplier<BlockEntityType<AdvancedPlanterBlockEntity>> PLANTER_BE =
-            BLOCK_ENTITIES.register("planter_be", () -> BlockEntityType.Builder.of(
+    public static final Supplier<BlockEntityType<BasicPlanterBlockEntity>> BASIC_PLANTER_BE =
+            BLOCK_ENTITIES.register("advanced_planter_be", () -> BlockEntityType.Builder.of(
+                    BasicPlanterBlockEntity::new, ATEBlocks.BASIC_PLANTER.get()).build(null));
+
+    public static final Supplier<BlockEntityType<AdvancedPlanterBlockEntity>> ADVANCED_PLANTER_BE =
+            BLOCK_ENTITIES.register("advanced_planter_be", () -> BlockEntityType.Builder.of(
                     AdvancedPlanterBlockEntity::new, ATEBlocks.ADVANCED_PLANTER.get()).build(null));
 
     public static final Supplier<BlockEntityType<BiomassBurnerBlockEntity>> BURNER_BE =

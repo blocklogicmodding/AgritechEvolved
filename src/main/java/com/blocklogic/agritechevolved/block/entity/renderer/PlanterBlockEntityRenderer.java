@@ -18,9 +18,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 
-public class AdvancedPlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedPlanterBlockEntity> {
+public class PlanterBlockEntityRenderer implements BlockEntityRenderer<AdvancedPlanterBlockEntity> {
 
-    public AdvancedPlanterBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+    public PlanterBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override

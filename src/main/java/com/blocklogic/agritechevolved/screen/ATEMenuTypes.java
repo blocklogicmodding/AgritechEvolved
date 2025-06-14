@@ -15,8 +15,11 @@ public class ATEMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, AgritechEvolved.MODID);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<AdvancedPlanterMenu>> PLANTER_MENU =
-            registerMenuType("planter_menu", AdvancedPlanterMenu::new);
+    public static final DeferredHolder<MenuType<?>, MenuType<BasicPlanterMenu>> BASIC_PLANTER_MENU =
+            registerMenuType("basic_planter_menu", BasicPlanterMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<AdvancedPlanterMenu>> ADVANCED_PLANTER_MENU =
+            registerMenuType("advanced_planter_menu", AdvancedPlanterMenu::new);
 
     public static final DeferredHolder<MenuType<?>, MenuType<BiomassBurnerMenu>> BURNER_MENU =
             registerMenuType("burner_menu", BiomassBurnerMenu::new);

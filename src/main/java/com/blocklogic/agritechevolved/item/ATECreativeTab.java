@@ -19,6 +19,7 @@ public class ATECreativeTab {
                     .title(Component.translatable("creativetab.agritechevolved.agritechevolved"))
                     .displayItems((ItemDisplayParameters, output) -> {
 
+                        output.accept(ATEBlocks.BASIC_PLANTER);
                         output.accept(ATEBlocks.ADVANCED_PLANTER);
                         output.accept(ATEBlocks.COMPOSTER);
                         output.accept(ATEBlocks.INFUSER);

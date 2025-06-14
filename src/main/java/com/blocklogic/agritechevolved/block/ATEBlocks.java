@@ -21,6 +21,13 @@ import java.util.function.Supplier;
 public class ATEBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AgritechEvolved.MODID);
 
+    public static final DeferredBlock<Block> BASIC_PLANTER = registerBlock("basic_planter",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion())
+    );
+
     public static final DeferredBlock<Block> ADVANCED_PLANTER = registerBlock("advanced_planter",
             () -> new AdvancedPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(3.0F, 3.0F)

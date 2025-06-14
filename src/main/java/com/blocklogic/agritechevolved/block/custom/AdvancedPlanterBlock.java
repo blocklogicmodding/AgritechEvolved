@@ -340,7 +340,7 @@ public class AdvancedPlanterBlock extends BaseEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == ATEBlockEntities.PLANTER_BE.get() ?
+        return type == ATEBlockEntities.ADVANCED_PLANTER_BE.get() ?
                 (lvl, pos, blockState, blockEntity) -> AdvancedPlanterBlockEntity.tick(lvl, pos, blockState, (AdvancedPlanterBlockEntity)blockEntity) :
                 null;
     }

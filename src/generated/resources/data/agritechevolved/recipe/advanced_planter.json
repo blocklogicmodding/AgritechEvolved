@@ -2,11 +2,11 @@
     "type": "minecraft:crafting_shaped",
     "category": "misc",
     "key": {
-        "D": {
-            "item": "minecraft:dirt"
+        "A": {
+            "item": "agritechevolved:basic_planter"
         },
-        "G": {
-            "tag": "c:glass_blocks"
+        "F": {
+            "item": "minecraft:iron_ingot"
         },
         "I": {
             "item": "minecraft:iron_block"
@@ -16,8 +16,8 @@
         }
     },
     "pattern": [
-        " G ",
-        "IDI",
+        "F F",
+        "IAI",
         "RIR"
     ],
     "result": {

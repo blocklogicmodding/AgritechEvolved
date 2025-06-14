@@ -1,7 +1,8 @@
-// 1.21.1	2025-06-13T22:56:42.2709271	Recipes
+// 1.21.1	2025-06-14T18:19:43.8630237	Recipes
 7372d69cd7c9184530b81e2986e3ee2e571faa14 data/agritechevolved/advancement/recipes/building_blocks/compacted_biomass_block.json
 4d7754742f007f4c5616b5104b3ecfaa84268685 data/agritechevolved/advancement/recipes/building_blocks/mulch.json
-e2686d5fc23b195a3617134a6b29a77b0b19856d data/agritechevolved/advancement/recipes/misc/advanced_planter.json
+4c955e67bad1330aa40b42c5c83b8ed2a3fca77d data/agritechevolved/advancement/recipes/misc/advanced_planter.json
+38ca04cb0b18af1649ee4dfbd8db59d449c09e0a data/agritechevolved/advancement/recipes/misc/basic_planter.json
 8f9d8c872f1ea340f271d96e9220c81fc62969cd data/agritechevolved/advancement/recipes/misc/biomass_burner.json
 4f0fcc1f3f56d6e4548db53ec91e087708c3a91d data/agritechevolved/advancement/recipes/misc/capacitor_tier1.json
 456ecfe8a51330cc053056517a47dab8ff95b4bc data/agritechevolved/advancement/recipes/misc/capacitor_tier2.json
@@ -15,7 +16,8 @@ dd6d95879643bf5080ca0c900e24be5000c46b01 data/agritechevolved/advancement/recipe
 6dda3db7654a948169661fc148c22bc39f1068fb data/agritechevolved/advancement/recipes/misc/ym_mk1.json
 40cc2e9063039b9587c219b19aa7bce02d203aad data/agritechevolved/advancement/recipes/misc/ym_mk2.json
 4713d6f5800b4bdfbe583d6d9f6615a8b20e910d data/agritechevolved/advancement/recipes/misc/ym_mk3.json
-f8a9dd03893aec9618aba7af2aa67bb9f548efcd data/agritechevolved/recipe/advanced_planter.json
+f8cc85ed63f5892e27f21a1fc347df68808147bf data/agritechevolved/recipe/advanced_planter.json
+3fc3694f53877227b8898082c3925a4180748582 data/agritechevolved/recipe/basic_planter.json
 7a87bcab72bee80c608ee4e797fd0591d3421c14 data/agritechevolved/recipe/biomass_burner.json
 71a72cfae31f390bff02919f9e006dca499eb083 data/agritechevolved/recipe/capacitor_tier1.json
 cba6175d4e49a79d18b5fab103603832a5a6ea8b data/agritechevolved/recipe/capacitor_tier2.json

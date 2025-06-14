@@ -1,6 +1,7 @@
-// 1.21.1	2025-06-13T21:26:22.6038938	Tags for minecraft:block mod id agritechevolved
+// 1.21.1	2025-06-14T18:19:43.8620311	Tags for minecraft:block mod id agritechevolved
 e7a37e7afd68a250d10ca0dbc656bd8c0e6a24f8 data/agritechevolved/tags/block/machines.json
 f8f7aab4416685d33bbac618f502a1884be20f92 data/agritechevolved/tags/block/natural_blocks.json
-dabfc9c87083d791a8660b53062a04a9df76e6b9 data/agritechevolved/tags/block/planter.json
+ea930faa66297d368e02ede4688ca898f25a9036 data/agritechevolved/tags/block/planters.json
+d561fc84e3418f180f74b8380147d670b4754826 data/minecraft/tags/block/mineable/axe.json
 617328c98b31c414f645792ba5f451d9029e6733 data/minecraft/tags/block/mineable/pickaxe.json
 f8f7aab4416685d33bbac618f502a1884be20f92 data/minecraft/tags/block/mineable/shovel.json

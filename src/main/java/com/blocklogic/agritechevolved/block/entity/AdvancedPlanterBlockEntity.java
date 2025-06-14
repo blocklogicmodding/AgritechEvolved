@@ -173,7 +173,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public AdvancedPlanterBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ATEBlockEntities.PLANTER_BE.get(), pos, blockState);
+        super(ATEBlockEntities.ADVANCED_PLANTER_BE.get(), pos, blockState);
         this.outputHandler = new OutputOnlyItemHandler(inventory, 5, 16);
     }
 
@@ -312,7 +312,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ATEBlockEntities.PLANTER_BE.get(),
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ATEBlockEntities.ADVANCED_PLANTER_BE.get(),
                 (blockEntity, direction) -> {
                     if (blockEntity instanceof AdvancedPlanterBlockEntity planterBlockEntity) {
                         return planterBlockEntity.getItemHandler(direction) ;
@@ -320,7 +320,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
                     return null;
                 });
 
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ATEBlockEntities.PLANTER_BE.get(),
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ATEBlockEntities.ADVANCED_PLANTER_BE.get(),
                 (blockEntity, direction) -> {
                     if (blockEntity instanceof AdvancedPlanterBlockEntity planterBlockEntity) {
                         return planterBlockEntity.getEnergyStorage(direction);
