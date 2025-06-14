@@ -1,8 +1,12 @@
 package com.blocklogic.agritechevolved.screen.custom;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
+import com.blocklogic.agritechevolved.compat.jei.ATEJeiPlugin;
+import com.blocklogic.agritechevolved.compat.jei.PlanterRecipeCategory;
 import com.mojang.blaze3d.systems.RenderSystem;
+import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -74,5 +78,24 @@ public class BasicPlanterScreen extends AbstractContainerScreen<BasicPlanterMenu
             tooltip.add(Component.translatable("tooltip.agritechevolved.view_recipes").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (button == 0) {
+            int guiX = (width - imageWidth) / 2;
+            int guiY = (height - imageHeight) / 2;
+
+            if (mouseX >= guiX + 58 && mouseX <= guiX + 58 + 6 && mouseY >= guiY + 16 && mouseY <= guiY + 16 + 53) {
+                if (minecraft != null && minecraft.player != null) {
+                    IJeiRuntime runtime = ATEJeiPlugin.getJeiRuntime();
+                    if (runtime != null) {
+                        runtime.getRecipesGui().showTypes(List.of(PlanterRecipeCategory.PLANTER_RECIPE_TYPE));
+                    }
+                }
+                return true;
+            }
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
     }
 }
