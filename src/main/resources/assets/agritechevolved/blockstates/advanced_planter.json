@@ -1,7 +1,10 @@
 {
 	"variants": {
-		"": {
+		"powered=false": {
 			"model": "agritechevolved:block/advanced_planter"
+		},
+		"powered=true": {
+			"model": "agritechevolved:block/advanced_planter_powered"
 		}
 	}
 }

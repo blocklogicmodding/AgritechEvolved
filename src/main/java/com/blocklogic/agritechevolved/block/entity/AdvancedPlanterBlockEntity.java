@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.block.entity;
 
 import com.blocklogic.agritechevolved.Config;
+import com.blocklogic.agritechevolved.block.custom.AdvancedPlanterBlock;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.custom.AdvancedPlanterMenu;
 import com.blocklogic.agritechevolved.util.ATETags;
@@ -440,6 +441,11 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
     public static void tick(Level level, BlockPos pos, BlockState state, AdvancedPlanterBlockEntity blockEntity) {
         if (level.isClientSide()) return;
+
+        boolean powered = blockEntity.getEnergyStored() > 0;
+        if (state.getValue(AdvancedPlanterBlock.POWERED) != powered) {
+            level.setBlock(pos, state.setValue(AdvancedPlanterBlock.POWERED, powered), 3);
+        }
 
         ItemStack plantStack = blockEntity.inventory.getStackInSlot(0);
         ItemStack soilStack = blockEntity.inventory.getStackInSlot(1);
