@@ -64,5 +64,7 @@
 
   "tooltip.agritechevolved.stored_energy": "Energy Stored",
   "tooltip.agritechevolved.growth_progress": "Growth Progress",
-  "tooltip.agritechevolved.view_recipes": "Click to view recipes"
+  "tooltip.agritechevolved.view_recipes": "Click to view recipes",
+
+  "tooltip.agritechevolved.composting_progress": "Composting Progress"
 }

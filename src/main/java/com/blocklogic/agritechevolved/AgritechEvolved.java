@@ -3,6 +3,7 @@ package com.blocklogic.agritechevolved;
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
+import com.blocklogic.agritechevolved.block.entity.ComposterBlockEntity;
 import com.blocklogic.agritechevolved.block.entity.renderer.PlanterBlockEntityRenderer;
 import com.blocklogic.agritechevolved.command.ATECommands;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
@@ -54,6 +55,7 @@ public class AgritechEvolved
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(AdvancedPlanterBlockEntity::registerCapabilities);
+        modEventBus.addListener(ComposterBlockEntity::registerCapabilities);
 
         Config.register(modContainer);
 

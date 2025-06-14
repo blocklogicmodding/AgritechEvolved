@@ -146,6 +146,11 @@ public class PlantablesConfig {
             LOGGER.info("Adding Immersive Engineering Hemp Fiber to AgriTech:Evolved config");
             addImmersiveEngineering(defaultCrops);
         }
+        if(Config.enableOccultism) {
+            LOGGER.info("Adding Occultism Crops to AgriTech:Evolved config");
+            addOccultimCrops(defaultCrops);
+        }
+
 
         config.allowedSoils = defaultSoils;
 
@@ -1760,6 +1765,43 @@ public class PlantablesConfig {
         onion.drops.add(onionDrop);
 
         crops.add(onion);
+    }
+
+    private static void addOccultimCrops(List<CropEntry> crops) {
+        // Datura
+        CropEntry datura = new CropEntry();
+        datura.seed = "occultism:datura_seeds";
+        datura.validSoils = List.of(
+                "minecraft:farmland",
+                "mysticalagriculture:inferium_farmland",
+                "mysticalagriculture:prudentium_farmland",
+                "mysticalagriculture:tertium_farmland",
+                "mysticalagriculture:imperium_farmland",
+                "mysticalagriculture:supremium_farmland",
+                "mysticalagradditions:insanium_farmland",
+                "agritechevolved:infused_farmland",
+                "agritechevolved:mulch",
+                "justdirethings:goosoil_tier1",
+                "justdirethings:goosoil_tier2",
+                "justdirethings:goosoil_tier3",
+                "justdirethings:goosoil_tier4",
+                "farmersdelight:rich_soil_farmland"
+        );
+        datura.drops = new ArrayList<>();
+
+        DropEntry daturaDrop = new DropEntry();
+        daturaDrop.item = "occultism:datura";
+        daturaDrop.count = new CountRange(1, 1);
+        daturaDrop.chance = 1.0f;
+        datura.drops.add(daturaDrop);
+
+        DropEntry daturaSeedsDrop = new DropEntry();
+        daturaSeedsDrop.item = "occultism:datura_seeds";
+        daturaSeedsDrop.count = new CountRange(1, 1);
+        daturaSeedsDrop.chance = 0.5f;
+        datura.drops.add(daturaSeedsDrop);
+
+        crops.add(datura);
     }
 
     private static void addImmersiveEngineering(List<CropEntry> crops) {

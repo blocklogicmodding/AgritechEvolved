@@ -47,7 +47,7 @@ public class CompostableOverrideConfig {
         try {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
             String logFileName = "compostable_config_overrides_errors_" + timestamp + ".log";
-            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechevolved/compostable_overrides").resolve("config_logs").resolve(logFileName);
+            ERROR_LOG_PATH = FMLPaths.CONFIGDIR.get().resolve("agritechevolved/compostable_overrides").resolve("compostable_config_logs").resolve(logFileName);
 
             Files.createDirectories(ERROR_LOG_PATH.getParent());
 
@@ -94,7 +94,7 @@ public class CompostableOverrideConfig {
         ERROR_LOGGER.warn(message, params);
     }
 
-    public static void loadOverrides(Set<String> compostableItems, Set<String> infusableItems) {
+    public static void loadOverrides(Set<String> compostableItems) {
         Path configDir = FMLPaths.CONFIGDIR.get().resolve("agritechevolved/compostable_overrides");
         Path overridePath = configDir.resolve(OVERRIDE_FILE_NAME);
 
@@ -110,10 +110,8 @@ public class CompostableOverrideConfig {
             Map<String, List<String>> sections = parseTomlFile(overridePath);
 
             int compostableCount = processCompostableEntries(sections.getOrDefault("compostable", Collections.emptyList()), compostableItems);
-            int infusableCount = processInfusableEntries(sections.getOrDefault("infusable", Collections.emptyList()), infusableItems);
 
-            MAIN_LOGGER.info("Successfully loaded {} compostable overrides and {} infusable overrides",
-                    compostableCount, infusableCount);
+            MAIN_LOGGER.info("Successfully loaded {} compostable overrides", compostableCount);
         } catch (Exception e) {
             MAIN_LOGGER.error("Failed to load compostable override.toml file: {}", e.getMessage());
             logError("Failed to load compostable override.toml file: {}", e.getMessage());
@@ -149,35 +147,19 @@ public class CompostableOverrideConfig {
                 }
 
                 Matcher keyValueMatcher = KEY_VALUE_PATTERN.matcher(line);
-                if (keyValueMatcher.matches() && currentItems != null) {
-                    String key = keyValueMatcher.group(1);
+                if (keyValueMatcher.matches() && "compostable".equals(currentSection)) {
                     String value = keyValueMatcher.group(2);
-
-                    if ("items".equals(key)) {
-                        List<String> items = parseArray(value);
-                        currentItems.addAll(items);
+                    if (value.startsWith("\"") && value.endsWith("\"")) {
+                        value = value.substring(1, value.length() - 1);
+                    }
+                    if (currentItems != null) {
+                        currentItems.add(value);
                     }
                 }
             }
         }
 
         return result;
-    }
-
-    private static List<String> parseArray(String arrayStr) {
-        List<String> items = new ArrayList<>();
-
-        Matcher arrayMatcher = ARRAY_PATTERN.matcher(arrayStr);
-        if (arrayMatcher.matches()) {
-            String arrayContent = arrayMatcher.group(1);
-
-            Matcher stringMatcher = STRING_PATTERN.matcher(arrayContent);
-            while (stringMatcher.find()) {
-                items.add(stringMatcher.group(1));
-            }
-        }
-
-        return items;
     }
 
     private static int processCompostableEntries(List<String> itemIds, Set<String> compostableItems) {
@@ -200,32 +182,6 @@ public class CompostableOverrideConfig {
             } catch (Exception e) {
                 MAIN_LOGGER.error("Error processing compostable override for '{}': {}", itemId, e.getMessage());
                 logError("Error processing compostable override for '{}': {}", itemId, e.getMessage());
-            }
-        }
-
-        return count;
-    }
-
-    private static int processInfusableEntries(List<String> itemIds, Set<String> infusableItems) {
-        int count = 0;
-
-        for (String itemId : itemIds) {
-            try {
-                Item item = RegistryHelper.getItem(itemId);
-                if (item == null) {
-                    MAIN_LOGGER.warn("Infusable override uses non-existent item: {}", itemId);
-                    logWarning("Infusable override uses non-existent item: {}", itemId);
-                    continue;
-                }
-
-                infusableItems.add(itemId);
-                count++;
-
-                MAIN_LOGGER.info("Added infusable override for item: {}", itemId);
-
-            } catch (Exception e) {
-                MAIN_LOGGER.error("Error processing infusable override for '{}': {}", itemId, e.getMessage());
-                logError("Error processing infusable override for '{}': {}", itemId, e.getMessage());
             }
         }
 
@@ -260,50 +216,29 @@ public class CompostableOverrideConfig {
 
     private static String createBasicTemplate() {
         return """
-                # Compostable/Infusable Items Override Configuration
-                # This file allows you to add custom compostable and infusable items without modifying the core configuration.
-                # Any entries here will be ADDED to the existing configurations.
-                
-                # How to use:
-                # 1. Add items to the [compostable] section to make them work in the Composter
-                # 2. Add items to the [infusable] section to make them work in the Infuser  
-                # 3. Save the file and restart your game
-                
-                # IMPORTANT: Make sure to verify the exact item IDs from your mods
-                # Incorrect IDs will be skipped with a warning message in the log
-                # The mod uses resource location format (e.g., "minecraft:wheat" not just "wheat")
-                # The easiest way to check IDs is with F3+H enabled (shows tooltip IDs) or via JEI/REI
-                
-                # Example compostable items (organic materials for the Composter):
-                [compostable]
-                items = [
-                    # Example mod crops and seeds
-                    # "examplemod:corn_seeds",
-                    # "examplemod:corn", 
-                    # "examplemod:organic_waste",
-                    
-                    # Example custom organic materials
-                    # "anothermod:plant_fiber",
-                    # "anothermod:decomposed_matter"
-                ]
-                
-                # Example infusable items (precious materials for the Infuser):
-                [infusable]
-                items = [
-                    # Example rare materials
-                    # "examplemod:rare_crystal",
-                    # "examplemod:mystical_essence",
-                    
-                    # Example precious ores or gems
-                    # "anothermod:platinum_ingot",
-                    # "anothermod:magical_dust"
-                ]
-                
-                # Notes:
-                # - All vanilla items are already included by default
-                # - Major mod compatibility (Mystical Agriculture, Farmer's Delight, etc.) is automatic
-                # - This file is only for adding items from mods that aren't automatically supported
-                # - Items added here will appear in JEI recipe viewers for the respective machines
-                """;
+            # Compostable Items Override Configuration
+            # This file allows you to add custom compostable items without modifying the core configuration.
+            # Any entries here will be ADDED to the existing configurations.
+            
+            # How to use:
+            # 1. Add items to the [compostable] section using the format: item_name = "mod:item_id"
+            # 2. Save the file and restart your game
+            
+            # IMPORTANT: Make sure to verify the exact item IDs from your mods
+            # Incorrect IDs will be skipped with a warning message in the log
+            # The mod uses resource location format (e.g., "minecraft:wheat" not just "wheat")
+            # The easiest way to check IDs is with F3+H enabled (shows tooltip IDs) or via JEI/REI
+            
+            # Example compostable items (organic materials for the Composter):
+            [compostable]
+            # clay = "minecraft:clay"
+            # custom_crop = "examplemod:corn"
+            # organic_waste = "examplemod:organic_matter"
+            
+            # Notes:
+            # - All vanilla organic items are already included by default
+            # - Major mod compatibility (Mystical Agriculture, Farmer's Delight, etc.) is automatic
+            # - This file is only for adding items from mods that aren't automatically supported
+            """;
     }
 }
