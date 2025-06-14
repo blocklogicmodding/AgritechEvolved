@@ -46,13 +46,13 @@
   "tooltip.agritechevolved.sm_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut increases power consumption by 50%.§r",
 
   "tooltip.agritechevolved.ym_mk1": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk1_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 10%§r, §cbut increases power consumption by 10%.§r",
+  "tooltip.agritechevolved.ym_mk1_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 10%§r, §cbut decreases processing speed by 10%.§r",
 
   "tooltip.agritechevolved.ym_mk2": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk2_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 25%§r, §cbut increases power consumption by 15%.§r",
+  "tooltip.agritechevolved.ym_mk2_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 25%§r, §cbut decreases processing speed by 15%.§r",
 
   "tooltip.agritechevolved.ym_mk3": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut increases power consumption by 25%.§r",
+  "tooltip.agritechevolved.ym_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut decreases processing speed by 25%.§r",
 
   "tooltip.agritechevolved.biomass": "§aUsed as fertilizer for the Advanced Planter or to create Compacted Biomass. Use in a Biomass Burner to generate 300RF/t§r",
   "tooltip.agritechevolved.compacted": "§aUsed to create Mulch. Use in a Biomass Burner to generate 500RF/t§r",
