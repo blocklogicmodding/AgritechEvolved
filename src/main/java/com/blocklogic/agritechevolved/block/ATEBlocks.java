@@ -22,7 +22,7 @@ public class ATEBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AgritechEvolved.MODID);
 
     public static final DeferredBlock<Block> BASIC_PLANTER = registerBlock("basic_planter",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new BasicPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
                     .noOcclusion())

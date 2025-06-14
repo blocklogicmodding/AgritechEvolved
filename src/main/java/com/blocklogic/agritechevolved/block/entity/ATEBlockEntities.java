@@ -14,7 +14,7 @@ public class ATEBlockEntities {
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, AgritechEvolved.MODID);
 
     public static final Supplier<BlockEntityType<BasicPlanterBlockEntity>> BASIC_PLANTER_BE =
-            BLOCK_ENTITIES.register("advanced_planter_be", () -> BlockEntityType.Builder.of(
+            BLOCK_ENTITIES.register("basic_planter_be", () -> BlockEntityType.Builder.of(
                     BasicPlanterBlockEntity::new, ATEBlocks.BASIC_PLANTER.get()).build(null));
 
     public static final Supplier<BlockEntityType<AdvancedPlanterBlockEntity>> ADVANCED_PLANTER_BE =

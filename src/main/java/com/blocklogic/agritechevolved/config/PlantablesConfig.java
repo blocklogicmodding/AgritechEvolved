@@ -81,15 +81,11 @@ public class PlantablesConfig {
             addSilentGearCrops(defaultCrops);
         }
 
-        if (Config.enableHexerei) {
-            LOGGER.info("Adding Hexerei crops to AgriTech:Evolved config");
-            addHexereiCrops(defaultCrops);
-        }
-
         config.allowedCrops = defaultCrops;
 
         List<TreeEntry> defaultTrees = new ArrayList<>();
         addVanillaTrees(defaultTrees);
+
 
         if (Config.enableArsElemental) {
             LOGGER.info("Adding Ars Nouveau Archwood trees to AgriTech:Evolved config");
@@ -119,11 +115,6 @@ public class PlantablesConfig {
         if (Config.enableOccultism) {
             LOGGER.info("Adding Occultism trees to AgriTech:Evolved config");
             addOccultismTrees(defaultTrees);
-        }
-
-        if (Config.enableHexerei) {
-            LOGGER.info("Adding Hexerei trees to AgriTech:Evolved config");
-            addHexereiTrees(defaultTrees);
         }
 
         config.allowedTrees = defaultTrees;
@@ -1954,44 +1945,6 @@ public class PlantablesConfig {
         crops.add(flax);
     }
 
-    private static void addHexereiCrops(List<CropEntry> crops) {
-        // Hexerei Sage
-        CropEntry hexSage = new CropEntry();
-        hexSage.seed = "hexerei:sage_seed";
-        hexSage.validSoils = List.of(
-                "minecraft:farmland",
-                "mysticalagriculture:inferium_farmland",
-                "mysticalagriculture:prudentium_farmland",
-                "mysticalagriculture:tertium_farmland",
-                "mysticalagriculture:imperium_farmland",
-                "mysticalagriculture:supremium_farmland",
-                "mysticalagradditions:insanium_farmland",
-                "agritechevolved:infused_farmland",
-                "agritechevolved:mulch",
-                "justdirethings:goosoil_tier1",
-                "justdirethings:goosoil_tier2",
-                "justdirethings:goosoil_tier3",
-                "justdirethings:goosoil_tier4",
-                "farmersdelight:rich_soil_farmland"
-        );
-        hexSage.drops = new ArrayList<>();
-
-        DropEntry hexSageDrop = new DropEntry();
-        hexSageDrop.item = "hexerei:sage";
-        hexSageDrop.count = new CountRange(2, 4);
-        hexSageDrop.chance = 1.0f;
-        hexSage.drops.add(hexSageDrop);
-
-        DropEntry hexSageSeedDrop = new DropEntry();
-        hexSageSeedDrop.item = "hexerei:sage_seed";
-        hexSageSeedDrop.count = new CountRange(1, 1);
-        hexSageSeedDrop.chance = 0.5f;
-        hexSage.drops.add(hexSageSeedDrop);
-
-        crops.add(hexSage);
-
-    }
-
     private static void addVanillaTrees(List<TreeEntry> trees) {
         // Oak Sapling
         TreeEntry oak = new TreeEntry();
@@ -2749,101 +2702,6 @@ public class PlantablesConfig {
         menril.drops.add(menrilStickDrop);
 
         trees.add(menril);
-    }
-
-    private static void addHexereiTrees(List<TreeEntry> trees) {
-        // Mahogany
-        TreeEntry mahogany = new TreeEntry();
-        mahogany.sapling = "hexerei:mahogany_sapling";
-        mahogany.validSoils = List.of(
-                "minecraft:dirt",
-                "minecraft:grass_block",
-                "minecraft:podzol",
-                "minecraft:coarse_dirt",
-                "minecraft:mycelium",
-                "agritechevolved:mulch"
-        );
-        mahogany.drops = new ArrayList<>();
-
-        DropEntry mahoganyLogDrop = new DropEntry();
-        mahoganyLogDrop.item = "hexerei:mahogany_log";
-        mahoganyLogDrop.count = new CountRange(4, 8);
-        mahogany.drops.add(mahoganyLogDrop);
-
-        DropEntry mahoganySaplingDrop = new DropEntry();
-        mahoganySaplingDrop.item = "hexerei:mahogany_sapling";
-        mahoganySaplingDrop.count = new CountRange(1, 1);
-        mahogany.drops.add(mahoganySaplingDrop);
-
-        DropEntry mahoganyStickDrop = new DropEntry();
-        mahoganyStickDrop.item = "minecraft:stick";
-        mahoganyStickDrop.count = new CountRange(1, 2);
-        mahoganyStickDrop.chance = 0.5f;
-        mahogany.drops.add(mahoganyStickDrop);
-
-        trees.add(mahogany);
-
-        // Willow
-        TreeEntry willow = new TreeEntry();
-        willow.sapling = "hexerei:willow_sapling";
-        willow.validSoils = List.of(
-                "minecraft:dirt",
-                "minecraft:grass_block",
-                "minecraft:podzol",
-                "minecraft:coarse_dirt",
-                "minecraft:mycelium",
-                "agritechevolved:mulch"
-        );
-        willow.drops = new ArrayList<>();
-
-        DropEntry willowLogDrop = new DropEntry();
-        willowLogDrop.item = "hexerei:willow_log";
-        willowLogDrop.count = new CountRange(4, 8);
-        willow.drops.add(willowLogDrop);
-
-        DropEntry willowSaplingDrop = new DropEntry();
-        willowSaplingDrop.item = "hexerei:willow_sapling";
-        willowSaplingDrop.count = new CountRange(1, 1);
-        willow.drops.add(willowSaplingDrop);
-
-        DropEntry willowStickDrop = new DropEntry();
-        willowStickDrop.item = "minecraft:stick";
-        willowStickDrop.count = new CountRange(1, 2);
-        willowStickDrop.chance = 0.5f;
-        willow.drops.add(willowStickDrop);
-
-        trees.add(willow);
-
-        // Witch Hazel
-        TreeEntry witchHazel = new TreeEntry();
-        witchHazel.sapling = "hexerei:witch_hazel_sapling";
-        witchHazel.validSoils = List.of(
-                "minecraft:dirt",
-                "minecraft:grass_block",
-                "minecraft:podzol",
-                "minecraft:coarse_dirt",
-                "minecraft:mycelium",
-                "agritechevolved:mulch"
-        );
-        witchHazel.drops = new ArrayList<>();
-
-        DropEntry witchHazelLogDrop = new DropEntry();
-        witchHazelLogDrop.item = "hexerei:witch_hazel_log";
-        witchHazelLogDrop.count = new CountRange(2, 6);
-        witchHazel.drops.add(witchHazelLogDrop);
-
-        DropEntry witchHazelSaplingDrop = new DropEntry();
-        witchHazelSaplingDrop.item = "hexerei:witch_hazel_sapling";
-        witchHazelSaplingDrop.count = new CountRange(1, 1);
-        witchHazel.drops.add(witchHazelSaplingDrop);
-
-        DropEntry witchHazelStickDrop = new DropEntry();
-        witchHazelStickDrop.item = "minecraft:stick";
-        witchHazelStickDrop.count = new CountRange(1, 2);
-        witchHazelStickDrop.chance = 0.5f;
-        witchHazel.drops.add(witchHazelStickDrop);
-
-        trees.add(witchHazel);
     }
 
     private static void addOccultismTrees(List<TreeEntry> trees) {

@@ -1,5 +1,6 @@
 package com.blocklogic.agritechevolved.block.entity;
 
+import com.blocklogic.agritechevolved.screen.custom.BasicPlanterMenu;
 import com.blocklogic.agritechevolved.screen.custom.ComposterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -69,7 +70,7 @@ public class BasicPlanterBlockEntity extends BlockEntity implements MenuProvider
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return new ComposterMenu(i, inventory, this);
+        return new BasicPlanterMenu(i, inventory, this);
     }
 
     @Nullable

@@ -52,7 +52,6 @@ public class Config {
     public static ModConfigSpec.BooleanValue ENABLE_FORBIDDEN_ARCANUS;
     public static ModConfigSpec.BooleanValue ENABLE_INTEGRATED_DYNAMICS;
     public static ModConfigSpec.BooleanValue ENABLE_OCCULTISM;
-    public static ModConfigSpec.BooleanValue ENABLE_HEXEREI;
     public static ModConfigSpec.BooleanValue ENABLE_ATE;
 
     // ========================================
@@ -125,7 +124,6 @@ public class Config {
     public static boolean enableForbiddenArcanus;
     public static boolean enableIntegratedDynamics;
     public static boolean enableOccultism;
-    public static boolean enableHexerei;
     public static boolean enableAgritechEvolved;
 
     // ========================================
@@ -176,8 +174,6 @@ public class Config {
                 .define("enable_integrated_dynamics", true);
         ENABLE_OCCULTISM = COMMON_BUILDER.comment("Enable Occultism compatibility")
                 .define("enable_occultism", true);
-        ENABLE_HEXEREI = COMMON_BUILDER.comment("Enable Hexerei compatibility")
-                .define("enable_hexerei", true);
         ENABLE_ATE = COMMON_BUILDER.comment("Enable AgriTech: Evolved internal content")
                 .define("enable_agritech_evolved", true);
 
@@ -484,7 +480,6 @@ public class Config {
         enableForbiddenArcanus = ENABLE_FORBIDDEN_ARCANUS.get() && ModList.get().isLoaded("forbidden_arcanus");
         enableIntegratedDynamics = ENABLE_INTEGRATED_DYNAMICS.get() && ModList.get().isLoaded("integrateddynamics");
         enableOccultism = ENABLE_OCCULTISM.get() && ModList.get().isLoaded("occultism");
-        enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
         enableAgritechEvolved = ENABLE_ATE.get();
 
         LOGGER.info("AgriTech: Evolved configuration loaded");
@@ -534,9 +529,6 @@ public class Config {
         }
         if (enableOccultism && ModList.get().isLoaded("occultism")) {
             LOGGER.info("  - Occultism: ENABLED");
-        }
-        if (enableHexerei && ModList.get().isLoaded("hexerei")) {
-            LOGGER.info("  - Hexerei: ENABLED");
         }
     }
 }
