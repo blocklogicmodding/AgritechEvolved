@@ -191,8 +191,6 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     private int growthProgress = 0;
     private int growthTicks = 0;
     private boolean readyToHarvest = false;
-    private static final int BASE_POWER_CONSUMPTION = 128;
-    private static final int ENERGY_CAPACITY = 20000;
     private int energyStored = 0;
 
     public int getEnergyStored() {
@@ -200,7 +198,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public int getMaxEnergyStored() {
-        return ENERGY_CAPACITY;
+        return Config.getPlanterEnergyBuffer();
     }
 
     public boolean canExtractEnergy() {
@@ -212,7 +210,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
     }
 
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        int energyReceived = Math.min(maxReceive, ENERGY_CAPACITY - energyStored);
+        int energyReceived = Math.min(maxReceive, Config.getPlanterEnergyBuffer() - energyStored);
         if (!simulate) {
             energyStored += energyReceived;
             setChanged();
@@ -226,7 +224,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
 
     private boolean consumeEnergy() {
         float powerModifier = getModulePowerModifier();
-        int powerRequired = Math.round(BASE_POWER_CONSUMPTION * powerModifier);
+        int powerRequired = Math.round(Config.getPlanterBasePowerConsumption() * powerModifier);
 
         if (energyStored >= powerRequired) {
             energyStored -= powerRequired;
