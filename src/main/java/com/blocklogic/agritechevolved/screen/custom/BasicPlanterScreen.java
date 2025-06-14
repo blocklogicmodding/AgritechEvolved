@@ -74,7 +74,7 @@ public class BasicPlanterScreen extends AbstractContainerScreen<BasicPlanterMenu
             List<Component> tooltip = new ArrayList<>();
             float progress = this.menu.blockEntity.getGrowthProgress();
             tooltip.add(Component.translatable("tooltip.agritechevolved.growth_progress"));
-            tooltip.add(Component.literal(String.format("%.1f%%", progress * 100)));
+            tooltip.add(Component.literal(String.format("%.1f%%", progress * 100)).withStyle(ChatFormatting.GREEN));
             tooltip.add(Component.translatable("tooltip.agritechevolved.view_recipes").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }

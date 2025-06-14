@@ -51,7 +51,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
 
         guiGraphics.blit(GUI_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        float growthProgress = this.menu.blockEntity.getGrowthProgress();
+        float growthProgress = this.menu.getGrowthProgress();
         if (growthProgress > 0) {
             int progressBarHeight = (int) (52 * growthProgress);
             int progressBarY = y + 16 + 52 - progressBarHeight;
@@ -63,8 +63,8 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
             );
         }
 
-        int energyStored = this.menu.blockEntity.getEnergyStored();
-        int maxEnergy = this.menu.blockEntity.getMaxEnergyStored();
+        int energyStored = this.menu.getEnergyStored();
+        int maxEnergy = this.menu.getMaxEnergyStored();
         if (maxEnergy > 0) {
             float energyPercentage = (float) energyStored / maxEnergy;
             int energyBarHeight = (int) (52 * energyPercentage);
@@ -93,28 +93,26 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
 
         if (x >= guiX + 40 && x <= guiX + 40 + 6 && y >= guiY + 16 && y <= guiY + 16 + 53) {
             List<Component> tooltip = new ArrayList<>();
-            float progress = this.menu.blockEntity.getGrowthProgress();
+            float progress = this.menu.getGrowthProgress();
             tooltip.add(Component.translatable("tooltip.agritechevolved.growth_progress"));
-            tooltip.add(Component.literal(String.format("%.1f%%", progress * 100)));
+            tooltip.add(Component.literal(String.format("%.1f%%", progress * 100))
+                    .withStyle(ChatFormatting.GREEN));
             tooltip.add(Component.translatable("tooltip.agritechevolved.view_recipes").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }
 
         if (x >= guiX + 194 && x <= guiX + 194 + 10 && y >= guiY + 16 && y <= guiY + 16 + 53) {
             List<Component> tooltip = new ArrayList<>();
-            int energyStored = this.menu.blockEntity.getEnergyStored();
-            int maxEnergy = this.menu.blockEntity.getMaxEnergyStored();
-
-            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
+            int energyStored = this.menu.getEnergyStored();
+            int maxEnergy = this.menu.getMaxEnergyStored();
 
             tooltip.add(Component.translatable("tooltip.agritechevolved.stored_energy"));
-            tooltip.add(Component.literal(formatter.format(energyStored) + " / " + formatter.format(maxEnergy) + " RF"));
 
-            if (maxEnergy > 0) {
-                float percentage = ((float) energyStored / maxEnergy) * 100;
-                tooltip.add(Component.literal(String.format("%.1f%%", percentage)));
-            }
-
+            NumberFormat formatter = NumberFormat.getInstance(Locale.US);
+            tooltip.add(Component.literal(String.format("%s / %s RF",
+                            formatter.format(energyStored),
+                            formatter.format(maxEnergy)))
+                    .withStyle(ChatFormatting.YELLOW));
             guiGraphics.renderComponentTooltip(this.font, tooltip, x, y);
         }
     }
