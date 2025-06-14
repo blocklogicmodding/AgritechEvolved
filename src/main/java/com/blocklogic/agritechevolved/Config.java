@@ -5,224 +5,112 @@ import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import com.mojang.logging.LogUtils;
+import org.slf4j.Logger;
 
-public class Config
-{
-    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+public class Config {
+    public static final Logger LOGGER = LogUtils.getLogger();
 
-    // ========================================
-    // MOD COMPATIBILITY TOGGLES (Config 1)
-    // ========================================
+    public static final ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
-    private static final ModConfigSpec.BooleanValue ENABLE_MYSTICAL_AGRICULTURE = BUILDER
-            .comment("Enable Mystical Agriculture compatibility")
-            .define("enableMysticalAgriculture", true);
+    public static ModConfigSpec COMMON_CONFIG;
 
-    private static final ModConfigSpec.BooleanValue ENABLE_MYSTICAL_AGRADDITIONS = BUILDER
-            .comment("Enable Mystical Agradditions compatibility")
-            .define("enableMysticalAgradditions", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_FARMERS_DELIGHT = BUILDER
-            .comment("Enable Farmer's Delight compatibility")
-            .define("enableFarmersDelight", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_ARS_NOUVEAU = BUILDER
-            .comment("Enable Ars Nouveau compatibility")
-            .define("enableArsNouveau", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_ARS_ELEMENTAL = BUILDER
-            .comment("Enable Ars Elemental compatibility")
-            .define("enableArsElemental", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_SILENT_GEAR = BUILDER
-            .comment("Enable Silent Gear compatibility")
-            .define("enableSilentGear", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_JUST_DIRE_THINGS = BUILDER
-            .comment("Enable Just Dire Things compatibility")
-            .define("enableJustDireThings", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_IMMERSIVE_ENGINEERING = BUILDER
-            .comment("Enable Immersive Engineering compatibility")
-            .define("enableImmersiveEngineering", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_EVILCRAFT = BUILDER
-            .comment("Enable EvilCraft compatibility")
-            .define("enableEvilCraft", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_FORBIDDEN_ARCANUS = BUILDER
-            .comment("Enable Forbidden and Arcanus compatibility")
-            .define("enableForbiddenArcanus", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_INTEGRATED_DYNAMICS = BUILDER
-            .comment("Enable Integrated Dynamics compatibility")
-            .define("enableIntegratedDynamics", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_OCCULTISM = BUILDER
-            .comment("Enable Occultism compatibility")
-            .define("enableOccultism", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_HEXEREI = BUILDER
-            .comment("Enable Hexerei compatibility")
-            .define("enableHexerei", true);
-
-    private static final ModConfigSpec.BooleanValue ENABLE_ATE = BUILDER
-            .comment("Enable AgriTech: Evolved internal content")
-            .define("enableAgritechEvolved", true);
+    // Legacy compatibility field for existing registration
+    public static ModConfigSpec SPEC;
 
     // ========================================
-    // MODULE EFFECTIVENESS CONFIGURATION (Config 3)
+    // CATEGORY CONSTANTS
     // ========================================
 
-    // Speed Module Configuration
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK1_MULTIPLIER = BUILDER
-            .comment("Speed multiplier for SM-MK1 module")
-            .defineInRange("speedModuleMk1Multiplier", 1.1, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK1_POWER_MULTIPLIER = BUILDER
-            .comment("Power consumption multiplier for SM-MK1 module")
-            .defineInRange("speedModuleMk1PowerMultiplier", 1.1, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK2_MULTIPLIER = BUILDER
-            .comment("Speed multiplier for SM-MK2 module")
-            .defineInRange("speedModuleMk2Multiplier", 1.25, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK2_POWER_MULTIPLIER = BUILDER
-            .comment("Power consumption multiplier for SM-MK2 module")
-            .defineInRange("speedModuleMk2PowerMultiplier", 1.25, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK3_MULTIPLIER = BUILDER
-            .comment("Speed multiplier for SM-MK3 module")
-            .defineInRange("speedModuleMk3Multiplier", 1.5, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue SPEED_MODULE_MK3_POWER_MULTIPLIER = BUILDER
-            .comment("Power consumption multiplier for SM-MK3 module")
-            .defineInRange("speedModuleMk3PowerMultiplier", 1.5, 0.1, 10.0);
-
-    // Yield Module Configuration
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK1_MULTIPLIER = BUILDER
-            .comment("Yield multiplier for YM-MK1 module")
-            .defineInRange("yieldModuleMk1Multiplier", 1.1, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK1_SPEED_PENALTY = BUILDER
-            .comment("Speed penalty for YM-MK1 module (multiplier)")
-            .defineInRange("yieldModuleMk1SpeedPenalty", 0.95, 0.1, 1.0);
-
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK2_MULTIPLIER = BUILDER
-            .comment("Yield multiplier for YM-MK2 module")
-            .defineInRange("yieldModuleMk2Multiplier", 1.25, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK2_SPEED_PENALTY = BUILDER
-            .comment("Speed penalty for YM-MK2 module (multiplier)")
-            .defineInRange("yieldModuleMk2SpeedPenalty", 0.85, 0.1, 1.0);
-
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK3_MULTIPLIER = BUILDER
-            .comment("Yield multiplier for YM-MK3 module")
-            .defineInRange("yieldModuleMk3Multiplier", 1.5, 0.1, 10.0);
-
-    private static final ModConfigSpec.DoubleValue YIELD_MODULE_MK3_SPEED_PENALTY = BUILDER
-            .comment("Speed penalty for YM-MK3 module (multiplier)")
-            .defineInRange("yieldModuleMk3SpeedPenalty", 0.75, 0.1, 1.0);
-
+    public static final String CATEGORY_COMPATIBILITY = "compatibility";
+    public static final String CATEGORY_MODULES = "modules";
+    public static final String CATEGORY_MACHINES = "machines";
+    public static final String CATEGORY_PLANTER = "advanced_planter";
+    public static final String CATEGORY_COMPOSTER = "composter";
+    public static final String CATEGORY_INFUSER = "infuser";
+    public static final String CATEGORY_BURNER = "burner";
+    public static final String CATEGORY_CAPACITORS = "capacitors";
 
     // ========================================
-    // MACHINE SETTINGS CONFIGURATION (Config 3)
+    // COMPATIBILITY CONFIGURATION
     // ========================================
 
-
-    // Advanced Planter Configuration
-    private static final ModConfigSpec.IntValue PLANTER_BASE_POWER_CONSUMPTION = BUILDER
-            .comment("Base power consumption for Advanced Planter (RF/t)")
-            .defineInRange("planterBasePowerConsumption", 128, 1, 100000);
-
-    private static final ModConfigSpec.IntValue PLANTER_BASE_PROCESSING_TIME = BUILDER
-            .comment("Base processing time for Advanced Planter (ticks)")
-            .defineInRange("planterBaseProcessingTime", 1200, 1, 72000);
-
-    private static final ModConfigSpec.IntValue PLANTER_ENERGY_BUFFER = BUILDER
-            .comment("Energy buffer capacity for Advanced Planter (RF)")
-            .defineInRange("planterEnergyBuffer", 20000, 1000, 10000000);
-
-    // Composter Configuration
-    private static final ModConfigSpec.IntValue COMPOSTER_BASE_POWER_CONSUMPTION = BUILDER
-            .comment("Base power consumption for Composter (RF/t)")
-            .defineInRange("composterBasePowerConsumption", 128, 1, 100000);
-
-    private static final ModConfigSpec.IntValue COMPOSTER_BASE_PROCESSING_TIME = BUILDER
-            .comment("Base processing time for Composter (ticks)")
-            .defineInRange("composterBaseProcessingTime", 600, 1, 72000);
-
-    private static final ModConfigSpec.IntValue COMPOSTER_ENERGY_BUFFER = BUILDER
-            .comment("Energy buffer capacity for Composter (RF)")
-            .defineInRange("composterEnergyBuffer", 20000, 1000, 10000000);
-
-    private static final ModConfigSpec.IntValue COMPOSTER_ITEMS_PER_BIOMASS = BUILDER
-            .comment("Number of organic items required per biomass")
-            .defineInRange("composterItemsPerBiomass", 32, 1, 256);
-
-    // Infuser Configuration
-    private static final ModConfigSpec.IntValue INFUSER_BASE_POWER_CONSUMPTION = BUILDER
-            .comment("Base power consumption for Infuser (RF/t)")
-            .defineInRange("infuserBasePowerConsumption", 512, 1, 100000);
-
-    private static final ModConfigSpec.IntValue INFUSER_BASE_PROCESSING_TIME = BUILDER
-            .comment("Base processing time for Infuser (ticks)")
-            .defineInRange("infuserBaseProcessingTime", 600, 1, 72000);
-
-    private static final ModConfigSpec.IntValue INFUSER_ENERGY_BUFFER = BUILDER
-            .comment("Energy buffer capacity for Infuser (RF)")
-            .defineInRange("infuserEnergyBuffer", 20000, 1000, 10000000);
-
-    private static final ModConfigSpec.IntValue INFUSER_ITEMS_PER_FARMLAND = BUILDER
-            .comment("Number of precious materials required per infused farmland")
-            .defineInRange("infuserItemsPerFarmland", 32, 1, 256);
-
-    // Burner Configuration
-    private static final ModConfigSpec.IntValue BURNER_ENERGY_BUFFER = BUILDER
-            .comment("Energy buffer capacity for Burner (RF)")
-            .defineInRange("burnerEnergyBuffer", 20000, 1000, 10000000);
-
-    private static final ModConfigSpec.IntValue BURNER_BIOMASS_RF_VALUE = BUILDER
-            .comment("RF generated per biomass item")
-            .defineInRange("burnerBiomassRfValue", 4000, 100, 100000);
-
-    private static final ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_RF_VALUE = BUILDER
-            .comment("RF generated per compacted biomass item")
-            .defineInRange("burnerCompactedBiomassRfValue", 36000, 1000, 1000000);
-
-    // Capacitor Configuration
-    private static final ModConfigSpec.IntValue CAPACITOR_T1_BUFFER = BUILDER
-            .comment("Energy buffer capacity for T1 Capacitor (RF)")
-            .defineInRange("capacitorT1Buffer", 500000, 10000, 100000000);
-
-    private static final ModConfigSpec.IntValue CAPACITOR_T1_TRANSFER_RATE = BUILDER
-            .comment("Energy transfer rate for T1 Capacitor (RF/t)")
-            .defineInRange("capacitorT1TransferRate", 512, 1, 100000);
-
-    private static final ModConfigSpec.IntValue CAPACITOR_T2_BUFFER = BUILDER
-            .comment("Energy buffer capacity for T2 Capacitor (RF)")
-            .defineInRange("capacitorT2Buffer", 1000000, 10000, 100000000);
-
-    private static final ModConfigSpec.IntValue CAPACITOR_T2_TRANSFER_RATE = BUILDER
-            .comment("Energy transfer rate for T2 Capacitor (RF/t)")
-            .defineInRange("capacitorT2TransferRate", 2048, 1, 100000);
-
-    private static final ModConfigSpec.IntValue CAPACITOR_T3_BUFFER = BUILDER
-            .comment("Energy buffer capacity for T3 Capacitor (RF)")
-            .defineInRange("capacitorT3Buffer", 4000000, 10000, 100000000);
-
-    private static final ModConfigSpec.IntValue CAPACITOR_T3_TRANSFER_RATE = BUILDER
-            .comment("Energy transfer rate for T3 Capacitor (RF/t)")
-            .defineInRange("capacitorT3TransferRate", 8192, 1, 100000);
-
-
-    static final ModConfigSpec SPEC = BUILDER.build();
+    public static ModConfigSpec.BooleanValue ENABLE_MYSTICAL_AGRICULTURE;
+    public static ModConfigSpec.BooleanValue ENABLE_MYSTICAL_AGRADDITIONS;
+    public static ModConfigSpec.BooleanValue ENABLE_FARMERS_DELIGHT;
+    public static ModConfigSpec.BooleanValue ENABLE_ARS_NOUVEAU;
+    public static ModConfigSpec.BooleanValue ENABLE_ARS_ELEMENTAL;
+    public static ModConfigSpec.BooleanValue ENABLE_SILENT_GEAR;
+    public static ModConfigSpec.BooleanValue ENABLE_JUST_DIRE_THINGS;
+    public static ModConfigSpec.BooleanValue ENABLE_IMMERSIVE_ENGINEERING;
+    public static ModConfigSpec.BooleanValue ENABLE_EVILCRAFT;
+    public static ModConfigSpec.BooleanValue ENABLE_FORBIDDEN_ARCANUS;
+    public static ModConfigSpec.BooleanValue ENABLE_INTEGRATED_DYNAMICS;
+    public static ModConfigSpec.BooleanValue ENABLE_OCCULTISM;
+    public static ModConfigSpec.BooleanValue ENABLE_HEXEREI;
+    public static ModConfigSpec.BooleanValue ENABLE_ATE;
 
     // ========================================
-    // STATIC CONFIGURATION VALUES
+    // MODULE CONFIGURATION
+    // ========================================
+
+    // Speed Modules
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK1_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK1_POWER_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK2_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK2_POWER_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK3_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue SPEED_MODULE_MK3_POWER_MULTIPLIER;
+
+    // Yield Modules
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK1_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK1_SPEED_PENALTY;
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK2_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK2_SPEED_PENALTY;
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK3_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue YIELD_MODULE_MK3_SPEED_PENALTY;
+
+    // ========================================
+    // MACHINE CONFIGURATION
+    // ========================================
+
+    // Advanced Planter
+    public static ModConfigSpec.IntValue PLANTER_BASE_POWER_CONSUMPTION;
+    public static ModConfigSpec.IntValue PLANTER_BASE_PROCESSING_TIME;
+    public static ModConfigSpec.IntValue PLANTER_ENERGY_BUFFER;
+
+    // Composter
+    public static ModConfigSpec.IntValue COMPOSTER_BASE_POWER_CONSUMPTION;
+    public static ModConfigSpec.IntValue COMPOSTER_BASE_PROCESSING_TIME;
+    public static ModConfigSpec.IntValue COMPOSTER_ENERGY_BUFFER;
+    public static ModConfigSpec.IntValue COMPOSTER_ITEMS_PER_BIOMASS;
+
+    // Infuser
+    public static ModConfigSpec.IntValue INFUSER_BASE_POWER_CONSUMPTION;
+    public static ModConfigSpec.IntValue INFUSER_BASE_PROCESSING_TIME;
+    public static ModConfigSpec.IntValue INFUSER_ENERGY_BUFFER;
+    public static ModConfigSpec.IntValue INFUSER_ITEMS_PER_FARMLAND;
+
+    // Burner
+    public static ModConfigSpec.IntValue BURNER_ENERGY_BUFFER;
+    public static ModConfigSpec.IntValue BURNER_BIOMASS_RF_VALUE;
+    public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_RF_VALUE;
+
+    // Capacitors
+    public static ModConfigSpec.IntValue CAPACITOR_T1_BUFFER;
+    public static ModConfigSpec.IntValue CAPACITOR_T1_TRANSFER_RATE;
+    public static ModConfigSpec.IntValue CAPACITOR_T2_BUFFER;
+    public static ModConfigSpec.IntValue CAPACITOR_T2_TRANSFER_RATE;
+    public static ModConfigSpec.IntValue CAPACITOR_T3_BUFFER;
+    public static ModConfigSpec.IntValue CAPACITOR_T3_TRANSFER_RATE;
+
+    // ========================================
+    // STATIC CACHED VALUES
     // ========================================
 
     public static boolean enableMysticalAgriculture;
@@ -239,6 +127,187 @@ public class Config
     public static boolean enableOccultism;
     public static boolean enableHexerei;
     public static boolean enableAgritechEvolved;
+
+    // ========================================
+    // REGISTRATION METHODS
+    // ========================================
+
+    public static void register(ModContainer container) {
+        registerCommonConfigs(container);
+    }
+
+    private static void registerCommonConfigs(ModContainer container) {
+        compatibilityConfig();
+        moduleConfig();
+        machineConfig();
+        COMMON_CONFIG = COMMON_BUILDER.build();
+        SPEC = COMMON_CONFIG; // Legacy compatibility
+        container.registerConfig(ModConfig.Type.COMMON, COMMON_CONFIG);
+    }
+
+    // ========================================
+    // CONFIGURATION CATEGORY METHODS
+    // ========================================
+
+    private static void compatibilityConfig() {
+        COMMON_BUILDER.comment("Mod Compatibility Settings").push(CATEGORY_COMPATIBILITY);
+
+        ENABLE_MYSTICAL_AGRICULTURE = COMMON_BUILDER.comment("Enable Mystical Agriculture compatibility")
+                .define("enable_mystical_agriculture", true);
+        ENABLE_MYSTICAL_AGRADDITIONS = COMMON_BUILDER.comment("Enable Mystical Agradditions compatibility")
+                .define("enable_mystical_agradditions", true);
+        ENABLE_FARMERS_DELIGHT = COMMON_BUILDER.comment("Enable Farmer's Delight compatibility")
+                .define("enable_farmers_delight", true);
+        ENABLE_ARS_NOUVEAU = COMMON_BUILDER.comment("Enable Ars Nouveau compatibility")
+                .define("enable_ars_nouveau", true);
+        ENABLE_ARS_ELEMENTAL = COMMON_BUILDER.comment("Enable Ars Elemental compatibility")
+                .define("enable_ars_elemental", true);
+        ENABLE_SILENT_GEAR = COMMON_BUILDER.comment("Enable Silent Gear compatibility")
+                .define("enable_silent_gear", true);
+        ENABLE_JUST_DIRE_THINGS = COMMON_BUILDER.comment("Enable Just Dire Things compatibility")
+                .define("enable_just_dire_things", true);
+        ENABLE_IMMERSIVE_ENGINEERING = COMMON_BUILDER.comment("Enable Immersive Engineering compatibility")
+                .define("enable_immersive_engineering", true);
+        ENABLE_EVILCRAFT = COMMON_BUILDER.comment("Enable EvilCraft compatibility")
+                .define("enable_evilcraft", true);
+        ENABLE_FORBIDDEN_ARCANUS = COMMON_BUILDER.comment("Enable Forbidden and Arcanus compatibility")
+                .define("enable_forbidden_arcanus", true);
+        ENABLE_INTEGRATED_DYNAMICS = COMMON_BUILDER.comment("Enable Integrated Dynamics compatibility")
+                .define("enable_integrated_dynamics", true);
+        ENABLE_OCCULTISM = COMMON_BUILDER.comment("Enable Occultism compatibility")
+                .define("enable_occultism", true);
+        ENABLE_HEXEREI = COMMON_BUILDER.comment("Enable Hexerei compatibility")
+                .define("enable_hexerei", true);
+        ENABLE_ATE = COMMON_BUILDER.comment("Enable AgriTech: Evolved internal content")
+                .define("enable_agritech_evolved", true);
+
+        COMMON_BUILDER.pop();
+    }
+
+    private static void moduleConfig() {
+        COMMON_BUILDER.comment("Module Effectiveness Settings").push(CATEGORY_MODULES);
+
+        // Speed Modules
+        COMMON_BUILDER.comment("Speed Module Configuration").push("speed_modules");
+        SPEED_MODULE_MK1_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for SM-MK1 module")
+                .defineInRange("mk1_speed_multiplier", 1.1, 0.1, 10.0);
+        SPEED_MODULE_MK1_POWER_MULTIPLIER = COMMON_BUILDER.comment("Power consumption multiplier for SM-MK1 module")
+                .defineInRange("mk1_power_multiplier", 1.1, 0.1, 10.0);
+        SPEED_MODULE_MK2_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for SM-MK2 module")
+                .defineInRange("mk2_speed_multiplier", 1.25, 0.1, 10.0);
+        SPEED_MODULE_MK2_POWER_MULTIPLIER = COMMON_BUILDER.comment("Power consumption multiplier for SM-MK2 module")
+                .defineInRange("mk2_power_multiplier", 1.25, 0.1, 10.0);
+        SPEED_MODULE_MK3_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for SM-MK3 module")
+                .defineInRange("mk3_speed_multiplier", 1.5, 0.1, 10.0);
+        SPEED_MODULE_MK3_POWER_MULTIPLIER = COMMON_BUILDER.comment("Power consumption multiplier for SM-MK3 module")
+                .defineInRange("mk3_power_multiplier", 1.5, 0.1, 10.0);
+        COMMON_BUILDER.pop();
+
+        // Yield Modules
+        COMMON_BUILDER.comment("Yield Module Configuration").push("yield_modules");
+        YIELD_MODULE_MK1_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for YM-MK1 module")
+                .defineInRange("mk1_yield_multiplier", 1.1, 0.1, 10.0);
+        YIELD_MODULE_MK1_SPEED_PENALTY = COMMON_BUILDER.comment("Speed penalty for YM-MK1 module (multiplier)")
+                .defineInRange("mk1_speed_penalty", 0.95, 0.1, 1.0);
+        YIELD_MODULE_MK2_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for YM-MK2 module")
+                .defineInRange("mk2_yield_multiplier", 1.25, 0.1, 10.0);
+        YIELD_MODULE_MK2_SPEED_PENALTY = COMMON_BUILDER.comment("Speed penalty for YM-MK2 module (multiplier)")
+                .defineInRange("mk2_speed_penalty", 0.85, 0.1, 1.0);
+        YIELD_MODULE_MK3_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for YM-MK3 module")
+                .defineInRange("mk3_yield_multiplier", 1.5, 0.1, 10.0);
+        YIELD_MODULE_MK3_SPEED_PENALTY = COMMON_BUILDER.comment("Speed penalty for YM-MK3 module (multiplier)")
+                .defineInRange("mk3_speed_penalty", 0.75, 0.1, 1.0);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.pop();
+    }
+
+    private static void machineConfig() {
+        COMMON_BUILDER.comment("Machine Settings").push(CATEGORY_MACHINES);
+
+        planterConfig();
+        composterConfig();
+        infuserConfig();
+        burnerConfig();
+        capacitorConfig();
+
+        COMMON_BUILDER.pop();
+    }
+
+    private static void planterConfig() {
+        COMMON_BUILDER.comment("Advanced Planter Configuration").push(CATEGORY_PLANTER);
+        PLANTER_BASE_POWER_CONSUMPTION = COMMON_BUILDER.comment("Base power consumption for Advanced Planter (RF/t)")
+                .defineInRange("base_power_consumption", 128, 1, 100000);
+        PLANTER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Advanced Planter (ticks)")
+                .defineInRange("base_processing_time", 1200, 1, 72000);
+        PLANTER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Advanced Planter (RF)")
+                .defineInRange("energy_buffer", 100000, 1000, 10000000);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void composterConfig() {
+        COMMON_BUILDER.comment("Composter Configuration").push(CATEGORY_COMPOSTER);
+        COMPOSTER_BASE_POWER_CONSUMPTION = COMMON_BUILDER.comment("Base power consumption for Composter (RF/t)")
+                .defineInRange("base_power_consumption", 128, 1, 100000);
+        COMPOSTER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Composter (ticks)")
+                .defineInRange("base_processing_time", 600, 1, 72000);
+        COMPOSTER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Composter (RF)")
+                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+        COMPOSTER_ITEMS_PER_BIOMASS = COMMON_BUILDER.comment("Number of organic items required per biomass")
+                .defineInRange("items_per_biomass", 32, 1, 256);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void infuserConfig() {
+        COMMON_BUILDER.comment("Infuser Configuration").push(CATEGORY_INFUSER);
+        INFUSER_BASE_POWER_CONSUMPTION = COMMON_BUILDER.comment("Base power consumption for Infuser (RF/t)")
+                .defineInRange("base_power_consumption", 512, 1, 100000);
+        INFUSER_BASE_PROCESSING_TIME = COMMON_BUILDER.comment("Base processing time for Infuser (ticks)")
+                .defineInRange("base_processing_time", 600, 1, 72000);
+        INFUSER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Infuser (RF)")
+                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+        INFUSER_ITEMS_PER_FARMLAND = COMMON_BUILDER.comment("Number of precious materials required per infused farmland")
+                .defineInRange("items_per_farmland", 32, 1, 256);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void burnerConfig() {
+        COMMON_BUILDER.comment("Burner Configuration").push(CATEGORY_BURNER);
+        BURNER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Burner (RF)")
+                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+        BURNER_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per biomass item")
+                .defineInRange("biomass_rf_value", 4000, 100, 100000);
+        BURNER_COMPACTED_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per compacted biomass item")
+                .defineInRange("compacted_biomass_rf_value", 36000, 1000, 1000000);
+        COMMON_BUILDER.pop();
+    }
+
+    private static void capacitorConfig() {
+        COMMON_BUILDER.comment("Capacitor Configuration").push(CATEGORY_CAPACITORS);
+
+        COMMON_BUILDER.comment("Tier 1 Capacitor").push("tier_1");
+        CAPACITOR_T1_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for T1 Capacitor (RF)")
+                .defineInRange("buffer_capacity", 500000, 10000, 100000000);
+        CAPACITOR_T1_TRANSFER_RATE = COMMON_BUILDER.comment("Energy transfer rate for T1 Capacitor (RF/t)")
+                .defineInRange("transfer_rate", 512, 1, 100000);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Tier 2 Capacitor").push("tier_2");
+        CAPACITOR_T2_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for T2 Capacitor (RF)")
+                .defineInRange("buffer_capacity", 1000000, 10000, 100000000);
+        CAPACITOR_T2_TRANSFER_RATE = COMMON_BUILDER.comment("Energy transfer rate for T2 Capacitor (RF/t)")
+                .defineInRange("transfer_rate", 2048, 1, 100000);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Tier 3 Capacitor").push("tier_3");
+        CAPACITOR_T3_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for T3 Capacitor (RF)")
+                .defineInRange("buffer_capacity", 4000000, 10000, 100000000);
+        CAPACITOR_T3_TRANSFER_RATE = COMMON_BUILDER.comment("Energy transfer rate for T3 Capacitor (RF/t)")
+                .defineInRange("transfer_rate", 8192, 1, 100000);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.pop();
+    }
 
     // ========================================
     // GETTER METHODS FOR MODULE EFFECTIVENESS
@@ -296,7 +365,7 @@ public class Config
     // GETTER METHODS FOR MACHINE SETTINGS
     // ========================================
 
-    // Advanced Planter
+    // Advanced Planter Getters
     public static int getPlanterBasePowerConsumption() {
         return PLANTER_BASE_POWER_CONSUMPTION.get();
     }
@@ -309,7 +378,7 @@ public class Config
         return PLANTER_ENERGY_BUFFER.get();
     }
 
-    // Composter
+    // Composter Getters
     public static int getComposterBasePowerConsumption() {
         return COMPOSTER_BASE_POWER_CONSUMPTION.get();
     }
@@ -326,7 +395,7 @@ public class Config
         return COMPOSTER_ITEMS_PER_BIOMASS.get();
     }
 
-    // Infuser
+    // Infuser Getters
     public static int getInfuserBasePowerConsumption() {
         return INFUSER_BASE_POWER_CONSUMPTION.get();
     }
@@ -343,7 +412,7 @@ public class Config
         return INFUSER_ITEMS_PER_FARMLAND.get();
     }
 
-    // Burner
+    // Burner Getters
     public static int getBurnerEnergyBuffer() {
         return BURNER_ENERGY_BUFFER.get();
     }
@@ -356,7 +425,7 @@ public class Config
         return BURNER_COMPACTED_BIOMASS_RF_VALUE.get();
     }
 
-    // Capacitors
+    // Capacitor Getters
     public static int getCapacitorT1Buffer() {
         return CAPACITOR_T1_BUFFER.get();
     }
@@ -385,19 +454,24 @@ public class Config
     // UTILITY METHODS
     // ========================================
 
-    private static boolean validateItemName(final Object obj)
-    {
+    private static boolean validateItemName(final Object obj) {
         return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
     }
 
     public static void loadConfig() {
-        PlantablesConfig.loadConfig();
+        // Load additional configs
         CompostableConfig.loadConfig();
+        PlantablesConfig.loadConfig();
+        LOGGER.info("AgriTech: Evolved configs reloaded");
     }
 
+    // ========================================
+    // EVENT HANDLING
+    // ========================================
+
     @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
+    static void onLoad(final ModConfigEvent event) {
+        // Cache compatibility values
         enableMysticalAgriculture = ENABLE_MYSTICAL_AGRICULTURE.get() && ModList.get().isLoaded("mysticalagriculture");
         enableMysticalAgradditions = ENABLE_MYSTICAL_AGRADDITIONS.get() && ModList.get().isLoaded("mysticalagradditions");
         enableFarmersDelight = ENABLE_FARMERS_DELIGHT.get() && ModList.get().isLoaded("farmersdelight");
@@ -413,7 +487,56 @@ public class Config
         enableHexerei = ENABLE_HEXEREI.get() && ModList.get().isLoaded("hexerei");
         enableAgritechEvolved = ENABLE_ATE.get();
 
-        PlantablesConfig.loadConfig();
+        LOGGER.info("AgriTech: Evolved configuration loaded");
+
+        // Load additional configs
         CompostableConfig.loadConfig();
+        PlantablesConfig.loadConfig();
+
+        // Log mod compatibility info
+        logModCompatibility();
+    }
+
+    private static void logModCompatibility() {
+        LOGGER.info("Mod Compatibility Status:");
+        if (enableMysticalAgriculture && ModList.get().isLoaded("mysticalagriculture")) {
+            LOGGER.info("  - Mystical Agriculture: ENABLED");
+        }
+        if (enableMysticalAgradditions && ModList.get().isLoaded("mysticalagradditions")) {
+            LOGGER.info("  - Mystical Agradditions: ENABLED");
+        }
+        if (enableFarmersDelight && ModList.get().isLoaded("farmersdelight")) {
+            LOGGER.info("  - Farmer's Delight: ENABLED");
+        }
+        if (enableArsNouveau && ModList.get().isLoaded("ars_nouveau")) {
+            LOGGER.info("  - Ars Nouveau: ENABLED");
+        }
+        if (enableArsElemental && ModList.get().isLoaded("ars_elemental")) {
+            LOGGER.info("  - Ars Elemental: ENABLED");
+        }
+        if (enableSilentGear && ModList.get().isLoaded("silentgear")) {
+            LOGGER.info("  - Silent Gear: ENABLED");
+        }
+        if (enableJustDireThings && ModList.get().isLoaded("justdirethings")) {
+            LOGGER.info("  - Just Dire Things: ENABLED");
+        }
+        if (enableImmersiveEngineering && ModList.get().isLoaded("immersiveengineering")) {
+            LOGGER.info("  - Immersive Engineering: ENABLED");
+        }
+        if (enableEvilCraft && ModList.get().isLoaded("evilcraft")) {
+            LOGGER.info("  - EvilCraft: ENABLED");
+        }
+        if (enableForbiddenArcanus && ModList.get().isLoaded("forbidden_arcanus")) {
+            LOGGER.info("  - Forbidden and Arcanus: ENABLED");
+        }
+        if (enableIntegratedDynamics && ModList.get().isLoaded("integrateddynamics")) {
+            LOGGER.info("  - Integrated Dynamics: ENABLED");
+        }
+        if (enableOccultism && ModList.get().isLoaded("occultism")) {
+            LOGGER.info("  - Occultism: ENABLED");
+        }
+        if (enableHexerei && ModList.get().isLoaded("hexerei")) {
+            LOGGER.info("  - Hexerei: ENABLED");
+        }
     }
 }

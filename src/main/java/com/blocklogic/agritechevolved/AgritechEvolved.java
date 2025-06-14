@@ -56,7 +56,7 @@ public class AgritechEvolved
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(AdvancedPlanterBlockEntity::registerCapabilities);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        Config.register(modContainer);
 
         modEventBus.register(Config.class);
     }
