@@ -32,8 +32,6 @@ public class CompostableOverrideConfig {
 
     private static final Pattern SECTION_PATTERN = Pattern.compile("\\[(\\w+)\\]");
     private static final Pattern KEY_VALUE_PATTERN = Pattern.compile("(\\w+)\\s*=\\s*(.+)");
-    private static final Pattern ARRAY_PATTERN = Pattern.compile("\\[\\s*(.*)\\s*\\]");
-    private static final Pattern STRING_PATTERN = Pattern.compile("\"([^\"]*)\"");
 
     private static void setupErrorLogger() {
         ERROR_LOGGER = LogManager.getLogger(CompostableOverrideConfig.class);
