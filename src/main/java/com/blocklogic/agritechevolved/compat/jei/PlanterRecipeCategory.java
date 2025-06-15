@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PlanterRecipeCategory implements IRecipeCategory<PlanterRecipe> {
     public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "planter");
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "textures/gui/jei/agritechevolved_jei_gui.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(AgritechEvolved.MODID, "textures/gui/jei/jei_planters_gui.png");
     public static final RecipeType<PlanterRecipe> PLANTER_RECIPE_TYPE = new RecipeType<>(UID, PlanterRecipe.class);
 
     private final IDrawable background;
@@ -72,7 +72,7 @@ public class PlanterRecipeCategory implements IRecipeCategory<PlanterRecipe> {
 
         int outputIndex = 0;
         for (ItemStack output : recipe.getOutputs()) {
-            int x = 54 + (outputIndex % 4) * 18;
+            int x = 52 + (outputIndex % 4) * 18;
             int y = 10 + (outputIndex / 3) * 18;
             builder.addSlot(RecipeIngredientRole.OUTPUT, x, y)
                     .addItemStack(output);
