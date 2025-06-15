@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -207,8 +208,18 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("BIB")
                 .pattern("BBB")
                 .define('B', ATEItems.COMPACTED_BIOMASS.get())
-                .define('I', ATEBlocks.INFUSED_FARMLAND.get())
+                .define('I', Items.FARMLAND)
                 .unlockedBy("has_infused_farmland", has(ATEBlocks.INFUSED_FARMLAND.get()))
+                .save(recipeOutput);
+
+        // Crude Biomass
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ATEItems.CRUDE_BIOMASS)
+                .pattern("LLL")
+                .pattern("DDD")
+                .pattern("LLL")
+                .define('L', ItemTags.LEAVES)
+                .define('D', ATETags.Items.DIRT_LIKE_BLOCK_ITEMS)
+                .unlockedBy("has_leaves", has(ItemTags.LEAVES))
                 .save(recipeOutput);
 
     }

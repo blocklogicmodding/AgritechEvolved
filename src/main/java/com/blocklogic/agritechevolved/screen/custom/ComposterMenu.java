@@ -24,7 +24,6 @@ public class ComposterMenu extends AbstractContainerMenu {
     private int lastEnergyStored = 0;
     private int lastProgress = 0;
 
-    // Slot constants
     private static final int INPUT_SLOTS_START = 0;
     private static final int INPUT_SLOTS_COUNT = 12;
     private static final int OUTPUT_SLOTS_START = 12;
@@ -43,7 +42,6 @@ public class ComposterMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        // Add input slots (12 slots, 3x4 grid) - Accept only compostable items
         int inputSlotIndex = INPUT_SLOTS_START;
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 4; col++) {
@@ -52,20 +50,17 @@ public class ComposterMenu extends AbstractContainerMenu {
             }
         }
 
-        // Add output slots (3 slots, vertical) - Extract only
         int outputSlotIndex = OUTPUT_SLOTS_START;
         for (int row = 0; row < 3; row++) {
             this.addSlot(new OutputOnlySlot(this.blockEntity.inventory, outputSlotIndex++,
                     98, 15 + row * 18));
         }
 
-        // Add module slot - Accept only speed modules
         this.addSlot(new ModuleSlot(this.blockEntity.inventory, MODULE_SLOT, 134, 15));
 
         addDataSlots();
     }
 
-    // Custom slot for compostable input items only
     private static class CompostableInputSlot extends SlotItemHandler {
         public CompostableInputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
@@ -79,7 +74,6 @@ public class ComposterMenu extends AbstractContainerMenu {
         }
     }
 
-    // Custom slot for output only (no insertion allowed)
     private static class OutputOnlySlot extends SlotItemHandler {
         public OutputOnlySlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
@@ -87,11 +81,10 @@ public class ComposterMenu extends AbstractContainerMenu {
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return false; // Never allow insertion
+            return false;
         }
     }
 
-    // Custom slot for speed modules only
     private static class ModuleSlot extends SlotItemHandler {
         public ModuleSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
@@ -138,7 +131,6 @@ public class ComposterMenu extends AbstractContainerMenu {
         });
     }
 
-    // GUI data getters
     public int getEnergyStored() {
         return level.isClientSide ? lastEnergyStored : blockEntity.getEnergyStored();
     }
@@ -163,7 +155,6 @@ public class ComposterMenu extends AbstractContainerMenu {
         return blockEntity.getRequiredOrganicItems();
     }
 
-    // Shift-click handling
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -180,18 +171,15 @@ public class ComposterMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // If shift-clicking from player inventory
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             String sourceItemId = RegistryHelper.getItemId(sourceStack);
 
-            // Try to place compostable items in input slots
             if (CompostableConfig.isCompostable(sourceItemId)) {
                 if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX + INPUT_SLOTS_START,
                         TE_INVENTORY_FIRST_SLOT_INDEX + INPUT_SLOTS_START + INPUT_SLOTS_COUNT, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            // Try to place speed modules in module slot
             else if (sourceItemId.equals("agritechevolved:sm_mk1") ||
                     sourceItemId.equals("agritechevolved:sm_mk2") ||
                     sourceItemId.equals("agritechevolved:sm_mk3")) {
@@ -200,7 +188,6 @@ public class ComposterMenu extends AbstractContainerMenu {
                     return ItemStack.EMPTY;
                 }
             }
-            // If item doesn't fit anywhere specific, try general container slots
             else {
                 if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                         + TE_INVENTORY_SLOT_COUNT, false)) {
@@ -208,9 +195,7 @@ public class ComposterMenu extends AbstractContainerMenu {
                 }
             }
         }
-        // If shift-clicking from container inventory (only output slots should be extractable)
         else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // Move to player inventory
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }

@@ -6,7 +6,7 @@
             "item": "agritechevolved:compacted_biomass"
         },
         "I": {
-            "item": "agritechevolved:infused_farmland"
+            "item": "minecraft:farmland"
         }
     },
     "pattern": [

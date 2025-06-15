@@ -19,6 +19,7 @@ public class ATEItemModelProvider extends ItemModelProvider {
         basicItem(ATEItems.YM_MK1.get());
         basicItem(ATEItems.YM_MK2.get());
         basicItem(ATEItems.YM_MK3.get());
+        basicItem(ATEItems.CRUDE_BIOMASS.get());
         basicItem(ATEItems.BIOMASS.get());
         basicItem(ATEItems.COMPACTED_BIOMASS.get());
     }

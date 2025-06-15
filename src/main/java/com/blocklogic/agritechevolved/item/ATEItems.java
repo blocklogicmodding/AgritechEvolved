@@ -2,6 +2,7 @@ package com.blocklogic.agritechevolved.item;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.blocklogic.agritechevolved.Config;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -11,7 +12,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class ATEItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AgritechEvolved.MODID);
@@ -136,12 +139,38 @@ public class ATEItems {
             }
     );
 
+    public static final DeferredItem<Item> CRUDE_BIOMASS = ITEMS.register("crude_biomass",
+            () -> new Item(new Item.Properties())
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass"));
+
+                    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                    int rfValue = Config.getBurnerCrudeBiomassRfValue();
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass.rf_generation",
+                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass.inefficient")
+                            .withStyle(ChatFormatting.RED));
+
+                    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                }
+            }
+    );
+
     public static final DeferredItem<Item> BIOMASS = ITEMS.register("biomass",
             () -> new Item(new Item.Properties())
             {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.biomass"));
+
+                    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                    int rfValue = Config.getBurnerBiomassRfValue();
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.biomass.rf_generation",
+                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }
@@ -152,7 +181,14 @@ public class ATEItems {
             {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.compacted"));
+
+                    NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                    int rfValue = Config.getBurnerCompactedBiomassRfValue();
+                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.compacted_biomass.rf_generation",
+                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
             }

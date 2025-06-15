@@ -153,7 +153,9 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
         }
 
         String itemId = RegistryHelper.getItemId(fuelStack);
-        return itemId.equals("agritechevolved:biomass") || itemId.equals("agritechevolved:compacted_biomass");
+        return itemId.equals("agritechevolved:biomass") ||
+                itemId.equals("agritechevolved:compacted_biomass") ||
+                itemId.equals("agritechevolved:crude_biomass");
     }
 
     private void startBurning() {
@@ -163,11 +165,17 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
         String itemId = RegistryHelper.getItemId(fuelStack);
 
         if (itemId.equals("agritechevolved:biomass")) {
-            currentBurnValue = 40;
+            int totalRF = Config.getBurnerBiomassRfValue();
             maxProgress = 100;
+            currentBurnValue = totalRF / maxProgress;
         } else if (itemId.equals("agritechevolved:compacted_biomass")) {
-            currentBurnValue = 200;
+            int totalRF = Config.getBurnerCompactedBiomassRfValue();
             maxProgress = 180;
+            currentBurnValue = totalRF / maxProgress;
+        } else if (itemId.equals("agritechevolved:crude_biomass")) {
+            int totalRF = Config.getBurnerCrudeBiomassRfValue();
+            maxProgress = 50;
+            currentBurnValue = totalRF / maxProgress;
         }
 
         fuelStack.shrink(1);
@@ -196,7 +204,7 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
             if (neighborBE != null) {
                 IEnergyStorage neighborEnergy = level.getCapability(Capabilities.EnergyStorage.BLOCK, neighborPos, direction.getOpposite());
                 if (neighborEnergy != null && neighborEnergy.canReceive()) {
-                    int energyToTransfer = energyStorage.extractEnergy(1000, true); // Test extraction
+                    int energyToTransfer = energyStorage.extractEnergy(1000, true);
                     if (energyToTransfer > 0) {
                         int transferred = neighborEnergy.receiveEnergy(energyToTransfer, false);
                         if (transferred > 0) {
@@ -376,7 +384,9 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
             public boolean isItemValid(int slot, ItemStack stack) {
                 if (stack.isEmpty()) return false;
                 String itemId = RegistryHelper.getItemId(stack);
-                return itemId.equals("agritechevolved:biomass") || itemId.equals("agritechevolved:compacted_biomass");
+                return itemId.equals("agritechevolved:biomass") ||
+                        itemId.equals("agritechevolved:compacted_biomass") ||
+                        itemId.equals("agritechevolved:crude_biomass");
             }
         };
     }

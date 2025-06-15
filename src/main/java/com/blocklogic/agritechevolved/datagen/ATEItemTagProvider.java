@@ -6,7 +6,6 @@ import com.blocklogic.agritechevolved.util.ATETags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -21,6 +20,7 @@ public class ATEItemTagProvider extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(ATETags.Items.BIOMASS)
+                .add(ATEItems.CRUDE_BIOMASS.get())
                 .add(ATEItems.BIOMASS.get())
                 .add(ATEItems.COMPACTED_BIOMASS.get());
 

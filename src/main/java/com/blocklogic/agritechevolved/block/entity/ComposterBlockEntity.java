@@ -80,32 +80,57 @@ public class ComposterBlockEntity extends BlockEntity implements MenuProvider {
     public static void tick(Level level, BlockPos pos, BlockState state, ComposterBlockEntity blockEntity) {
         if (level.isClientSide()) return;
 
-        boolean powered = blockEntity.getEnergyStored() > 0;
-        if (state.getValue(ComposterBlock.POWERED) != powered) {
-            level.setBlock(pos, state.setValue(ComposterBlock.POWERED, powered), 3);
+        boolean wasChanged = false;
+
+        int requiredEnergy = Config.getComposterBasePowerConsumption();
+        boolean hasPower = blockEntity.energyStored >= requiredEnergy;
+
+        int baseProcessingTime = Config.getComposterBaseProcessingTime();
+
+        if (!hasPower) {
+            baseProcessingTime *= 3;
         }
 
+        double speedMultiplier = blockEntity.getModuleSpeedModifier();
+        int actualProcessingTime = (int) Math.max(1, baseProcessingTime / speedMultiplier);
+
         if (blockEntity.canProcess()) {
-            int baseProcessingTime = Config.getComposterBaseProcessingTime();
-            double speedMultiplier = blockEntity.getModuleSpeedModifier();
-            int actualProcessingTime = (int) Math.max(1, baseProcessingTime / speedMultiplier);
-
-            int baseEnergyConsumption = Config.getComposterBasePowerConsumption();
-            double powerMultiplier = blockEntity.getModulePowerModifier();
-            int actualEnergyConsumption = (int) (baseEnergyConsumption * powerMultiplier);
-
-            if (blockEntity.energyStored >= actualEnergyConsumption) {
+            if (blockEntity.progress == 0) {
+                blockEntity.progress = 1;
+                wasChanged = true;
+            } else {
                 blockEntity.progress++;
-                blockEntity.energyStored -= actualEnergyConsumption;
-                blockEntity.setChanged();
+                wasChanged = true;
+            }
 
-                if (blockEntity.progress >= actualProcessingTime) {
-                    blockEntity.processItems();
-                    blockEntity.progress = 0;
+            if (blockEntity.progress >= actualProcessingTime) {
+                blockEntity.processItems();
+
+                if (hasPower) {
+                    double powerMultiplier = blockEntity.getModulePowerModifier();
+                    int adjustedEnergyConsumption = (int) Math.ceil(requiredEnergy * powerMultiplier);
+                    blockEntity.energyStored -= adjustedEnergyConsumption;
                 }
+
+                blockEntity.progress = 0;
+                wasChanged = true;
             }
         } else {
-            blockEntity.progress = 0;
+            if (blockEntity.progress > 0) {
+                blockEntity.progress = 0;
+                wasChanged = true;
+            }
+        }
+
+        if (wasChanged) {
+            blockEntity.setChanged();
+            level.sendBlockUpdated(pos, state, state, 3);
+
+            boolean shouldBePowered = blockEntity.progress > 0;
+            boolean currentlyPowered = state.getValue(ComposterBlock.POWERED);
+            if (shouldBePowered != currentlyPowered) {
+                level.setBlock(pos, state.setValue(ComposterBlock.POWERED, shouldBePowered), 3);
+            }
         }
     }
 
@@ -339,6 +364,14 @@ public class ComposterBlockEntity extends BlockEntity implements MenuProvider {
 
     public int getMaxProgress() {
         int baseProcessingTime = Config.getComposterBaseProcessingTime();
+
+        int requiredEnergy = Config.getComposterBasePowerConsumption();
+        boolean hasPower = energyStored >= requiredEnergy;
+
+        if (!hasPower) {
+            baseProcessingTime *= 3;
+        }
+
         double speedMultiplier = getModuleSpeedModifier();
         return (int) Math.max(1, baseProcessingTime / speedMultiplier);
     }

@@ -53,7 +53,8 @@ public class BiomassBurnerMenu extends AbstractContainerMenu {
             if (stack.isEmpty()) return false;
             String itemId = RegistryHelper.getItemId(stack);
             return itemId.equals("agritechevolved:biomass") ||
-                    itemId.equals("agritechevolved:compacted_biomass");
+                    itemId.equals("agritechevolved:compacted_biomass") ||
+                    itemId.equals("agritechevolved:crude_biomass");
         }
     }
 

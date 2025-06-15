@@ -36,6 +36,7 @@ public class ATECreativeTab {
                         output.accept(ATEItems.YM_MK1);
                         output.accept(ATEItems.YM_MK2);
                         output.accept(ATEItems.YM_MK3);
+                        output.accept(ATEItems.CRUDE_BIOMASS);
                         output.accept(ATEItems.BIOMASS);
                         output.accept(ATEItems.COMPACTED_BIOMASS);
                     })

@@ -24,6 +24,7 @@
   "item.agritechevolved.fm_mk1": "FM-MK1",
   "item.agritechevolved.fm_mk2": "FM-MK2",
   "item.agritechevolved.fm_mk3": "FM-MK3",
+  "item.agritechevolved.crude_biomass": "Crude Biomass",
   "item.agritechevolved.biomass": "Biomass",
   "item.agritechevolved.compacted_biomass": "Compacted Biomass",
 
@@ -54,8 +55,9 @@
   "tooltip.agritechevolved.ym_mk3": "§6§n§lHold Shift for more info§r§r§r",
   "tooltip.agritechevolved.ym_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut decreases processing speed by 25%.§r",
 
-  "tooltip.agritechevolved.biomass": "§aUsed as fertilizer for the Advanced Planter or to create Compacted Biomass. Use in a Biomass Burner to generate 300RF/t§r",
-  "tooltip.agritechevolved.compacted": "§aUsed to create Mulch. Use in a Biomass Burner to generate 500RF/t§r",
+  "tooltip.agritechevolved.crude_biomass": "Started Biomass Burner Fuel§r",
+  "tooltip.agritechevolved.biomass": "§aUsed as fertilizer for the Advanced Planter or to create Compacted Biomass.",
+  "tooltip.agritechevolved.compacted": "§aUsed to create Mulch.",
 
   "tooltip.agritechevolved.mulch": "§aUsed in Planters. Grants 50% growth speed. Used to create Infused Farmland§r",
   "tooltip.agritechevolved.infused_farmland": "§aUsed in Planters or as normal farmland. Grants 100% growth speed.§r",
@@ -93,5 +95,10 @@
   "tooltip.agritechevolved.capacitor.info_stores": "• Stores and distributes RF energy",
   "tooltip.agritechevolved.capacitor.info_balances": "• Automatically balances energy",
   "tooltip.agritechevolved.capacitor.info_automatic": "• No manual operation required",
-  "tooltip.agritechevolved.capacitor.stored_energy": "Stored Energy: %s RF"
+  "tooltip.agritechevolved.capacitor.stored_energy": "Stored Energy: %s RF",
+
+  "tooltip.agritechevolved.biomass.rf_generation": "Generates %s RF when burned",
+  "tooltip.agritechevolved.compacted_biomass.rf_generation": "Generates %s RF when burned",
+  "tooltip.agritechevolved.crude_biomass.rf_generation": "Generates %s RF when burned",
+  "tooltip.agritechevolved.crude_biomass.inefficient": "Very inefficient"
 }
