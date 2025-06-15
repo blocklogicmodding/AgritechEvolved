@@ -73,6 +73,22 @@ public class Config {
     public static ModConfigSpec.DoubleValue YIELD_MODULE_MK3_MULTIPLIER;
     public static ModConfigSpec.DoubleValue YIELD_MODULE_MK3_SPEED_PENALTY;
 
+    // Fertilizer Modifiers
+    public static ModConfigSpec.DoubleValue FERTILIZER_BONE_MEAL_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_BONE_MEAL_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_BIOMASS_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_BIOMASS_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_COMPACTED_BIOMASS_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_COMPACTED_BIOMASS_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_FERTILIZED_ESSENCE_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_FERTILIZED_ESSENCE_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_MYSTICAL_FERTILIZER_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_MYSTICAL_FERTILIZER_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_IMMERSIVE_FERTILIZER_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_IMMERSIVE_FERTILIZER_YIELD_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_ARCANE_BONE_MEAL_SPEED_MULTIPLIER;
+    public static ModConfigSpec.DoubleValue FERTILIZER_ARCANE_BONE_MEAL_YIELD_MULTIPLIER;
+
     // ========================================
     // MACHINE CONFIGURATION
     // ========================================
@@ -93,6 +109,10 @@ public class Config {
     public static ModConfigSpec.IntValue BURNER_BIOMASS_RF_VALUE;
     public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_RF_VALUE;
     public static ModConfigSpec.IntValue BURNER_CRUDE_BIOMASS_RF_VALUE;
+
+    public static ModConfigSpec.IntValue BURNER_BIOMASS_BURN_DURATION;
+    public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_BURN_DURATION;
+    public static ModConfigSpec.IntValue BURNER_CRUDE_BIOMASS_BURN_DURATION;
 
     // Capacitors
     public static ModConfigSpec.IntValue CAPACITOR_T1_BUFFER;
@@ -209,6 +229,37 @@ public class Config {
                 .defineInRange("mk3_speed_penalty", 0.75, 0.1, 1.0);
         COMMON_BUILDER.pop();
 
+        // Fertilizer Configuration
+        COMMON_BUILDER.comment("Fertilizer Configuration").push("fertilizers");
+        FERTILIZER_BONE_MEAL_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Bone Meal fertilizer")
+                .defineInRange("bone_meal_speed_multiplier", 1.2, 0.1, 10.0);
+        FERTILIZER_BONE_MEAL_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Bone Meal fertilizer")
+                .defineInRange("bone_meal_yield_multiplier", 1.2, 0.1, 10.0);
+        FERTILIZER_BIOMASS_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Biomass fertilizer")
+                .defineInRange("biomass_speed_multiplier", 1.3, 0.1, 10.0);
+        FERTILIZER_BIOMASS_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Biomass fertilizer")
+                .defineInRange("biomass_yield_multiplier", 1.3, 0.1, 10.0);
+        FERTILIZER_COMPACTED_BIOMASS_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Compacted Biomass fertilizer")
+                .defineInRange("compacted_biomass_speed_multiplier", 1.8, 0.1, 10.0);
+        FERTILIZER_COMPACTED_BIOMASS_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Compacted Biomass fertilizer")
+                .defineInRange("compacted_biomass_yield_multiplier", 1.8, 0.1, 10.0);
+        FERTILIZER_FERTILIZED_ESSENCE_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Fertilized Essence")
+                .defineInRange("fertilized_essence_speed_multiplier", 1.3, 0.1, 10.0);
+        FERTILIZER_FERTILIZED_ESSENCE_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Fertilized Essence")
+                .defineInRange("fertilized_essence_yield_multiplier", 1.3, 0.1, 10.0);
+        FERTILIZER_MYSTICAL_FERTILIZER_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Mystical Fertilizer")
+                .defineInRange("mystical_fertilizer_speed_multiplier", 1.6, 0.1, 10.0);
+        FERTILIZER_MYSTICAL_FERTILIZER_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Mystical Fertilizer")
+                .defineInRange("mystical_fertilizer_yield_multiplier", 1.6, 0.1, 10.0);
+        FERTILIZER_IMMERSIVE_FERTILIZER_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Immersive Engineering Fertilizer")
+                .defineInRange("immersive_fertilizer_speed_multiplier", 1.4, 0.1, 10.0);
+        FERTILIZER_IMMERSIVE_FERTILIZER_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Immersive Engineering Fertilizer")
+                .defineInRange("immersive_fertilizer_yield_multiplier", 1.4, 0.1, 10.0);
+        FERTILIZER_ARCANE_BONE_MEAL_SPEED_MULTIPLIER = COMMON_BUILDER.comment("Speed multiplier for Arcane Bone Meal")
+                .defineInRange("arcane_bone_meal_speed_multiplier", 1.5, 0.1, 10.0);
+        FERTILIZER_ARCANE_BONE_MEAL_YIELD_MULTIPLIER = COMMON_BUILDER.comment("Yield multiplier for Arcane Bone Mealr")
+                .defineInRange("arcane_bone_meal_yield_multiplier", 1.5, 0.1, 10.0);
+
         COMMON_BUILDER.pop();
     }
 
@@ -257,6 +308,13 @@ public class Config {
                 .defineInRange("compacted_biomass_rf_value", 22500, 1000, 1000000);
         BURNER_CRUDE_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per crude biomass item")
                 .defineInRange("crude_biomass_rf_value", 250, 50, 50000);
+
+        BURNER_BIOMASS_BURN_DURATION = COMMON_BUILDER.comment("Burn duration for biomass in ticks (20 ticks = 1 second)")
+                .defineInRange("biomass_burn_duration", 100, 20, 72000);
+        BURNER_COMPACTED_BIOMASS_BURN_DURATION = COMMON_BUILDER.comment("Burn duration for compacted biomass in ticks (20 ticks = 1 second)")
+                .defineInRange("compacted_biomass_burn_duration", 180, 20, 72000);
+        BURNER_CRUDE_BIOMASS_BURN_DURATION = COMMON_BUILDER.comment("Burn duration for crude biomass in ticks (20 ticks = 1 second)")
+                .defineInRange("crude_biomass_burn_duration", 50, 20, 72000);
         COMMON_BUILDER.pop();
     }
 
@@ -339,6 +397,63 @@ public class Config {
         return YIELD_MODULE_MK3_SPEED_PENALTY.get();
     }
 
+    // Fertilizer Getters
+    public static double getFertilizerBoneMealSpeedMultiplier() {
+        return FERTILIZER_BONE_MEAL_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerBoneMealYieldMultiplier() {
+        return FERTILIZER_BONE_MEAL_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerBiomassSpeedMultiplier() {
+        return FERTILIZER_BIOMASS_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerBiomassYieldMultiplier() {
+        return FERTILIZER_BIOMASS_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerCompactedBiomassSpeedMultiplier() {
+        return FERTILIZER_COMPACTED_BIOMASS_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerCompactedBiomassYieldMultiplier() {
+        return FERTILIZER_COMPACTED_BIOMASS_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerFertilizedEssenceSpeedMultiplier() {
+        return FERTILIZER_FERTILIZED_ESSENCE_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerFertilizedEssenceYieldMultiplier() {
+        return FERTILIZER_FERTILIZED_ESSENCE_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerMysticalFertilizerSpeedMultiplier() {
+        return FERTILIZER_MYSTICAL_FERTILIZER_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerMysticalFertilizerYieldMultiplier() {
+        return FERTILIZER_MYSTICAL_FERTILIZER_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerImmersiveFertilizerSpeedMultiplier() {
+        return FERTILIZER_IMMERSIVE_FERTILIZER_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerImmersiveFertilizerYieldMultiplier() {
+        return FERTILIZER_IMMERSIVE_FERTILIZER_YIELD_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerArcaneBoneMealSpeedMultiplier() {
+        return FERTILIZER_ARCANE_BONE_MEAL_SPEED_MULTIPLIER.get();
+    }
+
+    public static double getFertilizerArcaneBoneMealYieldMultiplier() {
+        return FERTILIZER_ARCANE_BONE_MEAL_YIELD_MULTIPLIER.get();
+    }
+
     // ========================================
     // GETTER METHODS FOR MACHINE SETTINGS
     // ========================================
@@ -388,6 +503,18 @@ public class Config {
 
     public static int getBurnerCrudeBiomassRfValue() {
         return BURNER_CRUDE_BIOMASS_RF_VALUE.get();
+    }
+
+    public static int getBurnerBiomassBurnDuration() {
+        return BURNER_BIOMASS_BURN_DURATION.get();
+    }
+
+    public static int getBurnerCompactedBiomassBurnDuration() {
+        return BURNER_COMPACTED_BIOMASS_BURN_DURATION.get();
+    }
+
+    public static int getBurnerCrudeBiomassBurnDuration() {
+        return BURNER_CRUDE_BIOMASS_BURN_DURATION.get();
     }
 
     // Capacitor Getters

@@ -38,29 +38,19 @@
   "message.agritechevolved.same_farmland": "This farmland is already of this type!",
 
   "tooltip.agritechevolved.sm_mk1": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.sm_mk1_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 10%§r, §cbut increases power consumption by 10%.§r",
-
   "tooltip.agritechevolved.sm_mk2": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.sm_mk2_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 25%§r, §cbut increases power consumption by 25%.§r",
-
   "tooltip.agritechevolved.sm_mk3": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.sm_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut increases power consumption by 50%.§r",
 
   "tooltip.agritechevolved.ym_mk1": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk1_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 10%§r, §cbut decreases processing speed by 10%.§r",
-
   "tooltip.agritechevolved.ym_mk2": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk2_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 25%§r, §cbut decreases processing speed by 15%.§r",
-
   "tooltip.agritechevolved.ym_mk3": "§6§n§lHold Shift for more info§r§r§r",
-  "tooltip.agritechevolved.ym_mk3_shiftdown": "§aBoosts Advanced Planter and Machine processing speed by 50%§r, §cbut decreases processing speed by 25%.§r",
 
-  "tooltip.agritechevolved.crude_biomass": "Started Biomass Burner Fuel§r",
-  "tooltip.agritechevolved.biomass": "§aUsed as fertilizer for the Advanced Planter or to create Compacted Biomass.",
-  "tooltip.agritechevolved.compacted": "§aUsed to create Mulch.",
+  "tooltip.agritechevolved.crude_biomass": "Starter Biomass Burner Fuel",
+  "tooltip.agritechevolved.biomass": "Used to create Compacted Biomass",
+  "tooltip.agritechevolved.compacted": "Used to create Mulch",
 
   "tooltip.agritechevolved.mulch": "§aUsed in Planters. Grants 50% growth speed. Used to create Infused Farmland§r",
-  "tooltip.agritechevolved.infused_farmland": "§aUsed in Planters or as normal farmland. Grants 100% growth speed.§r",
+  "tooltip.agritechevolved.infused_farmland": "§aUsed in Planters or as normal farmland. Grants 100% growth speed§r",
 
   "jei.agritechevolved.planter.tooltip": "Basic & Advanced Planters",
   "jei.agritechevolved.composting.tooltip": "Composting",
@@ -101,5 +91,22 @@
   "tooltip.agritechevolved.biomass.rf_generation": "Generates %s RF when burned",
   "tooltip.agritechevolved.compacted_biomass.rf_generation": "Generates %s RF when burned",
   "tooltip.agritechevolved.crude_biomass.rf_generation": "Generates %s RF when burned",
-  "tooltip.agritechevolved.crude_biomass.inefficient": "Very inefficient"
+  "tooltip.agritechevolved.crude_biomass.inefficient": "Very inefficient",
+
+  "tooltip.agritechevolved.module.shift_info": "§6§oHold Shift for info§r",
+  "tooltip.agritechevolved.module.speed_boost": "§aBoosts Advanced Planter and Machine processing speed by %s%%§r",
+  "tooltip.agritechevolved.module.power_increase": "§cbut increases power consumption by %s%%§r",
+  "tooltip.agritechevolved.module.yield_boost": "§aBoosts Advanced Planter yield by %s%%§r",
+  "tooltip.agritechevolved.module.speed_reduction": "§cbut reduces processing speed by %s%%§r",
+
+  "tooltip.agritechevolved.fertilizer.effects": "Fertilizer Effects:",
+  "tooltip.agritechevolved.fertilizer.speed_boost": "§aBoosts planter speed by %s%%§r",
+  "tooltip.agritechevolved.fertilizer.yield_boost": "§aBoosts planter yield by %s%%§r",
+
+  "tooltip.agritechevolved.fuel.burn_duration": "§bBurns for %s seconds§r",
+  "tooltip.agritechevolved.fuel.rf_per_second": "§eGenerates %s RF/second§r",
+  "tooltip.agritechevolved.fuel.duration_bonus": "§a+%s%% RF from longer burn§r",
+  "tooltip.agritechevolved.fuel.duration_penalty": "§c-%s%% RF from shorter burn§r",
+  "tooltip.agritechevolved.fuel.shift_info": "§6§oHold Shift for Fuel & Fertilizer info§r",
+  "tooltip.agritechevolved.crude_fuel.shift_info": "§6§oHold Shift for Fuel info§r"
 }

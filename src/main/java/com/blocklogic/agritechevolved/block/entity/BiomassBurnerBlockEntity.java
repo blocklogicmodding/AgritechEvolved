@@ -164,19 +164,39 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
 
         String itemId = RegistryHelper.getItemId(fuelStack);
 
-        if (itemId.equals("agritechevolved:biomass")) {
-            int totalRF = Config.getBurnerBiomassRfValue();
-            maxProgress = 100;
-            currentBurnValue = totalRF / maxProgress;
-        } else if (itemId.equals("agritechevolved:compacted_biomass")) {
-            int totalRF = Config.getBurnerCompactedBiomassRfValue();
-            maxProgress = 180;
-            currentBurnValue = totalRF / maxProgress;
-        } else if (itemId.equals("agritechevolved:crude_biomass")) {
-            int totalRF = Config.getBurnerCrudeBiomassRfValue();
-            maxProgress = 50;
-            currentBurnValue = totalRF / maxProgress;
+        int baseRF = 0;
+        int burnDuration = 0;
+        int baseDuration = 0;
+
+        switch (itemId) {
+            case "agritechevolved:biomass" -> {
+                baseRF = Config.getBurnerBiomassRfValue();
+                burnDuration = Config.getBurnerBiomassBurnDuration();
+                baseDuration = 100;
+            }
+            case "agritechevolved:compacted_biomass" -> {
+                baseRF = Config.getBurnerCompactedBiomassRfValue();
+                burnDuration = Config.getBurnerCompactedBiomassBurnDuration();
+                baseDuration = 180;
+            }
+            case "agritechevolved:crude_biomass" -> {
+                baseRF = Config.getBurnerCrudeBiomassRfValue();
+                burnDuration = Config.getBurnerCrudeBiomassBurnDuration();
+                baseDuration = 50;
+            }
+            default -> {
+                return; // Unknown fuel type
+            }
         }
+
+        int totalRF = (int) (baseRF * ((float) burnDuration / baseDuration));
+
+        if (totalRF <= 0 || burnDuration <= 0) {
+            return;
+        }
+
+        maxProgress = burnDuration;
+        currentBurnValue = totalRF / maxProgress;
 
         fuelStack.shrink(1);
         inventory.setStackInSlot(0, fuelStack);

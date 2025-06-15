@@ -781,11 +781,6 @@ public class PlantablesOverrideConfig {
                 #   { item = "awesomemod:magical_fruit", min_count = 1, max_count = 3, chance = 0.4 }
                 # ]
                 
-                # This example adds enriched soil for both crops and trees
-                # [soils.enriched_soil]
-                # block = "herbmod:enriched_soil"
-                # growth_modifier = 1.25
-                
                 # Example fertilizers:
           
                 # [fertilizers.bone_meal]

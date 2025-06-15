@@ -2979,58 +2979,52 @@ public class PlantablesConfig {
     private static void addVanillaFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry boneMeal = new FertilizerEntry();
         boneMeal.item = "minecraft:bone_meal";
-        boneMeal.speedMultiplier = 1.2f;
-        boneMeal.yieldMultiplier = 1.2f;
+        boneMeal.speedMultiplier = (float) Config.getFertilizerBoneMealSpeedMultiplier();
+        boneMeal.yieldMultiplier = (float) Config.getFertilizerBoneMealYieldMultiplier();
         fertilizers.add(boneMeal);
-
-        FertilizerEntry biomass = new FertilizerEntry();
-        biomass.item = "agritechevolved:biomass";
-        biomass.speedMultiplier = 1.2f;
-        biomass.yieldMultiplier = 1.2f;
-        fertilizers.add(biomass);
     }
 
     private static void addAgritechEvolvedFertilizer(List<FertilizerEntry> fertilizers) {
         FertilizerEntry biomass = new FertilizerEntry();
         biomass.item = "agritechevolved:biomass";
-        biomass.speedMultiplier = 1.3f;
-        biomass.yieldMultiplier = 1.3f;
+        biomass.speedMultiplier = (float) Config.getFertilizerBiomassSpeedMultiplier();
+        biomass.yieldMultiplier = (float) Config.getFertilizerBiomassYieldMultiplier();
         fertilizers.add(biomass);
 
         FertilizerEntry compactedBiomass = new FertilizerEntry();
         compactedBiomass.item = "agritechevolved:compacted_biomass";
-        compactedBiomass.speedMultiplier = 1.8f;
-        compactedBiomass.yieldMultiplier = 1.8f;
+        compactedBiomass.speedMultiplier = (float) Config.getFertilizerCompactedBiomassSpeedMultiplier();
+        compactedBiomass.yieldMultiplier = (float) Config.getFertilizerCompactedBiomassYieldMultiplier();
         fertilizers.add(compactedBiomass);
     }
 
     private static void addImmersiveEngineeringFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry fertilizer = new FertilizerEntry();
         fertilizer.item = "immersiveengineering:fertilizer";
-        fertilizer.speedMultiplier = 1.4f;
-        fertilizer.yieldMultiplier = 1.4f;
+        fertilizer.speedMultiplier = (float) Config.getFertilizerFertilizedEssenceSpeedMultiplier();
+        fertilizer.yieldMultiplier = (float) Config.getFertilizerFertilizedEssenceYieldMultiplier();
         fertilizers.add(fertilizer);
     }
 
     private static void addForbiddenArcanusFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry arcaneBoneMeal = new FertilizerEntry();
         arcaneBoneMeal.item = "forbidden_arcanus:arcane_bone_meal";
-        arcaneBoneMeal.speedMultiplier = 1.5f;
-        arcaneBoneMeal.yieldMultiplier = 1.5f;
+        arcaneBoneMeal.speedMultiplier = (float) Config.getFertilizerArcaneBoneMealSpeedMultiplier();
+        arcaneBoneMeal.yieldMultiplier = (float) Config.getFertilizerArcaneBoneMealYieldMultiplier();
         fertilizers.add(arcaneBoneMeal);
     }
 
     private static void addMysticalAgricultureFertilizers(List<FertilizerEntry> fertilizers) {
         FertilizerEntry mysticalFertilizer = new FertilizerEntry();
         mysticalFertilizer.item = "mysticalagriculture:mystical_fertilizer";
-        mysticalFertilizer.speedMultiplier = 1.6f;
-        mysticalFertilizer.yieldMultiplier = 1.6f;
+        mysticalFertilizer.speedMultiplier = (float) Config.getFertilizerMysticalFertilizerSpeedMultiplier();
+        mysticalFertilizer.yieldMultiplier = (float) Config.getFertilizerMysticalFertilizerYieldMultiplier();
         fertilizers.add(mysticalFertilizer);
 
         FertilizerEntry fertilizerEssence = new FertilizerEntry();
         fertilizerEssence.item = "mysticalagriculture:fertilized_essence";
-        fertilizerEssence.speedMultiplier = 1.3f;
-        fertilizerEssence.yieldMultiplier = 1.3f;
+        fertilizerEssence.speedMultiplier = (float) Config.getFertilizerFertilizedEssenceSpeedMultiplier();
+        fertilizerEssence.yieldMultiplier = (float) Config.getFertilizerFertilizedEssenceYieldMultiplier();
         fertilizers.add(fertilizerEssence);
     }
 

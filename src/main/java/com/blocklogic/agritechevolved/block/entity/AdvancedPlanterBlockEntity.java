@@ -417,6 +417,31 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         }
 
         String fertilizerId = RegistryHelper.getItemId(fertilizerStack);
+
+        switch (fertilizerId) {
+            case "agritechevolved:biomass" -> {
+                return (float) Config.getFertilizerBiomassSpeedMultiplier();
+            }
+            case "agritechevolved:compacted_biomass" -> {
+                return (float) Config.getFertilizerCompactedBiomassSpeedMultiplier();
+            }
+            case "minecraft:bone_meal" -> {
+                return (float) Config.getFertilizerBoneMealSpeedMultiplier();
+            }
+            case "immersiveengineering:fertilizer" -> {
+                return (float) Config.getFertilizerImmersiveFertilizerSpeedMultiplier();
+            }
+            case "mysticalagriculture:fertilized_essence" -> {
+                return (float) Config.getFertilizerFertilizedEssenceSpeedMultiplier();
+            }
+            case "mysticalagriculture:mystical_fertilizer" -> {
+                return (float) Config.getFertilizerMysticalFertilizerSpeedMultiplier();
+            }
+            case "forbidden_arcanus:arcane_bone_meal" -> {
+                return (float) Config.getFertilizerArcaneBoneMealSpeedMultiplier();
+            }
+        }
+
         PlantablesConfig.FertilizerInfo fertilizerInfo = PlantablesConfig.getFertilizerInfo(fertilizerId);
 
         return fertilizerInfo != null ? fertilizerInfo.speedMultiplier : 1.0f;
@@ -429,6 +454,31 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         }
 
         String fertilizerId = RegistryHelper.getItemId(fertilizerStack);
+
+        switch (fertilizerId) {
+            case "agritechevolved:biomass" -> {
+                return (float) Config.getFertilizerBiomassYieldMultiplier();
+            }
+            case "agritechevolved:compacted_biomass" -> {
+                return (float) Config.getFertilizerCompactedBiomassYieldMultiplier();
+            }
+            case "minecraft:bone_meal" -> {
+                return (float) Config.getFertilizerBoneMealYieldMultiplier();
+            }
+            case "immersiveengineering:fertilizer" -> {
+                return (float) Config.getFertilizerImmersiveFertilizerYieldMultiplier();
+            }
+            case "mysticalagriculture:fertilized_essence" -> {
+                return (float) Config.getFertilizerFertilizedEssenceYieldMultiplier();
+            }
+            case "mysticalagriculture:mystical_fertilizer" -> {
+                return (float) Config.getFertilizerMysticalFertilizerYieldMultiplier();
+            }
+            case "forbidden_arcanus:arcane_bone_meal" -> {
+                return (float) Config.getFertilizerArcaneBoneMealYieldMultiplier();
+            }
+        }
+
         PlantablesConfig.FertilizerInfo fertilizerInfo = PlantablesConfig.getFertilizerInfo(fertilizerId);
 
         return fertilizerInfo != null ? fertilizerInfo.yieldMultiplier : 1.0f;

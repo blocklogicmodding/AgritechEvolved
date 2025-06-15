@@ -27,12 +27,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int speedBoost = (int) Math.round((Config.getSpeedModuleMk1Multiplier() - 1.0) * 100);
                         int powerIncrease = (int) Math.round((Config.getSpeedModuleMk1PowerMultiplier() - 1.0) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
-                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_boost", speedBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.power_increase", powerIncrease));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk1"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -47,12 +45,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int speedBoost = (int) Math.round((Config.getSpeedModuleMk2Multiplier() - 1.0) * 100);
                         int powerIncrease = (int) Math.round((Config.getSpeedModuleMk2PowerMultiplier() - 1.0) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
-                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_boost", speedBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.power_increase", powerIncrease));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk2"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -67,12 +63,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int speedBoost = (int) Math.round((Config.getSpeedModuleMk3Multiplier() - 1.0) * 100);
                         int powerIncrease = (int) Math.round((Config.getSpeedModuleMk3PowerMultiplier() - 1.0) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter and Machine processing speed by " + speedBoost + "%§r, " +
-                                        "§cbut increases power consumption by " + powerIncrease + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_boost", speedBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.power_increase", powerIncrease));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.sm_mk3"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -87,12 +81,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int yieldBoost = (int) Math.round((Config.getYieldModuleMk1Multiplier() - 1.0) * 100);
                         int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk1SpeedPenalty()) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
-                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.yield_boost", yieldBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_reduction", speedReduction));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk1"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -107,12 +99,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int yieldBoost = (int) Math.round((Config.getYieldModuleMk2Multiplier() - 1.0) * 100);
                         int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk2SpeedPenalty()) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
-                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.yield_boost", yieldBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_reduction", speedReduction));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk2"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -127,12 +117,10 @@ public class ATEItems {
                     if (Screen.hasShiftDown()) {
                         int yieldBoost = (int) Math.round((Config.getYieldModuleMk3Multiplier() - 1.0) * 100);
                         int speedReduction = (int) Math.round((1.0 - Config.getYieldModuleMk3SpeedPenalty()) * 100);
-                        tooltipComponents.add(Component.literal(
-                                "§aBoosts Advanced Planter yield by " + yieldBoost + "%§r, " +
-                                        "§cbut reduces processing speed by " + speedReduction + "%.§r"
-                        ));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.yield_boost", yieldBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.speed_reduction", speedReduction));
                     } else {
-                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.ym_mk3"));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.module.shift_info"));
                     }
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -147,9 +135,37 @@ public class ATEItems {
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass"));
 
                     NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
-                    int rfValue = Config.getBurnerCrudeBiomassRfValue();
+                    int baseRF = Config.getBurnerCrudeBiomassRfValue();
+                    int burnDuration = Config.getBurnerCrudeBiomassBurnDuration();
+                    int baseDuration = 50;
+                    int actualRF = (int) (baseRF * ((float) burnDuration / baseDuration));
+
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass.rf_generation",
-                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+                            numberFormat.format(actualRF)).withStyle(ChatFormatting.GREEN));
+
+                    if (Screen.hasShiftDown()) {
+                        double burnSeconds = burnDuration / 20.0;
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.burn_duration",
+                                String.format("%.1f", burnSeconds)).withStyle(ChatFormatting.AQUA));
+
+                        int rfPerSecond = (int) Math.round(actualRF / burnSeconds);
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.rf_per_second",
+                                numberFormat.format(rfPerSecond)).withStyle(ChatFormatting.YELLOW));
+
+                        if (burnDuration != baseDuration) {
+                            float multiplier = (float) burnDuration / baseDuration;
+                            int multiplierPercent = (int) Math.round((multiplier - 1.0) * 100);
+                            if (multiplierPercent > 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_bonus",
+                                        multiplierPercent).withStyle(ChatFormatting.GREEN));
+                            } else if (multiplierPercent < 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_penalty",
+                                        Math.abs(multiplierPercent)).withStyle(ChatFormatting.RED));
+                            }
+                        }
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_fuel.shift_info"));
+                    }
 
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.crude_biomass.inefficient")
                             .withStyle(ChatFormatting.RED));
@@ -167,9 +183,47 @@ public class ATEItems {
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.biomass"));
 
                     NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
-                    int rfValue = Config.getBurnerBiomassRfValue();
-                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.biomass.rf_generation",
-                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+                    int baseRF = Config.getBurnerBiomassRfValue();
+                    int burnDuration = Config.getBurnerBiomassBurnDuration();
+                    int baseDuration = 100;
+                    int actualRF = (int) (baseRF * ((float) burnDuration / baseDuration));
+
+                    if (Screen.hasShiftDown()) {
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.biomass.rf_generation",
+                                numberFormat.format(actualRF)).withStyle(ChatFormatting.GREEN));
+
+                        double burnSeconds = burnDuration / 20.0;
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.burn_duration",
+                                String.format("%.1f", burnSeconds)).withStyle(ChatFormatting.AQUA));
+
+                        int rfPerSecond = (int) Math.round(actualRF / burnSeconds);
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.rf_per_second",
+                                numberFormat.format(rfPerSecond)).withStyle(ChatFormatting.YELLOW));
+
+                        if (burnDuration != baseDuration) {
+                            float multiplier = (float) burnDuration / baseDuration;
+                            int multiplierPercent = (int) Math.round((multiplier - 1.0) * 100);
+                            if (multiplierPercent > 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_bonus",
+                                        multiplierPercent).withStyle(ChatFormatting.GREEN));
+                            } else if (multiplierPercent < 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_penalty",
+                                        Math.abs(multiplierPercent)).withStyle(ChatFormatting.RED));
+                            }
+                        }
+
+                        int speedBoost = (int) Math.round((Config.getFertilizerBiomassSpeedMultiplier() - 1.0) * 100);
+                        int yieldBoost = (int) Math.round((Config.getFertilizerBiomassYieldMultiplier() - 1.0) * 100);
+                        tooltipComponents.add(Component.literal(""));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.effects")
+                                .withStyle(ChatFormatting.GOLD));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.speed_boost",
+                                speedBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.yield_boost",
+                                yieldBoost));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.shift_info"));
+                    }
 
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
@@ -181,13 +235,50 @@ public class ATEItems {
             {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-
                     tooltipComponents.add(Component.translatable("tooltip.agritechevolved.compacted"));
 
                     NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
-                    int rfValue = Config.getBurnerCompactedBiomassRfValue();
-                    tooltipComponents.add(Component.translatable("tooltip.agritechevolved.compacted_biomass.rf_generation",
-                            numberFormat.format(rfValue)).withStyle(ChatFormatting.GREEN));
+                    int baseRF = Config.getBurnerCompactedBiomassRfValue();
+                    int burnDuration = Config.getBurnerCompactedBiomassBurnDuration();
+                    int baseDuration = 180;
+                    int actualRF = (int) (baseRF * ((float) burnDuration / baseDuration));
+
+                    if (Screen.hasShiftDown()) {
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.compacted_biomass.rf_generation",
+                                numberFormat.format(actualRF)).withStyle(ChatFormatting.GREEN));
+
+                        double burnSeconds = burnDuration / 20.0;
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.burn_duration",
+                                String.format("%.1f", burnSeconds)).withStyle(ChatFormatting.AQUA));
+
+                        int rfPerSecond = (int) Math.round(actualRF / burnSeconds);
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.rf_per_second",
+                                numberFormat.format(rfPerSecond)).withStyle(ChatFormatting.YELLOW));
+
+                        if (burnDuration != baseDuration) {
+                            float multiplier = (float) burnDuration / baseDuration;
+                            int multiplierPercent = (int) Math.round((multiplier - 1.0) * 100);
+                            if (multiplierPercent > 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_bonus",
+                                        multiplierPercent).withStyle(ChatFormatting.GREEN));
+                            } else if (multiplierPercent < 0) {
+                                tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.duration_penalty",
+                                        Math.abs(multiplierPercent)).withStyle(ChatFormatting.RED));
+                            }
+                        }
+
+                        int speedBoost = (int) Math.round((Config.getFertilizerCompactedBiomassSpeedMultiplier() - 1.0) * 100);
+                        int yieldBoost = (int) Math.round((Config.getFertilizerCompactedBiomassYieldMultiplier() - 1.0) * 100);
+                        tooltipComponents.add(Component.literal(""));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.effects")
+                                .withStyle(ChatFormatting.GOLD));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.speed_boost",
+                                speedBoost));
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fertilizer.yield_boost",
+                                yieldBoost));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.agritechevolved.fuel.shift_info"));
+                    }
 
                     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
                 }
