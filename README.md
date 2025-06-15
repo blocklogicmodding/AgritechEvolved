@@ -118,7 +118,7 @@ Uses RF (Redstone Flux) power with configurable consumption rates:
 
 -   **Wiki**: [AgriTech: Evolved Wiki](https://github.com/blocklogicmodding/AgritechEvolved/wiki)
   - **Issues**: [AgriTech: Evolved Issue Tracker](https://github.com/blocklogicmodding/AgritechEvolved/issues)
--   **Discord**: [Join our Discord](https://discord.gg/YtdA3AMqsX)
+-   **Discord**: [Join the BLM Discord](https://discord.gg/YtdA3AMqsX)
 
 ## License
 
