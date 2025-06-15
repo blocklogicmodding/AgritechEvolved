@@ -252,11 +252,11 @@ public class Config {
         BURNER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Burner (RF)")
                 .defineInRange("energy_buffer", 100000, 1000, 10000000);
         BURNER_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per biomass item")
-                .defineInRange("biomass_rf_value", 9000, 100, 100000);
+                .defineInRange("biomass_rf_value", 2500, 100, 100000);
         BURNER_COMPACTED_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per compacted biomass item")
-                .defineInRange("compacted_biomass_rf_value", 18000, 1000, 1000000);
+                .defineInRange("compacted_biomass_rf_value", 22500, 1000, 1000000);
         BURNER_CRUDE_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per crude biomass item")
-                .defineInRange("crude_biomass_rf_value", 1125, 50, 50000);
+                .defineInRange("crude_biomass_rf_value", 250, 50, 50000);
         COMMON_BUILDER.pop();
     }
 
