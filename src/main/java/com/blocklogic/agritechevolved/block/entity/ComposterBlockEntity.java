@@ -369,7 +369,7 @@ public class ComposterBlockEntity extends BlockEntity implements MenuProvider {
         boolean hasPower = energyStored >= requiredEnergy;
 
         if (!hasPower) {
-            baseProcessingTime *= 3;
+            baseProcessingTime *= 4;
         }
 
         double speedMultiplier = getModuleSpeedModifier();
