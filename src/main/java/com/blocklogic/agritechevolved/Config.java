@@ -249,7 +249,7 @@ public class Config {
     private static void burnerConfig() {
         COMMON_BUILDER.comment("Burner Configuration").push(CATEGORY_BURNER);
         BURNER_ENERGY_BUFFER = COMMON_BUILDER.comment("Energy buffer capacity for Burner (RF)")
-                .defineInRange("energy_buffer", 20000, 1000, 10000000);
+                .defineInRange("energy_buffer", 100000, 1000, 10000000);
         BURNER_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per biomass item")
                 .defineInRange("biomass_rf_value", 4000, 100, 100000);
         BURNER_COMPACTED_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per compacted biomass item")

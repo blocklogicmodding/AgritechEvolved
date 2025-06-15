@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "has_energy=false": {
       "model": "agritechevolved:block/capacitor_tier2"
+    },
+    "has_energy=true": {
+      "model": "agritechevolved:block/capacitor_tier2_powered"
     }
   }
 }

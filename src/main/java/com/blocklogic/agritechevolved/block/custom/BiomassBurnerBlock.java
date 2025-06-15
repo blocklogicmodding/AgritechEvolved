@@ -1,5 +1,6 @@
 package com.blocklogic.agritechevolved.block.custom;
 
+import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
 import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
 import com.blocklogic.agritechevolved.block.entity.BiomassBurnerBlockEntity;
 import com.mojang.serialization.MapCodec;
@@ -21,8 +22,11 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -33,11 +37,13 @@ public class BiomassBurnerBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
     public static final MapCodec<BiomassBurnerBlock> CODEC = simpleCodec(BiomassBurnerBlock::new);
+    public static final BooleanProperty BURNING = BooleanProperty.create("burning");
 
     public BiomassBurnerBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH));
+                .setValue(FACING, Direction.NORTH)
+                .setValue(BURNING, Boolean.valueOf(false)));
     }
 
     @Override
@@ -52,7 +58,7 @@ public class BiomassBurnerBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, BURNING);
     }
 
     @Override
@@ -72,6 +78,17 @@ public class BiomassBurnerBlock extends BaseEntityBlock {
     }
 
     @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof BiomassBurnerBlockEntity biomassBurnerBlockEntity) {
+                biomassBurnerBlockEntity.drops();
+            }
+        }
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
+
+    @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof BiomassBurnerBlockEntity biomassBurnerBlockEntity) {
             if (!level.isClientSide()) {
@@ -80,5 +97,12 @@ public class BiomassBurnerBlock extends BaseEntityBlock {
             }
         }
         return ItemInteractionResult.SUCCESS;
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return type == ATEBlockEntities.BURNER_BE.get() ?
+                (lvl, pos, blockState, blockEntity) -> BiomassBurnerBlockEntity.tick(lvl, pos, blockState, (BiomassBurnerBlockEntity)blockEntity) :
+                null;
     }
 }

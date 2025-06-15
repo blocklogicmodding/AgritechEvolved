@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -28,6 +29,101 @@ public class CapacitorMenu extends AbstractContainerMenu {
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
+        addDataSlots();
+    }
+
+    private void addDataSlots() {
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getEnergyStorage().getEnergyStored() & 0xFFFF;
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return (blockEntity.getEnergyStorage().getEnergyStored() >> 16) & 0xFFFF;
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getEnergyStorage().getMaxEnergyStored() & 0xFFFF;
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return (blockEntity.getEnergyStorage().getMaxEnergyStored() >> 16) & 0xFFFF;
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getTransferRate();
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+
+        addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getTier();
+            }
+
+            @Override
+            public void set(int value) {
+            }
+        });
+    }
+
+    public int getEnergyStored() {
+        return blockEntity.getEnergyStored();
+    }
+
+    public int getMaxEnergyStored() {
+        return blockEntity.getMaxEnergyStored();
+    }
+
+    public int getTransferRate() {
+        return blockEntity.getTransferRate();
+    }
+
+    public int getTier() {
+        return blockEntity.getTier();
+    }
+
+    public String getTierName() {
+        int tier = getTier();
+        return switch (tier) {
+            case 1 -> "Tier 1";
+            case 2 -> "Tier 2";
+            case 3 -> "Tier 3";
+            default -> "Unknown";
+        };
     }
 
     @Override

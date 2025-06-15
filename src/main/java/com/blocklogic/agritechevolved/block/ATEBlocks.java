@@ -2,7 +2,9 @@ package com.blocklogic.agritechevolved.block;
 
 import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.blocklogic.agritechevolved.block.custom.*;
+import com.blocklogic.agritechevolved.component.ATEDataComponents;
 import com.blocklogic.agritechevolved.item.ATEItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -15,7 +17,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ATEBlocks {
@@ -55,6 +59,19 @@ public class ATEBlocks {
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+                    super.appendHoverText(stack, context, tooltip, flag);
+
+                    Integer storedEnergy = stack.get(ATEDataComponents.STORED_ENERGY.get());
+                    if (storedEnergy != null && storedEnergy > 0) {
+                        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                        tooltip.add(Component.translatable("tooltip.agritechevolved.capacitor.stored_energy",
+                                numberFormat.format(storedEnergy)).withStyle(ChatFormatting.YELLOW));
+                    }
+                }
+            }
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER2 = registerBlock("capacitor_tier2",
@@ -62,6 +79,19 @@ public class ATEBlocks {
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+                    super.appendHoverText(stack, context, tooltip, flag);
+
+                    Integer storedEnergy = stack.get(ATEDataComponents.STORED_ENERGY.get());
+                    if (storedEnergy != null && storedEnergy > 0) {
+                        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                        tooltip.add(Component.translatable("tooltip.agritechevolved.capacitor.stored_energy",
+                                numberFormat.format(storedEnergy)).withStyle(ChatFormatting.YELLOW));
+                    }
+                }
+            }
     );
 
     public static final DeferredBlock<Block> CAPACITOR_TIER3 = registerBlock("capacitor_tier3",
@@ -69,6 +99,19 @@ public class ATEBlocks {
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops())
+            {
+                @Override
+                public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+                    super.appendHoverText(stack, context, tooltip, flag);
+
+                    Integer storedEnergy = stack.get(ATEDataComponents.STORED_ENERGY.get());
+                    if (storedEnergy != null && storedEnergy > 0) {
+                        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+                        tooltip.add(Component.translatable("tooltip.agritechevolved.capacitor.stored_energy",
+                                numberFormat.format(storedEnergy)).withStyle(ChatFormatting.YELLOW));
+                    }
+                }
+            }
     );
 
     public static final DeferredBlock<Block> COMPACTED_BIOMASS_BLOCK = registerBlock("compacted_biomass_block",

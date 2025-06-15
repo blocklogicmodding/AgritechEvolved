@@ -1,11 +1,10 @@
 package com.blocklogic.agritechevolved;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
-import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
-import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
-import com.blocklogic.agritechevolved.block.entity.ComposterBlockEntity;
+import com.blocklogic.agritechevolved.block.entity.*;
 import com.blocklogic.agritechevolved.block.entity.renderer.PlanterBlockEntityRenderer;
 import com.blocklogic.agritechevolved.command.ATECommands;
+import com.blocklogic.agritechevolved.component.ATEDataComponents;
 import com.blocklogic.agritechevolved.item.ATECreativeTab;
 import com.blocklogic.agritechevolved.item.ATEItems;
 import com.blocklogic.agritechevolved.recipe.ATERecipes;
@@ -50,12 +49,16 @@ public class AgritechEvolved
         ATEBlockEntities.register(modEventBus);
         ATEMenuTypes.register(modEventBus);
         ATERecipes.RECIPE_SERIALIZERS.register(modEventBus);
+        ATEDataComponents.register(modEventBus);
 
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(AdvancedPlanterBlockEntity::registerCapabilities);
         modEventBus.addListener(ComposterBlockEntity::registerCapabilities);
+        modEventBus.addListener(BiomassBurnerBlockEntity::registerCapabilities);
+        modEventBus.addListener(CapacitorBlockEntity::registerCapabilities);
+
 
         Config.register(modContainer);
 

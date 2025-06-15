@@ -66,5 +66,32 @@
   "tooltip.agritechevolved.growth_progress": "Growth Progress",
   "tooltip.agritechevolved.view_recipes": "Click to view recipes",
 
-  "tooltip.agritechevolved.composting_progress": "Composting Progress"
+  "tooltip.agritechevolved.composting_progress": "Composting Progress",
+
+  "tooltip.agritechevolved.burner.energy": "Energy: %s / %s RF",
+  "tooltip.agritechevolved.burner.energy_percentage": "%s%% Full",
+  "tooltip.agritechevolved.burner.burning_progress": "Burning Progress",
+  "tooltip.agritechevolved.burner.progress_percentage": "%s%% Complete",
+  "tooltip.agritechevolved.burner.time_remaining": "%s seconds remaining",
+  "tooltip.agritechevolved.burner.no_fuel": "No Fuel",
+  "tooltip.agritechevolved.burner.insert_fuel": "Insert biomass or compacted biomass",
+  "tooltip.agritechevolved.burner.fuel_slot": "Fuel Slot",
+  "tooltip.agritechevolved.burner.accepts": "Accepts:",
+  "tooltip.agritechevolved.burner.accepts_biomass": "• Biomass",
+  "tooltip.agritechevolved.burner.accepts_compacted_biomass": "• Compacted Biomass",
+
+  "tooltip.agritechevolved.capacitor.title": "%s Capacitor",
+  "tooltip.agritechevolved.capacitor.energy_storage": "Energy Storage",
+  "tooltip.agritechevolved.capacitor.energy": "%s / %s RF",
+  "tooltip.agritechevolved.capacitor.energy_percentage": "%s%% Full",
+  "tooltip.agritechevolved.capacitor.transfer_rate": "Transfer Rate: %s RF/t",
+  "tooltip.agritechevolved.capacitor.connects_all_sides": "Connects to all sides",
+  "tooltip.agritechevolved.capacitor.except_bottom": "(except bottom)",
+  "tooltip.agritechevolved.capacitor.description": "RF Storage & Distribution",
+  "tooltip.agritechevolved.capacitor.max_transfer": "Max Transfer: %s RF/t",
+  "tooltip.agritechevolved.capacitor.information": "Capacitor Information",
+  "tooltip.agritechevolved.capacitor.info_stores": "• Stores and distributes RF energy",
+  "tooltip.agritechevolved.capacitor.info_balances": "• Automatically balances energy",
+  "tooltip.agritechevolved.capacitor.info_automatic": "• No manual operation required",
+  "tooltip.agritechevolved.capacitor.stored_energy": "Stored Energy: %s RF"
 }
