@@ -1,11 +1,11 @@
 {
     "parent": "minecraft:recipes/root",
     "criteria": {
-        "has_infused_farmland": {
+        "has_farmland": {
             "conditions": {
                 "items": [
                     {
-                        "items": "agritechevolved:infused_farmland"
+                        "items": "minecraft:farmland"
                     }
                 ]
             },
@@ -21,7 +21,7 @@
     "requirements": [
         [
             "has_the_recipe",
-            "has_infused_farmland"
+            "has_farmland"
         ]
     ],
     "rewards": {

@@ -203,13 +203,13 @@ public class ATERecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, "compacted_biomass_from_block");
 
         // Mulch - requires infused farmland + biomass
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ATEBlocks.MULCH.get(), 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ATEBlocks.MULCH.get(), 2)
                 .pattern("BBB")
-                .pattern("BIB")
+                .pattern("BFB")
                 .pattern("BBB")
                 .define('B', ATEItems.COMPACTED_BIOMASS.get())
-                .define('I', Items.FARMLAND)
-                .unlockedBy("has_infused_farmland", has(ATEBlocks.INFUSED_FARMLAND.get()))
+                .define('F', Items.FARMLAND)
+                .unlockedBy("has_farmland", has(Items.FARMLAND))
                 .save(recipeOutput);
 
         // Crude Biomass

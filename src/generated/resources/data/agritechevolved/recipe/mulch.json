@@ -5,17 +5,17 @@
         "B": {
             "item": "agritechevolved:compacted_biomass"
         },
-        "I": {
+        "F": {
             "item": "minecraft:farmland"
         }
     },
     "pattern": [
         "BBB",
-        "BIB",
+        "BFB",
         "BBB"
     ],
     "result": {
-        "count": 8,
+        "count": 2,
         "id": "agritechevolved:mulch"
     }
 }

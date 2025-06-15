@@ -1,6 +1,6 @@
-// 1.21.1	2025-06-15T03:36:50.11208	Recipes
+// 1.21.1	2025-06-15T10:44:36.946202	Recipes
 7372d69cd7c9184530b81e2986e3ee2e571faa14 data/agritechevolved/advancement/recipes/building_blocks/compacted_biomass_block.json
-4d7754742f007f4c5616b5104b3ecfaa84268685 data/agritechevolved/advancement/recipes/building_blocks/mulch.json
+d90560f6f9b940683015e8879076fbf200d49cee data/agritechevolved/advancement/recipes/building_blocks/mulch.json
 4c955e67bad1330aa40b42c5c83b8ed2a3fca77d data/agritechevolved/advancement/recipes/misc/advanced_planter.json
 38ca04cb0b18af1649ee4dfbd8db59d449c09e0a data/agritechevolved/advancement/recipes/misc/basic_planter.json
 8f9d8c872f1ea340f271d96e9220c81fc62969cd data/agritechevolved/advancement/recipes/misc/biomass_burner.json
@@ -30,7 +30,7 @@ ae1f5937053ed0c0856c3b2f6ca41a08129126a9 data/agritechevolved/recipe/composter.j
 56bc7974e5e053f1cbe81df77b40cea1544a79fe data/agritechevolved/recipe/crude_biomass.json
 1fbcf37d06fc7eb5a5edb2cafac9bd8794eecc5f data/agritechevolved/recipe/farmland_from_dirt_like.json
 35c637fa46b9d2c13ede3bdc998356e8540868bb data/agritechevolved/recipe/infused_farmland_from_mulch.json
-122a3b3eb019b6c01da122eb4d8aa9e79f55d690 data/agritechevolved/recipe/mulch.json
+7427e2158c2c7f0064c0f2f161e187baceb09f6d data/agritechevolved/recipe/mulch.json
 4a87b148854a85a04b66cdaa4147266d27d0e4b4 data/agritechevolved/recipe/sm_mk1.json
 d6a34a10ea6f4ad986ceace1f3788fd1add43a2f data/agritechevolved/recipe/sm_mk2.json
 66db59f72e38096f4f7b4d100809ca3931599b77 data/agritechevolved/recipe/sm_mk3.json
