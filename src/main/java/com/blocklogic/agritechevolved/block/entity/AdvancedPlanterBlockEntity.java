@@ -560,7 +560,7 @@ public class AdvancedPlanterBlockEntity extends BlockEntity implements MenuProvi
         }
 
         IItemHandler targetInventory = level.getCapability(
-                net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
+                Capabilities.ItemHandler.BLOCK,
                 belowPos,
                 Direction.UP);
 

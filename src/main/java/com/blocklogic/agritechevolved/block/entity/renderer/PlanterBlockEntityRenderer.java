@@ -27,10 +27,8 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEnti
     }
 
     @Override
-    public void render(BlockEntity blockEntity, float partialTick, PoseStack poseStack,
-                       MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void render(BlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 
-        // Support both Advanced and Basic Planters
         ItemStackHandler inventory;
         float growthProgress;
         int growthStage;
@@ -44,10 +42,9 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEnti
             growthProgress = basicPlanter.getGrowthProgress();
             growthStage = basicPlanter.getGrowthStage();
         } else {
-            return; // Not a planter we can render
+            return;
         }
 
-        // Render soil block if present
         if (!inventory.getStackInSlot(1).isEmpty()) {
             ItemStack soilStack = inventory.getStackInSlot(1);
 
@@ -65,7 +62,6 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEnti
             }
         }
 
-        // Render plant if both plant and soil are present
         if (!inventory.getStackInSlot(0).isEmpty() && !inventory.getStackInSlot(1).isEmpty()) {
             ItemStack plantStack = inventory.getStackInSlot(0);
 
@@ -112,7 +108,6 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEnti
         Block block = blockItem.getBlock();
         BlockState defaultState = block.defaultBlockState();
 
-        // Try to find the age property
         for (Property<?> property : defaultState.getProperties()) {
             if (property instanceof IntegerProperty intProperty) {
                 if (property.getName().equals("age")) {
@@ -123,7 +118,6 @@ public class PlanterBlockEntityRenderer implements BlockEntityRenderer<BlockEnti
             }
         }
 
-        // Fallback: try standard age property
         if (defaultState.hasProperty(BlockStateProperties.AGE_7)) {
             return defaultState.setValue(BlockStateProperties.AGE_7, Math.min(age, 7));
         } else if (defaultState.hasProperty(BlockStateProperties.AGE_3)) {

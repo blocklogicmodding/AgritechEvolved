@@ -2,7 +2,6 @@ package com.blocklogic.agritechevolved.screen.custom;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.block.entity.BasicPlanterBlockEntity;
-import com.blocklogic.agritechevolved.block.entity.ComposterBlockEntity;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
@@ -33,8 +32,8 @@ public class BasicPlanterMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 0, 26, 15)); // Seed/Sapling Slot
-        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 1, 26, 51)); // Soil Slot
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 0, 26, 15));
+        this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 1, 26, 51));
 
         int inputSlotIndex = 2;
         for (int row = 0; row < 3; row++) {

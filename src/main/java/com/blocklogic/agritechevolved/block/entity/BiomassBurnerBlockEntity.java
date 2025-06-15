@@ -56,7 +56,7 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
 
     private class GeneratorEnergyStorage extends EnergyStorage {
         public GeneratorEnergyStorage(int capacity) {
-            super(capacity, 0, Integer.MAX_VALUE); // No input, unlimited output
+            super(capacity, 0, Integer.MAX_VALUE);
         }
 
         @Override

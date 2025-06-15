@@ -1,7 +1,6 @@
 package com.blocklogic.agritechevolved.block.entity;
 
 import com.blocklogic.agritechevolved.Config;
-import com.blocklogic.agritechevolved.block.custom.AdvancedPlanterBlock;
 import com.blocklogic.agritechevolved.block.custom.ComposterBlock;
 import com.blocklogic.agritechevolved.config.CompostableConfig;
 import com.blocklogic.agritechevolved.item.ATEItems;

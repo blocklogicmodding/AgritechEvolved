@@ -23,7 +23,6 @@ public class BiomassBurnerMenu extends AbstractContainerMenu {
     private int lastEnergyStored = 0;
     private int lastProgress = 0;
 
-    // Slot constants
     private static final int FUEL_SLOT = 0;
 
     public BiomassBurnerMenu(int containerId, Inventory inv, FriendlyByteBuf extraData) {

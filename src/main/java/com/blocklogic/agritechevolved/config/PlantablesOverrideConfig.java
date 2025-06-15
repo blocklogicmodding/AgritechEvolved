@@ -1,6 +1,5 @@
 package com.blocklogic.agritechevolved.config;
 
-import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.Item;

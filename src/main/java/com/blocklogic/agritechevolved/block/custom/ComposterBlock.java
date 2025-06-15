@@ -1,7 +1,6 @@
 package com.blocklogic.agritechevolved.block.custom;
 
 import com.blocklogic.agritechevolved.block.entity.ATEBlockEntities;
-import com.blocklogic.agritechevolved.block.entity.AdvancedPlanterBlockEntity;
 import com.blocklogic.agritechevolved.block.entity.ComposterBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;

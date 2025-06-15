@@ -125,7 +125,8 @@ public class ATEBlocks {
             () -> new InfusedFarmlandBlock(BlockBehaviour.Properties.of()
                     .strength(1.0F, 2.0F)
                     .sound(SoundType.GRAVEL)
-                    .noOcclusion())
+                    .noOcclusion()
+                    .randomTicks())
             {
                 @Override
                 public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
@@ -136,7 +137,7 @@ public class ATEBlocks {
     );
 
     public static final DeferredBlock<Block> MULCH = registerBlock("mulch",
-            () -> new Block(BlockBehaviour.Properties.of()
+            () -> new MulchBlock(BlockBehaviour.Properties.of()
                     .strength(1.0F, 2.0F)
                     .sound(SoundType.GRAVEL))
             {

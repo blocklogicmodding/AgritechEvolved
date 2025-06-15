@@ -146,7 +146,7 @@ public class CapacitorBlockEntity extends BlockEntity implements MenuProvider {
             if (neighborBE != null) {
                 IEnergyStorage neighborEnergy = level.getCapability(Capabilities.EnergyStorage.BLOCK, neighborPos, direction.getOpposite());
                 if (neighborEnergy != null && neighborEnergy.canReceive()) {
-                    int energyToTransfer = blockEntity.energyStorage.extractEnergy(blockEntity.transferRate, true); // Test extraction
+                    int energyToTransfer = blockEntity.energyStorage.extractEnergy(blockEntity.transferRate, true);
                     if (energyToTransfer > 0) {
                         int transferred = neighborEnergy.receiveEnergy(energyToTransfer, false);
                         if (transferred > 0) {

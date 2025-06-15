@@ -3,6 +3,7 @@ package com.blocklogic.agritechevolved.compat.jei;
 import com.blocklogic.agritechevolved.AgritechEvolved;
 import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
+import com.blocklogic.agritechevolved.config.CompostableConfig;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
 import com.mojang.logging.LogUtils;
 import mezz.jei.api.IModPlugin;
@@ -32,7 +33,8 @@ public class ATEJeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(
-                new PlanterRecipeCategory(registration.getJeiHelpers().getGuiHelper())
+                new PlanterRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
+                new CompostRecipeCategory(registration.getJeiHelpers().getGuiHelper())
         );
     }
 
@@ -40,6 +42,9 @@ public class ATEJeiPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         List<PlanterRecipe> planterRecipes = generatePlanterRecipes();
         registration.addRecipes(PlanterRecipeCategory.PLANTER_RECIPE_TYPE, planterRecipes);
+
+        List<CompostRecipe> compostRecipes = generateCompostRecipes();
+        registration.addRecipes(CompostRecipeCategory.COMPOST_RECIPE_TYPE, compostRecipes);
     }
 
     @Override
@@ -47,6 +52,11 @@ public class ATEJeiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(
                 new ItemStack(ATEBlocks.ADVANCED_PLANTER.get()),
                 PlanterRecipeCategory.PLANTER_RECIPE_TYPE
+        );
+
+        registration.addRecipeCatalyst(
+                new ItemStack(ATEBlocks.COMPOSTER.get()),
+                CompostRecipeCategory.COMPOST_RECIPE_TYPE
         );
     }
 
@@ -57,6 +67,25 @@ public class ATEJeiPlugin implements IModPlugin {
         recipes.addAll(generateTreeRecipes());
 
         LogUtils.getLogger().info("Generated {} total planter recipes for JEI", recipes.size());
+        return recipes;
+    }
+
+    private List<CompostRecipe> generateCompostRecipes() {
+        List<CompostRecipe> recipes = new ArrayList<>();
+
+        for (String itemId : CompostableConfig.getCompostableItems()) {
+            try {
+                CompostRecipe recipe = CompostRecipe.create(itemId);
+                if (recipe != null && !recipe.getOutputs().isEmpty()) {
+                    recipes.add(recipe);
+                }
+            } catch (Exception e) {
+                LogUtils.getLogger().error("Error creating compost recipe for item {}: {}",
+                        itemId, e.getMessage(), e);
+            }
+        }
+
+        LogUtils.getLogger().info("Generated {} compost recipes for JEI", recipes.size());
         return recipes;
     }
 

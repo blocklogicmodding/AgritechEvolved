@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "agritechevolved:block/infused_farmland_top",
 		"1": "agritechevolved:block/infused_farmland_sides",
-		"2": "agritechevolved:block/infused_farmland_sides",
+		"2": "agritechevolved:block/infused_farmland_bottom",
 		"particle": "agritechevolved:block/infused_farmland_top"
 	},
 	"elements": [

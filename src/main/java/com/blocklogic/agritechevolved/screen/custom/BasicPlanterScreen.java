@@ -6,7 +6,6 @@ import com.blocklogic.agritechevolved.compat.jei.PlanterRecipeCategory;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -14,10 +13,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class BasicPlanterScreen extends AbstractContainerScreen<BasicPlanterMenu> {
     private static final ResourceLocation GUI_TEXTURE =
