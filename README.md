@@ -117,7 +117,7 @@ Uses RF (Redstone Flux) power with configurable consumption rates:
 ## Support
 
 -   **Wiki**: [AgriTech: Evolved Wiki](https://github.com/blocklogicmodding/AgritechEvolved/wiki)
-- **Issues**: [AgriTech: Evolved Issue Tracker](https://github.com/blocklogicmodding/AgritechEvolved/issues)
+  - **Issues**: [AgriTech: Evolved Issue Tracker](https://github.com/blocklogicmodding/AgritechEvolved/issues)
 -   **Discord**: [Join our Discord](https://discord.gg/YtdA3AMqsX)
 
 ## License
@@ -128,9 +128,3 @@ All rights reserved. This mod is protected by copyright and may not be redistrib
 
 -   Inclusion in modpacks (public or private)
 -   Content creation (videos, streams, reviews, etc.)
-
-For any other uses or questions about licensing, please contact the mod author.
-
-----------
-
-AgriTech: Evolved is designed to seamlessly integrate with existing modpacks while providing powerful automation tools that respect game balance through thoughtful energy costs and processing limitations.
