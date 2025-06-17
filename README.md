@@ -114,12 +114,6 @@ Uses RF (Redstone Flux) power with configurable consumption rates:
 -   Biomass Burner: Generates up to 2,500 RF/t
 -   Module power scaling based on effectiveness
 
-## Support
-
--   **Wiki**: [AgriTech: Evolved Wiki](https://github.com/blocklogicmodding/AgritechEvolved/wiki)
-  - **Issues**: [AgriTech: Evolved Issue Tracker](https://github.com/blocklogicmodding/AgritechEvolved/issues)
--   **Discord**: [Join the BLM Discord](https://discord.gg/YtdA3AMqsX)
-
 ## License
 
 All rights reserved. This mod is protected by copyright and may not be redistributed or modified without explicit permission.
@@ -128,3 +122,7 @@ All rights reserved. This mod is protected by copyright and may not be redistrib
 
 -   Inclusion in modpacks (public or private)
 -   Content creation (videos, streams, reviews, etc.)
+
+----------
+
+[**Wiki**](https://github.com/blocklogicmodding/AgritechEvolved/wiki) | [**Issue Tracker**](https://github.com/blocklogicmodding/AgritechEvolved/issues) | [**BLM Discord**](https://discord.gg/YtdA3AMqsXe)
