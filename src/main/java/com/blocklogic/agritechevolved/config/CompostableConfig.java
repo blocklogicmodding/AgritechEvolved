@@ -81,9 +81,9 @@ public class CompostableConfig {
                 "minecraft:sculk_vein", "minecraft:twisting_vines", "minecraft:weeping_vines", "minecraft:crimson_fungus",
                 "minecraft:warped_fungus", "minecraft:red_mushroom", "minecraft:brown_mushroom", "minecraft:glow_lichen",
                 "minecraft:sea_pickle", "minecraft:torchflower_seeds", "minecraft:chorus_fruit", "minecraft:chorus_flower",
-                "minecraft:poisonous_potato", "minecraft:pitcher_pod", "minecraft:pitcher_crop", "minecraft:cocoa_beans",
-                "minecraft:vine", "minecraft:spore_blossom", "minecraft:lily_pad", "minecraft:pink_petals", "minecraft:grass",
-                "minecraft:fern", "minecraft:tall_grass", "minecraft:large_fern", "minecraft:cave_vines", "minecraft:moss_block",
+                "minecraft:poisonous_potato", "minecraft:pitcher_pod", "minecraft:pitcher_plant", "minecraft:cocoa_beans",
+                "minecraft:vine", "minecraft:spore_blossom", "minecraft:lily_pad", "minecraft:pink_petals", "minecraft:short_grass",
+                "minecraft:fern", "minecraft:tall_grass", "minecraft:large_fern", "minecraft:moss_block",
                 "minecraft:melon"
         ));
 
@@ -96,7 +96,7 @@ public class CompostableConfig {
         items.addAll(Arrays.asList(
                 "minecraft:dirt", "minecraft:grass_block", "minecraft:coarse_dirt", "minecraft:podzol",
                 "minecraft:mycelium", "minecraft:grass", "minecraft:fern", "minecraft:dead_bush",
-                "minecraft:stick", "minecraft:leaves", "minecraft:oak_leaves", "minecraft:birch_leaves",
+                "minecraft:stick", "minecraft:oak_leaves", "minecraft:birch_leaves",
                 "minecraft:spruce_leaves", "minecraft:jungle_leaves", "minecraft:acacia_leaves", "minecraft:dark_oak_leaves",
                 "minecraft:cherry_leaves", "minecraft:azalea_leaves", "minecraft:flowering_azalea_leaves", "minecraft:mangrove_leaves",
                 "minecraft:muddy_mangrove_roots", "minecraft:mangrove_roots"
@@ -280,7 +280,7 @@ public class CompostableConfig {
 
     private static void addArsNouveauCompostables(List<String> items) {
         items.addAll(Arrays.asList(
-                "ars_nouveau:magebloom","ars_nouveau:magebloom_crop", "ars_nouveau:sourceberry",
+                "ars_nouveau:magebloom","ars_nouveau:magebloom_crop", "ars_nouveau:sourceberry_bush",
                 "ars_nouveau:blue_archwood_sapling","ars_nouveau:red_archwood_sapling", "ars_nouveau:purple_archwood_sapling","ars_nouveau:green_archwood_sapling"
         ));
     }
