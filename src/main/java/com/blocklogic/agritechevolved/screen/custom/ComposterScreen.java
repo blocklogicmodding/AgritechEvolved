@@ -27,6 +27,7 @@ public class ComposterScreen extends AbstractContainerScreen<ComposterMenu> {
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
+        this.titleLabelY -= 2;
     }
 
     public ComposterScreen(ComposterMenu menu, Inventory playerInventory, Component title) {
@@ -34,8 +35,7 @@ public class ComposterScreen extends AbstractContainerScreen<ComposterMenu> {
 
         this.imageHeight = 166;
         this.imageWidth = 176;
-        this.inventoryLabelY = this.imageHeight - 94;
-        this.inventoryLabelX = 8;
+        this.inventoryLabelY = this.imageHeight - 96;
     }
 
     @Override

@@ -23,13 +23,14 @@ public class CapacitorScreen extends AbstractContainerScreen<CapacitorMenu> {
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
+        this.titleLabelY -= 2;
     }
 
     public CapacitorScreen(CapacitorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
 
         this.imageHeight = 151;
-        this.inventoryLabelY = this.imageHeight - 94;
+        this.inventoryLabelY = this.imageHeight - 96;
     }
 
     @Override
