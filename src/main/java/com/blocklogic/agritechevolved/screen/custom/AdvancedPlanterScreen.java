@@ -26,6 +26,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
+        this.titleLabelY -= 2;
     }
 
     public AdvancedPlanterScreen(AdvancedPlanterMenu menu, Inventory playerInventory, Component title) {
@@ -33,7 +34,7 @@ public class AdvancedPlanterScreen extends AbstractContainerScreen<AdvancedPlant
 
         this.imageHeight = 170;
         this.imageWidth = 212;
-        this.inventoryLabelY = this.imageHeight - 94;
+        this.inventoryLabelY = this.imageHeight - 95;
         this.inventoryLabelX = 26;
 
     }

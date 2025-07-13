@@ -24,10 +24,14 @@ public class BasicPlanterScreen extends AbstractContainerScreen<BasicPlanterMenu
     protected void init() {
         super.init();
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
+        this.titleLabelY -= 2;
     }
 
     public BasicPlanterScreen(BasicPlanterMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+
+        this.imageHeight = 166;
+        this.inventoryLabelY = this.imageHeight - 96;
     }
 
     @Override
