@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdvancedPlanterBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(1.0, 0, 1.0, 15, 12, 15);
+    public static final VoxelShape SHAPE = Block.box(1.0, 0, 1.0, 15, 11, 15);
     public static final MapCodec<AdvancedPlanterBlock> CODEC = simpleCodec(AdvancedPlanterBlock::new);
     public static final BooleanProperty POWERED = BooleanProperty.create("powered");
 

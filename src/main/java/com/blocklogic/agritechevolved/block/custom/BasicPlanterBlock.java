@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BasicPlanterBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(1.0, 0, 1.0, 15, 12, 15);
+    public static final VoxelShape SHAPE = Block.box(1.0, 0, 1.0, 15, 11, 15);
     public static final MapCodec<BasicPlanterBlock> CODEC = simpleCodec(BasicPlanterBlock::new);
 
     public BasicPlanterBlock(Properties properties) {
