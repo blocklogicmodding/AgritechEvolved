@@ -95,7 +95,6 @@ Uses RF power with configurable consumption rates:
 
 -   Advanced Planter: 128 RF/t base consumption
 -   Composter: 128 RF/t base consumption
--   Biomass Burner: Generates up to 2,500 RF/t
 -   Module power scaling based on effectiveness
 
 ### Credit
