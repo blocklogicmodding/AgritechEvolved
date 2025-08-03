@@ -38,7 +38,30 @@ public class ATEBlockTagProvider extends BlockTagsProvider {
 
         tag(ATETags.Blocks.PLANTERS)
                 .add(ATEBlocks.BASIC_PLANTER.get())
+                .add(ATEBlocks.BASIC_ACACIA_PLANTER.get())
+                .add(ATEBlocks.BASIC_BAMBOO_PLANTER.get())
+                .add(ATEBlocks.BASIC_BIRCH_PLANTER.get())
+                .add(ATEBlocks.BASIC_CHERRY_PLANTER.get())
+                .add(ATEBlocks.BASIC_CRIMSON_PLANTER.get())
+                .add(ATEBlocks.BASIC_DARK_OAK_PLANTER.get())
+                .add(ATEBlocks.BASIC_JUNGLE_PLANTER.get())
+                .add(ATEBlocks.BASIC_MANGROVE_PLANTER.get())
+                .add(ATEBlocks.BASIC_SPRUCE_PLANTER.get())
+                .add(ATEBlocks.BASIC_WARPED_PLANTER.get())
                 .add(ATEBlocks.ADVANCED_PLANTER.get());
+
+        tag(ATETags.Blocks.BASIC_PLANTERS)
+                .add(ATEBlocks.BASIC_PLANTER.get())
+                .add(ATEBlocks.BASIC_ACACIA_PLANTER.get())
+                .add(ATEBlocks.BASIC_BAMBOO_PLANTER.get())
+                .add(ATEBlocks.BASIC_BIRCH_PLANTER.get())
+                .add(ATEBlocks.BASIC_CHERRY_PLANTER.get())
+                .add(ATEBlocks.BASIC_CRIMSON_PLANTER.get())
+                .add(ATEBlocks.BASIC_DARK_OAK_PLANTER.get())
+                .add(ATEBlocks.BASIC_JUNGLE_PLANTER.get())
+                .add(ATEBlocks.BASIC_MANGROVE_PLANTER.get())
+                .add(ATEBlocks.BASIC_SPRUCE_PLANTER.get())
+                .add(ATEBlocks.BASIC_WARPED_PLANTER.get());
 
         tag(ATETags.Blocks.MACHINES)
                 .add(ATEBlocks.COMPOSTER.get())

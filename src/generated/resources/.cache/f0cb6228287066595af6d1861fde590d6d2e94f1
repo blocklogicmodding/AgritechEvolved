@@ -1,4 +1,5 @@
-// 1.21.1	2025-06-15T03:36:50.1105914	Tags for minecraft:item mod id agritechevolved
+// 1.21.1	2025-08-04T00:18:09.9261851	Tags for minecraft:item mod id agritechevolved
 f8819bca35565224479ee18bd5e528e3ab42f736 data/agritechevolved/tags/item/agritechevolved_modules.json
+356ee84c7317df503bd9253388a2a2560e434f0f data/agritechevolved/tags/item/basic_planter_items.json
 e7d7b288e037871d3268bfdf238429bee66dbfe2 data/agritechevolved/tags/item/biomass.json
 7a67c78fa99667fa0a4dc961c2cdf194ec466f0a data/agritechevolved/tags/item/dirt_like_block_items.json

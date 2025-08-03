@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "tag": "minecraft:bamboo_blocks"
+        },
+        "P": {
+            "item": "minecraft:bamboo_planks"
+        },
+        "S": {
+            "item": "minecraft:bamboo_slab"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_bamboo_planter"
+    }
+}

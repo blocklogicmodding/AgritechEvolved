@@ -53,6 +53,7 @@ public class BiomassBurnerMenu extends AbstractContainerMenu {
             String itemId = RegistryHelper.getItemId(stack);
             return itemId.equals("agritechevolved:biomass") ||
                     itemId.equals("agritechevolved:compacted_biomass") ||
+                    itemId.equals("agritechevolved:compacted_biomass_block") ||
                     itemId.equals("agritechevolved:crude_biomass");
         }
     }
@@ -128,7 +129,7 @@ public class BiomassBurnerMenu extends AbstractContainerMenu {
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             String sourceItemId = RegistryHelper.getItemId(sourceStack);
 
-            if (sourceItemId.equals("agritechevolved:biomass") ||
+            if (sourceItemId.equals("agritechevolved:biomass") || sourceItemId.equals("agritechevolved:compacted_biomass_block") ||
                     sourceItemId.equals("agritechevolved:compacted_biomass")) {
                 if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX + FUEL_SLOT,
                         TE_INVENTORY_FIRST_SLOT_INDEX + FUEL_SLOT + 1, false)) {

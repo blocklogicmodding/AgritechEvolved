@@ -15,7 +15,19 @@ public class ATEBlockEntities {
 
     public static final Supplier<BlockEntityType<BasicPlanterBlockEntity>> BASIC_PLANTER_BE =
             BLOCK_ENTITIES.register("basic_planter_be", () -> BlockEntityType.Builder.of(
-                    BasicPlanterBlockEntity::new, ATEBlocks.BASIC_PLANTER.get()).build(null));
+                    BasicPlanterBlockEntity::new,
+                    ATEBlocks.BASIC_PLANTER.get(),
+                    ATEBlocks.BASIC_ACACIA_PLANTER.get(),
+                    ATEBlocks.BASIC_BAMBOO_PLANTER.get(),
+                    ATEBlocks.BASIC_BIRCH_PLANTER.get(),
+                    ATEBlocks.BASIC_CHERRY_PLANTER.get(),
+                    ATEBlocks.BASIC_CRIMSON_PLANTER.get(),
+                    ATEBlocks.BASIC_DARK_OAK_PLANTER.get(),
+                    ATEBlocks.BASIC_JUNGLE_PLANTER.get(),
+                    ATEBlocks.BASIC_MANGROVE_PLANTER.get(),
+                    ATEBlocks.BASIC_SPRUCE_PLANTER.get(),
+                    ATEBlocks.BASIC_WARPED_PLANTER.get()
+            ).build(null));
 
     public static final Supplier<BlockEntityType<AdvancedPlanterBlockEntity>> ADVANCED_PLANTER_BE =
             BLOCK_ENTITIES.register("advanced_planter_be", () -> BlockEntityType.Builder.of(

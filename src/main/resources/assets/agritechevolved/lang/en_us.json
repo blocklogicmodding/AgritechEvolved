@@ -1,7 +1,18 @@
 {
   "creativetab.agritechevolved.agritechevolved": "Agritech: Evolved",
 
-  "block.agritechevolved.basic_planter": "Basic Planter",
+  "block.agritechevolved.basic_planter": "Basic Oak Planter",
+  "block.agritechevolved.basic_acacia_planter": "Basic Acacia Planter",
+  "block.agritechevolved.basic_bamboo_planter": "Basic Bamboo Planter",
+  "block.agritechevolved.basic_birch_planter": "Basic Birch Planter",
+  "block.agritechevolved.basic_cherry_planter": "Basic Cherry Planter",
+  "block.agritechevolved.basic_crimson_planter": "Basic Crimson Planter",
+  "block.agritechevolved.basic_dark_oak_planter": "Basic Dark Oak Planter",
+  "block.agritechevolved.basic_jungle_planter": "Basic Jungle Planter",
+  "block.agritechevolved.basic_mangrove_planter": "Basic Mangrove Planter",
+  "block.agritechevolved.basic_spruce_planter": "Basic Spruce Planter",
+  "block.agritechevolved.basic_warped_planter": "Basic Warped Planter",
+
   "block.agritechevolved.advanced_planter": "Advanced Planter",
   "block.agritechevolved.composter": "Composter",
   "block.agritechevolved.biomass_burner": "Biomass Burner",
@@ -102,5 +113,11 @@
   "tooltip.agritechevolved.fuel.duration_bonus": "§a+%s%% RF from longer burn§r",
   "tooltip.agritechevolved.fuel.duration_penalty": "§c-%s%% RF from shorter burn§r",
   "tooltip.agritechevolved.fuel.shift_info": "§6§oHold Shift for Fuel & Fertilizer info§r",
-  "tooltip.agritechevolved.crude_fuel.shift_info": "§6§oHold Shift for Fuel info§r"
+  "tooltip.agritechevolved.crude_fuel.shift_info": "§6§oHold Shift for Fuel info§r",
+
+  "jade.agritechevolved.crop_ready": "%s - Ready to Harvest!",
+  "jade.agritechevolved.crop_progress": "%s - Stage %d/%d (%d%%)",
+  "jade.agritechevolved.soil_info": "Soil: %s (%s growth)",
+  "jade.agritechevolved.modules_installed": "Modules: %s",
+  "jade.agritechevolved.fertilizer_info": "Fertilizer: %s"
 }

@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "tag": "minecraft:logs"
+        },
+        "P": {
+            "tag": "minecraft:planks"
+        },
+        "S": {
+            "tag": "minecraft:wooden_slabs"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_planter"
+    }
+}

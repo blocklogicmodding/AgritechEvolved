@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.block.entity;
 
 import com.blocklogic.agritechevolved.Config;
+import com.blocklogic.agritechevolved.block.ATEBlocks;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.custom.BasicPlanterMenu;
 import com.blocklogic.agritechevolved.util.RegistryHelper;
@@ -35,11 +36,11 @@ import java.util.*;
 public class BasicPlanterBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler inventory = new ItemStackHandler(14) {
         @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
+        public int getSlotLimit(int slot) {
             if (slot == 0 || slot == 1) {
                 return 1;
             }
-            return super.getStackLimit(slot, stack);
+            return super.getSlotLimit(slot);
         }
 
         @Override
@@ -127,7 +128,21 @@ public class BasicPlanterBlockEntity extends BlockEntity implements MenuProvider
             blockEntity.harvestPlant();
         }
 
-        tryOutputItemsBelow(level, pos, blockEntity);
+        if (state.is(ATEBlocks.BASIC_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_ACACIA_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_BAMBOO_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_BIRCH_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_CHERRY_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_CRIMSON_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_DARK_OAK_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_JUNGLE_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_MANGROVE_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_SPRUCE_PLANTER.get()) ||
+                state.is(ATEBlocks.BASIC_WARPED_PLANTER.get())
+
+        ) {
+            tryOutputItemsBelow(level, pos, blockEntity);
+        }
     }
 
     private boolean isValidPlantSoilCombination(String plantId, String soilId) {

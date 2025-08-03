@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "item": "minecraft:spruce_log"
+        },
+        "P": {
+            "item": "minecraft:spruce_planks"
+        },
+        "S": {
+            "item": "minecraft:spruce_slab"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_spruce_planter"
+    }
+}

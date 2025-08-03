@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "item": "minecraft:mangrove_log"
+        },
+        "P": {
+            "item": "minecraft:mangrove_planks"
+        },
+        "S": {
+            "item": "minecraft:mangrove_slab"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_mangrove_planter"
+    }
+}

@@ -25,12 +25,73 @@ import java.util.function.Supplier;
 public class ATEBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(AgritechEvolved.MODID);
 
+    // Basic Planters
     public static final DeferredBlock<Block> BASIC_PLANTER = registerBlock("basic_planter",
             () -> new BasicPlanterBlock(BlockBehaviour.Properties.of()
                     .strength(2.0F, 3.0F)
                     .sound(SoundType.WOOD)
                     .noOcclusion())
     );
+
+    public static final DeferredBlock<Block> BASIC_ACACIA_PLANTER = registerBlock("basic_acacia_planter",
+            () -> new BasicAcaciaPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_BAMBOO_PLANTER = registerBlock("basic_bamboo_planter",
+            () -> new BasicBambooPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_BIRCH_PLANTER = registerBlock("basic_birch_planter",
+            () -> new BasicBirchPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_CHERRY_PLANTER = registerBlock("basic_cherry_planter",
+            () -> new BasicCherryPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_CRIMSON_PLANTER = registerBlock("basic_crimson_planter",
+            () -> new BasicCrimsonPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_DARK_OAK_PLANTER = registerBlock("basic_dark_oak_planter",
+            () -> new BasicDarkOakPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_JUNGLE_PLANTER = registerBlock("basic_jungle_planter",
+            () -> new BasicJunglePlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_MANGROVE_PLANTER = registerBlock("basic_mangrove_planter",
+            () -> new BasicMangrovePlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_SPRUCE_PLANTER = registerBlock("basic_spruce_planter",
+            () -> new BasicSprucePlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> BASIC_WARPED_PLANTER = registerBlock("basic_warped_planter",
+            () -> new BasicWarpedPlanterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F, 3.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
 
     public static final DeferredBlock<Block> ADVANCED_PLANTER = registerBlock("advanced_planter",
             () -> new AdvancedPlanterBlock(BlockBehaviour.Properties.of()

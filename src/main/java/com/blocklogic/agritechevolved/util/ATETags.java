@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 public class ATETags {
     public static class Blocks {
         public static final TagKey<Block> PLANTERS = createTag("planters");
+        public static final TagKey<Block> BASIC_PLANTERS = createTag("basic_planters");
         public static final TagKey<Block> MACHINES = createTag("machines");
         public static final TagKey<Block> NATURAL_BLOCKS = createTag("natural_blocks");
         public static final TagKey<Block> DIRT_LIKE_BLOCKS = createTag("dirt_like_blocks");
@@ -24,6 +25,7 @@ public class ATETags {
         public static final TagKey<Item> ATE_MODULES = createTag("agritechevolved_modules");
         public static final TagKey<Item> BIOMASS = createTag("biomass");
         public static final TagKey<Item> DIRT_LIKE_BLOCK_ITEMS = createTag("dirt_like_block_items");
+        public static final TagKey<Item> BASIC_PLANTER_ITEMS = createTag("basic_planter_items");
 
 
         private static TagKey<Item> createTag (String name) {

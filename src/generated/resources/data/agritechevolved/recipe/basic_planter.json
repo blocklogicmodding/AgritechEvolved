@@ -9,13 +9,13 @@
             "item": "minecraft:hopper"
         },
         "L": {
-            "tag": "minecraft:logs"
+            "item": "minecraft:oak_log"
         },
         "P": {
-            "tag": "minecraft:planks"
+            "item": "minecraft:oak_planks"
         },
         "S": {
-            "tag": "minecraft:wooden_slabs"
+            "item": "minecraft:oak_slab"
         }
     },
     "pattern": [

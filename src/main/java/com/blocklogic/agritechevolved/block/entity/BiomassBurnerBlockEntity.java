@@ -42,6 +42,8 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
             if (stack.isEmpty()) return false;
             String itemId = RegistryHelper.getItemId(stack);
             return itemId.equals("agritechevolved:biomass") ||
+                    itemId.equals("agritechevolved:crude_biomass") ||
+                    itemId.equals("agritechevolved:compacted_biomass_block") ||
                     itemId.equals("agritechevolved:compacted_biomass");
         }
 
@@ -155,6 +157,7 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
         String itemId = RegistryHelper.getItemId(fuelStack);
         return itemId.equals("agritechevolved:biomass") ||
                 itemId.equals("agritechevolved:compacted_biomass") ||
+                itemId.equals("agritechevolved:compacted_biomass_block") ||
                 itemId.equals("agritechevolved:crude_biomass");
     }
 
@@ -179,13 +182,18 @@ public class BiomassBurnerBlockEntity extends BlockEntity implements MenuProvide
                 burnDuration = Config.getBurnerCompactedBiomassBurnDuration();
                 baseDuration = 180;
             }
+            case "agritechevolved:compacted_biomass_block" -> {
+                baseRF = Config.getBurnerCompactedBiomassBlockRfValue();
+                burnDuration = Config.getBurnerCompactedBiomassBlockBurnDuration();
+                baseDuration = 180;
+            }
             case "agritechevolved:crude_biomass" -> {
                 baseRF = Config.getBurnerCrudeBiomassRfValue();
                 burnDuration = Config.getBurnerCrudeBiomassBurnDuration();
                 baseDuration = 50;
             }
             default -> {
-                return; // Unknown fuel type
+                return;
             }
         }
 

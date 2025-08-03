@@ -108,10 +108,12 @@ public class Config {
     public static ModConfigSpec.IntValue BURNER_ENERGY_BUFFER;
     public static ModConfigSpec.IntValue BURNER_BIOMASS_RF_VALUE;
     public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_RF_VALUE;
+    public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_BLOCK_RF_VALUE;
     public static ModConfigSpec.IntValue BURNER_CRUDE_BIOMASS_RF_VALUE;
 
     public static ModConfigSpec.IntValue BURNER_BIOMASS_BURN_DURATION;
     public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_BURN_DURATION;
+    public static ModConfigSpec.IntValue BURNER_COMPACTED_BIOMASS_BLOCK_BURN_DURATION;
     public static ModConfigSpec.IntValue BURNER_CRUDE_BIOMASS_BURN_DURATION;
 
     // Capacitors
@@ -306,6 +308,8 @@ public class Config {
                 .defineInRange("biomass_rf_value", 2500, 100, 100000);
         BURNER_COMPACTED_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per compacted biomass item")
                 .defineInRange("compacted_biomass_rf_value", 22500, 1000, 1000000);
+        BURNER_COMPACTED_BIOMASS_BLOCK_RF_VALUE = COMMON_BUILDER.comment("RF generated per compacted biomass block")
+                .defineInRange("compacted_biomass_rf_value", 225000, 1000, 1000000);
         BURNER_CRUDE_BIOMASS_RF_VALUE = COMMON_BUILDER.comment("RF generated per crude biomass item")
                 .defineInRange("crude_biomass_rf_value", 250, 50, 50000);
 
@@ -315,6 +319,8 @@ public class Config {
                 .defineInRange("compacted_biomass_burn_duration", 180, 20, 72000);
         BURNER_CRUDE_BIOMASS_BURN_DURATION = COMMON_BUILDER.comment("Burn duration for crude biomass in ticks (20 ticks = 1 second)")
                 .defineInRange("crude_biomass_burn_duration", 50, 20, 72000);
+        BURNER_COMPACTED_BIOMASS_BLOCK_BURN_DURATION = COMMON_BUILDER.comment("Burn duration for compacted biomass block in ticks (20 ticks = 1 second)")
+                .defineInRange("compacted_biomass_block_burn_duration", 1800, 20, 72000);
         COMMON_BUILDER.pop();
     }
 
@@ -501,6 +507,10 @@ public class Config {
         return BURNER_COMPACTED_BIOMASS_RF_VALUE.get();
     }
 
+    public static int getBurnerCompactedBiomassBlockRfValue() {
+        return BURNER_COMPACTED_BIOMASS_BLOCK_RF_VALUE.get();
+    }
+
     public static int getBurnerCrudeBiomassRfValue() {
         return BURNER_CRUDE_BIOMASS_RF_VALUE.get();
     }
@@ -511,6 +521,10 @@ public class Config {
 
     public static int getBurnerCompactedBiomassBurnDuration() {
         return BURNER_COMPACTED_BIOMASS_BURN_DURATION.get();
+    }
+
+    public static int getBurnerCompactedBiomassBlockBurnDuration() {
+        return BURNER_COMPACTED_BIOMASS_BLOCK_BURN_DURATION.get();
     }
 
     public static int getBurnerCrudeBiomassBurnDuration() {

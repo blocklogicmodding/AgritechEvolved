@@ -1,6 +1,7 @@
 package com.blocklogic.agritechevolved.screen.custom;
 
 import com.blocklogic.agritechevolved.block.ATEBlocks;
+import com.blocklogic.agritechevolved.block.custom.BasicPlanterBlock;
 import com.blocklogic.agritechevolved.block.entity.BasicPlanterBlockEntity;
 import com.blocklogic.agritechevolved.config.PlantablesConfig;
 import com.blocklogic.agritechevolved.screen.ATEMenuTypes;
@@ -13,6 +14,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
@@ -137,8 +139,13 @@ public class BasicPlanterMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ATEBlocks.BASIC_PLANTER.get());
+        Block block = blockEntity.getBlockState().getBlock();
+
+        if (block instanceof BasicPlanterBlock) {
+            return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, block);
+        }
+
+        return false;
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

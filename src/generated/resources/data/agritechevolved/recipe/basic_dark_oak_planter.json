@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "item": "minecraft:dark_oak_log"
+        },
+        "P": {
+            "item": "minecraft:dark_oak_planks"
+        },
+        "S": {
+            "item": "minecraft:dark_oak_slab"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_dark_oak_planter"
+    }
+}

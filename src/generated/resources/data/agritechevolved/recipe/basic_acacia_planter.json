@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "D": {
+            "item": "minecraft:dirt"
+        },
+        "H": {
+            "item": "minecraft:hopper"
+        },
+        "L": {
+            "item": "minecraft:acacia_log"
+        },
+        "P": {
+            "item": "minecraft:acacia_planks"
+        },
+        "S": {
+            "item": "minecraft:acacia_slab"
+        }
+    },
+    "pattern": [
+        "S S",
+        "PDP",
+        "LHL"
+    ],
+    "result": {
+        "count": 1,
+        "id": "agritechevolved:basic_acacia_planter"
+    }
+}

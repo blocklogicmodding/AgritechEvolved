@@ -19,7 +19,18 @@ public class ATECreativeTab {
                     .title(Component.translatable("creativetab.agritechevolved.agritechevolved"))
                     .displayItems((ItemDisplayParameters, output) -> {
 
+                        output.accept(ATEBlocks.BASIC_ACACIA_PLANTER);
+                        output.accept(ATEBlocks.BASIC_BAMBOO_PLANTER);
+                        output.accept(ATEBlocks.BASIC_BIRCH_PLANTER);
+                        output.accept(ATEBlocks.BASIC_CHERRY_PLANTER);
+                        output.accept(ATEBlocks.BASIC_CRIMSON_PLANTER);
+                        output.accept(ATEBlocks.BASIC_DARK_OAK_PLANTER);
+                        output.accept(ATEBlocks.BASIC_JUNGLE_PLANTER);
+                        output.accept(ATEBlocks.BASIC_MANGROVE_PLANTER);
                         output.accept(ATEBlocks.BASIC_PLANTER);
+                        output.accept(ATEBlocks.BASIC_SPRUCE_PLANTER);
+                        output.accept(ATEBlocks.BASIC_WARPED_PLANTER);
+
                         output.accept(ATEBlocks.ADVANCED_PLANTER);
                         output.accept(ATEBlocks.COMPOSTER);
                         output.accept(ATEBlocks.BIOMASS_BURNER);

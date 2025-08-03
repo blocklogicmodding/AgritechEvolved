@@ -1,18 +1,14 @@
 
 # AgriTech: Evolved
 
-![AgriTech: Evolved](https://deonjonker.com/blm/ate/ate_banner.png)
-
-AgriTech: Evolved is a comprehensive agricultural automation mod for Minecraft that enhances farming with advanced machines, modules, and extensive mod compatibility. The mod provides powerful tools for automating crop and tree farming while maintaining balance through configurable energy costs and processing times.
-
 ## Core Features
 
 ### **Automated Planters**
 
--   **Basic Planter**: A simple wooden planter that automatically grows crops and saplings without requiring power at a much slower rate. Can't be automated (except to output into a container directly below it)
+-   **Basic Planter**: A simple wooden planter that automatically grows crops and saplings without requiring power at a much slower rate. Can't be automated (except to output into a container directly below it). Available in all 11 vanilla wood types.
 -   **Advanced Planter**: A high-tech planter with energy consumption, module slots, fertilizer support, and enhanced automation capabilities
 
-### **Agricultural Machines**
+### **Machines**
 
 -   **Composter**: Converts organic materials into biomass fuel with configurable input ratios
 -   **Biomass Burner**: Generates RF energy from crude biomass, biomass, and compacted biomass
@@ -30,7 +26,7 @@ AgriTech: Evolved is a comprehensive agricultural automation mod for Minecraft t
 
 ### **Fertilizer System**
 
-Comprehensive fertilizer support with configurable speed and yield multipliers:
+Fertilizer support with configurable speed and yield multipliers:
 
 -   Vanilla bone meal
 -   Biomass and compacted biomass
@@ -38,7 +34,7 @@ Comprehensive fertilizer support with configurable speed and yield multipliers:
 -   Immersive Engineering fertilizers
 -   Forbidden & Arcanus arcane bone meal
 
-## Extensive Mod Compatibility
+## Mod Compatibility
 
 ### **Supported Crop Mods**
 
@@ -75,15 +71,6 @@ Comprehensive fertilizer support with configurable speed and yield multipliers:
 
 Configuration changes apply without server restart, with dedicated error logging for troubleshooting.
 
-## Automation Features
-
-### **Smart Item Handling**
-
--   Automatic output to adjacent containers
--   Hopper and pipe compatibility
--   Side-specific input/output configuration
--   RF power connections on all sides
-
 ### **Interactive Placement**
 
 -   Right-click with seeds to insert directly into planters
@@ -96,23 +83,26 @@ Configuration changes apply without server restart, with dedicated error logging
 -   Real-time rendering of planted crops and soil types
 -   Progress bars for all processing operations
 -   Audio feedback for successful interactions
--   Clear error messages for invalid operations
 
 ## JEI Integration
-
-Complete Just Enough Items integration showing:
 
 -   Compatible crop/soil combinations for each planter
 -   Compostable items for the composter
 
 ## Energy System
 
-Uses RF (Redstone Flux) power with configurable consumption rates:
+Uses RF power with configurable consumption rates:
 
 -   Advanced Planter: 128 RF/t base consumption
 -   Composter: 128 RF/t base consumption
 -   Biomass Burner: Generates up to 2,500 RF/t
 -   Module power scaling based on effectiveness
+
+### Credit
+Some textures used in this mod were adapted from  **"Unused Minecraft Textures" by Malcolm Riley**  ([GitHub Repository](https://github.com/malcolmriley/unused-textures))  
+Licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+Modifications were made to some of the original assets.
 
 ## License
 
