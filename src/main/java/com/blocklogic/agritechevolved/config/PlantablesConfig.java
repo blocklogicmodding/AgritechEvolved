@@ -2863,6 +2863,16 @@ public class PlantablesConfig {
         strippedJungleWood.soil = "minecraft:stripped_jungle_wood";
         strippedJungleWood.growthModifier = 0.5f;
         soils.add(strippedJungleWood);
+
+        SoilEntry crimsonNylium = new SoilEntry();
+        crimsonNylium.soil = "minecraft:crimson_nylium";
+        crimsonNylium.growthModifier = 0.6f;
+        soils.add(crimsonNylium);
+
+        SoilEntry warpedNylium = new SoilEntry();
+        warpedNylium.soil = "minecraft:warped_nylium";
+        warpedNylium.growthModifier = 0.6f;
+        soils.add(warpedNylium);
     }
 
     private static void addAgritechEvolvedSoils(List<SoilEntry> soils) {
